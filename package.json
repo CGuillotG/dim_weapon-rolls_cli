@@ -1,0 +1,28 @@
+{
+    "name": "@cguillot/dim_weapon-rolls_cli",
+    "version": "0.0.1",
+    "description": "Weapon Roll classifier for Destiny 2 DIM",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CGuillotG/dim_weapon-rolls_cli.git"
+    },
+    "keywords": [
+        "javascript",
+        "node",
+        "Destiny2",
+        "DIM"
+    ],
+    "author": {
+        "name": "CGuillot",
+        "email": "carlos@guillot.dev"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/CGuillotG/dim_weapon-rolls_cli/issues"
+    },
+    "homepage": "https://github.com/CGuillotG/dim_weapon-rolls_cli#readme"
+}
