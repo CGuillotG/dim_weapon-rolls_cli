@@ -1,0 +1,95 @@
+[
+ {
+  "name": "Erentil FR4",
+  "season": 10,
+  "imgSrc": "#",
+  "rolls": [
+   {
+    "name": "PvP",
+    "scopes": {
+     "priority": 2,
+     "options": [
+      {
+       "priority": 1,
+       "perkName": "Impulse MS3"
+      },
+      {
+       "priority": 1,
+       "perkName": "Signal MS5"
+      }
+     ]
+    },
+    "batteries": {
+     "priority": 3,
+     "options": [
+      {
+       "priority": 1,
+       "perkName": "Projection Fuse"
+      },
+      {
+       "priority": 1,
+       "perkName": "Particle Repeater"
+      }
+     ]
+    },
+    "perk1": {
+     "priority": 1,
+     "options": [
+      {
+       "priority": 1,
+       "perkName": "Under Pressure"
+      },
+      {
+       "priority": 2,
+       "perkName": "Firmly Planted"
+      }
+     ]
+    },
+    "perk2": {
+     "priority": 1,
+     "options": [
+      {
+       "priority": 1,
+       "perkName": "Rangefinder"
+      },
+      {
+       "priority": 2,
+       "perkName": "Tap the Trigger"
+      }
+     ]
+    },
+    "masterwork": {
+     "priority": 1,
+     "options": [
+      {
+       "priority": 1,
+       "statName": "Range"
+      },
+      {
+       "priority": 1,
+       "statName": "Stability"
+      }
+     ]
+    },
+    "mod": {
+     "options": [
+      {
+       "priority": 1,
+       "modName": "Counterbalance"
+      },
+      {
+       "priority": 2,
+       "modName": "Targeting Adjuster"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "name": "Jian 7",
+  "season": 10,
+  "imgSrc": "#",
+  "rolls": []
+ }
+]

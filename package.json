@@ -4,6 +4,7 @@
     "description": "Weapon Roll classifier for Destiny 2 DIM",
     "main": "index.js",
     "scripts": {
+        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -24,5 +25,8 @@
     "bugs": {
         "url": "https://github.com/CGuillotG/dim_weapon-rolls_cli/issues"
     },
-    "homepage": "https://github.com/CGuillotG/dim_weapon-rolls_cli#readme"
+    "homepage": "https://github.com/CGuillotG/dim_weapon-rolls_cli#readme",
+    "dependencies": {
+        "enquirer": "^2.3.6"
+    }
 }
