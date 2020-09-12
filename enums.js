@@ -1,5 +1,3 @@
-exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', 'Blast Radius', 'Velocity']
-
 exports.seasonMap = new Map()
     .set("Vanilla", 1)
     .set("Curse of Osiris", 2)
@@ -15,3 +13,7 @@ exports.seasonMap = new Map()
     .set("Beyond Light", 12)
     .set("The Witch Queen", 16)
     .set("Lightfall", 20)
+
+exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', 'Blast Radius', 'Velocity']
+
+exports.sections = ['scopes', 'batteries', 'magazines', 'perk1', 'perk2', 'masterwork', 'mod']

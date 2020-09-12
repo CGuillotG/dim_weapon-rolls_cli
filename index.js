@@ -1,12 +1,12 @@
 const fs = require('fs')
-const { Select, Input, Toggle, AutoComplete } = require('enquirer')
+const { prompt, Select, Input, Toggle, Form, Scale, AutoComplete } = require('enquirer')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
-let { masterworks, seasonMap } = require('./enums')
+let { masterworks, seasonMap, sections } = require('./enums')
 let { getDIMSearch } = require('./dim')
 
 const writeJson = (fileName, content) => {
-    fs.writeFile(fileName, JSON.stringify(content, null, 1), (err) => {
+    fs.writeFile(fileName, JSON.stringify(content, null, 4), (err) => {
         if (err) return console.error(err)
     })
 }
@@ -33,18 +33,9 @@ const newWeapon = (name, season, imgSrc = '#') => {
     currentWeapons.push({ name, season, imgSrc, rolls: [] })
 }
 
-const newRoll = (weaponIndex) => {
-    //Re-do this
+const newRoll = (weaponIndex, roll) => {
     let weapon = currentWeapons[weaponIndex]
-    console.log({ name: weapon.name, season: weapon.season, imgSrc: weapon.imgSrc })
-    let roll = {}
-
-
-
-
-
-
-    currentWeapons[weaponIndex].rolls.push(roll)
+    weapon.rolls.push(roll)
 }
 
 const startCLI = () => {
@@ -53,7 +44,7 @@ const startCLI = () => {
     console.log('Greetings Guardian!')
     const firstPrompt = new Select({
         message: 'How can I help you today?',
-        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Exit']
+        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Show All', 'Exit']
     })
     const weaponPrompt = new Input({
         message: `What is the weapon's name?`
@@ -85,6 +76,13 @@ const startCLI = () => {
                 break;
             case 'Get DIM Queries':
                 getDIMCLI()
+                break;
+            case 'Show All':
+                console.table(currentWeapons.map(cw => {
+                    return {
+                        name: cw.name, season: cw.season, rolls: cw.rolls.map(r => { return r.name })
+                    }
+                }))
                 break;
             default:
                 process.exit(0)
@@ -122,18 +120,63 @@ const rollCLI = (wName = "") => {
         console.log('Creating new roll for:', wName)
 
         let roll = { name: "Rolly Roll" }
-        let sections = [...Object.keys(roll)]
-        console.table(sections)
-        console.log(sections.some(w => { return w === 'name' }))
 
-
-
-
-
-
-        currentWeapons[getWeaponIndexByName(wName)].rolls.push(roll)
+        sectionCLI(roll, wName)
+        // currentWeapons[getWeaponIndexByName(wName)].rolls.push(roll)
         // startCLI()
     }
+}
+
+const sectionCLI = (accRoll, wName) => {
+
+    const sectionPrompt = new Select({
+        message: 'What section are you adding?',
+        choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
+    })
+    sectionPrompt.run().then(s => {
+        let section = { priority: 1, options: [] }
+
+
+
+
+
+
+
+
+        accRoll[s] = section
+        console.log('Current sections:', [...Object.keys(accRoll)])
+        const newSectionPrompt = new Toggle({
+            message: `Do you want to add any other section?`
+        })
+        newSectionPrompt.run().then(n => {
+            if (n) {
+                sectionCLI(accRoll)
+            } else {
+                console.log(accRoll)
+                console.log("           ")
+                // const sectionPriority = new Scale({
+                //     message: 'What is the section Priority',
+                //     scale: [
+                //         { name: '1', message: 'Max Priority' },
+                //         { name: '2', message: 'High Priority' },
+                //         { name: '3', message: 'Mid Priority' },
+                //         { name: '4', message: 'Low Priority' },
+                //         { name: '5', message: 'Min Priority' },
+                //     ],
+                //     choices: [{
+                //         message: 'What is the section Priority',
+                //     }]
+                // }).run().then(() => {
+
+                // }).catch(err => console.error('Error: ' + err))
+                newRoll(getWeaponIndexByName(wName), accRoll)
+                startCLI()
+            }
+        }).catch(err => console.error('Error: ' + err))
+
+
+    }).catch(err => console.error('Error: ' + err))
+    // accRoll['section' + Object.keys(accRoll).length] = {}
 }
 
 const getDIMCLI = () => {
@@ -149,7 +192,7 @@ const getDIMCLI = () => {
         }).run().then(roll => {
             let rollIndex = getRollIndexByName(weaponIndex, roll)
             roll = currentWeapons[weaponIndex].rolls[rollIndex]
-            console.log(getDIMSearch(weapon.name, roll), weapon.name)
+            console.log(getDIMSearch(weapon.name, roll))
         }).catch(err => console.error('Error: ' + err))
     }).catch(err => console.error('Error: ' + err))
 }
