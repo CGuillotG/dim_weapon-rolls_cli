@@ -10,11 +10,11 @@
      "priority": 2,
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Impulse MS3"
       },
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Signal MS5"
       }
      ]
@@ -23,11 +23,11 @@
      "priority": 3,
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Projection Fuse"
       },
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Particle Repeater"
       }
      ]
@@ -36,11 +36,11 @@
      "priority": 1,
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Under Pressure"
       },
       {
-       "priority": 2,
+       "order": 2,
        "perkName": "Firmly Planted"
       }
      ]
@@ -49,11 +49,11 @@
      "priority": 1,
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "perkName": "Rangefinder"
       },
       {
-       "priority": 2,
+       "order": 2,
        "perkName": "Tap the Trigger"
       }
      ]
@@ -62,11 +62,11 @@
      "priority": 1,
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "statName": "Range"
       },
       {
-       "priority": 1,
+       "order": 1,
        "statName": "Stability"
       }
      ]
@@ -74,11 +74,11 @@
     "mod": {
      "options": [
       {
-       "priority": 1,
+       "order": 1,
        "modName": "Counterbalance"
       },
       {
-       "priority": 2,
+       "order": 2,
        "modName": "Targeting Adjuster"
       }
      ]
