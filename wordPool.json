@@ -1,12 +1,46 @@
 [
-    { "name": "Impulse MS3", "category": "scopes" },
-    { "name": "Signal MS5", "category": "scopes" },
-    { "name": "Projection Fuse", "category": "batteries" },
-    { "name": "Particle Repeater", "category": "batteries" },
-    { "name": "Under Pressure", "category": "general" },
-    { "name": "Firmly Planted", "category": "general" },
-    { "name": "Rangefinder", "category": "general" },
-    { "name": "Tap the Trigger", "category": "general" },
-    { "name": "Counterbalance", "category": "mod" },
-    { "name": "Targeting Adjuster", "category": "mod" }
+  {
+    "name": "Impulse MS3",
+    "category": "scopes"
+  },
+  {
+    "name": "Signal MS5",
+    "category": "scopes"
+  },
+  {
+    "name": "Projection Fuse",
+    "category": "batteries"
+  },
+  {
+    "name": "Particle Repeater",
+    "category": "batteries"
+  },
+  {
+    "name": "Under Pressure",
+    "category": "general"
+  },
+  {
+    "name": "Firmly Planted",
+    "category": "general"
+  },
+  {
+    "name": "Rangefinder",
+    "category": "general"
+  },
+  {
+    "name": "Tap the Trigger",
+    "category": "general"
+  },
+  {
+    "name": "Counterbalance",
+    "category": "mod"
+  },
+  {
+    "name": "Targeting Adjuster",
+    "category": "mod"
+  },
+  {
+    "name": "Steady Rounds",
+    "category": "magazines"
+  }
 ]
