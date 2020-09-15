@@ -44,7 +44,7 @@ const newRoll = (weaponIndex, roll) => {
 
 const showAll = () => {
     //Temp - To figure out error
-    console.dir(currentWeapons, { depth: 4 })
+    console.dir(currentWeapons[1], { depth: 6 })
     console.table(currentWeapons.map(cw => {
         // if (cw.rolls)
         return {
@@ -57,7 +57,7 @@ const showAll = () => {
 //CLI Methods
 
 const startCLI = async () => {
-    // console.clear()
+    console.clear()
     console.log('--------------------------------------------')
     console.log('Greetings Guardian!')
     const firstPrompt = await prompt({
@@ -167,11 +167,11 @@ const rollCLI = async (weaponName = "") => {
         message: `What is the roll's name?`
     })
 
-    let roll = await prioritizeSections(await sectionCLI({ name: rollNamePrompt.name }))
+    let roll = await prioritizeSectionsCLI(await sectionCLI({ name: rollNamePrompt.name }))
 
     newRoll(getWeaponIndexByName(weaponName), roll)
 
-    // startCLI()
+    startCLI()
 }
 
 const sectionCLI = async (accRoll) => {
@@ -181,16 +181,17 @@ const sectionCLI = async (accRoll) => {
         message: 'What section are you adding?',
         choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
     })
-    let section = { priority: 0, options: [] }
+    let section = { priority: 0 }
     if (sectionPrompt.section === 'mod') {
         delete section.priority
     }
 
-    //Add section creator
-
-    //Add section order
-
-    accRoll[sectionPrompt.section] = section
+    let options = await optionsCLI([], sectionPrompt.section)
+    if (!!options.length) {
+        options = await orderOptionsCLI(options, sectionPrompt.section)
+        section.options = options
+        accRoll[sectionPrompt.section] = section
+    }
 
     if (!!sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) }).length) {
         //TODO Replace NewSectionPrompt with custom that clears previous line
@@ -208,7 +209,7 @@ const sectionCLI = async (accRoll) => {
     return accRoll
 }
 
-const prioritizeSections = async (roll) => {
+const prioritizeSectionsCLI = async (roll) => {
     let choices = Object.keys(roll).filter(s => { return (s !== 'name' && s !== 'mod') }).map(fs => {
         //this could be done with a flatmap instead of a filter and map, but then it's less comprehensible
         return {
@@ -236,11 +237,79 @@ const prioritizeSections = async (roll) => {
         roll[sn].priority = prioritizedRolls.priorities[sn] + 1
     })
 
-    console.log(roll)
-
     return roll
 }
 
+const optionsCLI = async (accOptions, sectionName) => {
+    let keyName = ""
+    let choices = []
 
-console.clear()
+    switch (sectionName) {
+        case 'masterwork':
+            choices = masterworks
+            keyName = "statName"
+            break;
+        case 'perk1':
+        case 'perk2':
+            choices = wordPool.sort().filter(wp => { return wp.category === "general" }).map(fwp => { return fwp.name })
+            keyName = "perkName"
+            choices.unshift('ADD NEW')
+            break;
+        case 'mod':
+            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            keyName = "modName"
+            choices.unshift('ADD NEW')
+            break;
+        default:
+            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            keyName = "perkName"
+            choices.unshift('ADD NEW')
+    }
+
+    const optionsPrompt = await prompt({
+        type: 'multiselect',
+        message: `Select all the options in the ${sectionName} category`,
+        name: 'options',
+        // limit: 5,
+        // initial: 0,
+        choices: choices
+    })
+    if (optionsPrompt.options.some(o => { return o === 'ADD NEW' })) {
+        //add New
+        console.log('add new')
+        optionsPrompt.options.shift()
+    }
+
+    accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
+    return accOptions
+}
+
+const orderOptionsCLI = async (options, sectionName) => {
+    let keyName = Object.keys(options[0])[0]
+    let choices = options.map((o, i) => {
+        return {
+            name: o[keyName],
+            message: o[keyName]
+        }
+    })
+    console.log(options)
+    const orderedOptionsPrompt = await prompt({
+        type: 'scale',
+        message: `What's the ${sectionName} order?`,
+        name: 'order',
+        scale: [
+            { name: 1, message: 'Max Priority' },
+            { name: 2, message: 'High Priority' },
+            { name: 3, message: 'Mid Priority' },
+            { name: 4, message: 'Low Priority' },
+            { name: 5, message: 'Min Priority' },
+        ],
+        margin: [2, 5, 2, 5],
+        choices: choices
+    })
+
+    return options.map(o => { return { order: orderedOptionsPrompt.order[o[keyName]] + 1, ...o } })
+}
+
+
 startCLI()
