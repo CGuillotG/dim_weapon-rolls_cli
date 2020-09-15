@@ -9,7 +9,7 @@ let { getDIMSearch } = require('./dim')
 //General methods
 
 const writeJson = (fileName, content) => {
-    fs.writeFile(fileName, JSON.stringify(content, null, 4), (err) => {
+    fs.writeFile(fileName, JSON.stringify(content, null, 2), (err) => {
         if (err) return console.error(err)
     })
 }
@@ -43,8 +43,6 @@ const newRoll = (weaponIndex, roll) => {
 }
 
 const showAll = () => {
-    //Temp - To figure out error
-    console.dir(currentWeapons[1], { depth: 6 })
     console.table(currentWeapons.map(cw => {
         // if (cw.rolls)
         return {
@@ -270,14 +268,18 @@ const optionsCLI = async (accOptions, sectionName) => {
         type: 'multiselect',
         message: `Select all the options in the ${sectionName} category`,
         name: 'options',
-        // limit: 5,
-        // initial: 0,
         choices: choices
     })
     if (optionsPrompt.options.some(o => { return o === 'ADD NEW' })) {
-        //add New
-        console.log('add new')
         optionsPrompt.options.shift()
+        const newOptionPrompt = await prompt({
+            type: 'input',
+            name: 'name',
+            message: `What new option do you want to add to ${sectionName}?`
+        })
+        if (sectionName.includes('perk')) {sectionName = 'general'}
+        wordPool.push({ name: newOptionPrompt.name, category:sectionName})
+        writeJson('wordPool.json',wordPool)
     }
 
     accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
