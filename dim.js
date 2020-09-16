@@ -8,15 +8,15 @@ exports.getDIMSearch = (weaponName, roll) => {
     for (i = 0; i < maxStar; i++) {
         let searchQuery = `(${weaponName})`
         let star = 5 - i
-        let coverage = star - maxStar + 1        
+        let coverage = star - maxStar + 1
         searchQuery += sectionsToDIM(roll, coverage)
         searchQueries.set(star, searchQuery)
     }
 
     let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
     let invertedCombinedQueries = '(' + weaponName + ') NOT (' + combinedQueries + ')'
-    searchQueries.set('All',combinedQueries)
-    searchQueries.set('Not',invertedCombinedQueries)
+    searchQueries.set('All', combinedQueries)
+    searchQueries.set('Not', invertedCombinedQueries)
 
     return searchQueries
 }
@@ -34,17 +34,31 @@ const sectionsToDIM = (roll, coverage) => {
             return false
         }
     })
-    fRolls = fRolls.map(fr => {return fr[1].options})
+    fRolls = fRolls.map(fr => { return fr[1].options })
     fRolls = fRolls.map(s => { return s.map(o => { return o.perkName }) })
     fRolls = fRolls.map(s => {
         return '(' + s.map(p => { return 'perkname:"' + p + '"' }).join(') OR (') + ')'
     })
     if (!!masterwork.length) {
-        fRolls.push('(' + masterwork.map(s=>{return 'masterwork:' +  s.statName.toLowerCase()}).join(') OR (')  + ')')
+        fRolls.push('(' + masterwork.map(s => { return 'masterwork:' + s.statName.toLowerCase() }).join(') OR (') + ')')
     }
     // console.log(fRolls)
     fRolls = ' AND (' + fRolls.join(') AND (') + ')'
     return fRolls
+}
+
+exports.getDIMMultiple = (weaponRolls) => {
+    let weaponRollSearch = weaponRolls.map(wr => {
+        let wrMap = this.getDIMSearch(wr.name, wr.roll)
+        return {
+            name: wr.name,
+            all: wrMap.get('All'),
+            not: wrMap.get('Not')
+        }
+    })
+    console.log(weaponRollSearch)
+    // TODO Finish multiple method
+
 }
 
 

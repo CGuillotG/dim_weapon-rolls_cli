@@ -3,7 +3,7 @@ const { prompt } = require('enquirer')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
 let { masterworks, seasonMap, sections } = require('./enums')
-let { getDIMSearch } = require('./dim')
+let { getDIMSearch, getDIMMultiple } = require('./dim')
 
 
 //General methods
@@ -94,23 +94,53 @@ const startCLI = async () => {
 }
 
 const getDIMCLI = async () => {
-    const weaponPrompt = await prompt({
-        type: 'select',
-        name: 'weapon',
-        message: 'Choose a weapon:',
-        choices: [...currentWeapons.map(w => { return w.name })]
+    let choices = []
+    currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
+        choices.push(...cwf.rolls.map(cwfr => {
+            return {
+                'message': cwf.name + '  ->  ' + cwfr.name,
+                'name': [cwf.name, cwfr.name]
+            }
+        }))
     })
-    let weaponIndex = getWeaponIndexByName(weaponPrompt.weapon)
-    let weapon = currentWeapons[weaponIndex]
-    const rollPrompt = await prompt({
+    const searchTypePrompt = await prompt({
         type: 'select',
-        name: 'roll',
-        message: 'Choose a roll:',
-        choices: [...weapon.rolls.map(r => { return r.name })]
+        name: 'type',
+        message: 'Which kind of query do you need?',
+        choices: [{ name: 'single', message: 'Single Roll (Stars, All, and Not)' },
+        { name: 'multiple', message: 'Multiple Rolls (All and Not)' }]
     })
-    let rollIndex = getRollIndexByName(weaponIndex, rollPrompt.roll)
-    let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-    console.log(getDIMSearch(weapon.name, roll))
+    console.log(searchTypePrompt.type)
+    if (searchTypePrompt.type === 'single') {
+        const weaponRollPrompt = await prompt({
+            type: 'select',
+            name: 'weaponRoll',
+            message: 'Choose a weapon:',
+            choices: choices
+        })
+        let weaponIndex = getWeaponIndexByName(weaponRollPrompt.weaponRoll[0])
+        let weapon = currentWeapons[weaponIndex]
+        let rollIndex = getRollIndexByName(weaponIndex, weaponRollPrompt.weaponRoll[1])
+        let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+        console.log(getDIMSearch(weapon.name, roll))
+
+    } else if (searchTypePrompt.type === 'multiple') {
+        const weaponRollPrompt = await prompt({
+            type: 'multiselect',
+            name: 'weaponRoll',
+            message: 'Choose a weapon:',
+            choices: choices
+        })
+        let weaponRolls = weaponRollPrompt.weaponRoll.map(wr => {
+            let weaponIndex = getWeaponIndexByName(wr[0])
+            let roll = currentWeapons[weaponIndex].rolls[getRollIndexByName(weaponIndex, wr[1])]
+            return {
+                name: wr[0],
+                roll: roll
+            }
+        })
+        getDIMMultiple(weaponRolls)
+    }
 }
 
 const weaponCLI = async () => {
