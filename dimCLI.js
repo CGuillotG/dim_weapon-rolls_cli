@@ -9,6 +9,15 @@ let { getDIMSearch } = require('./dim')
 //General methods
 
 const writeJson = (fileName, content) => {
+    content.sort((a, b) => {
+        if (a.name > b.name) return 1
+        if (b.name > a.name) return -1
+        if (a.name === b.name) {
+            if (a.season > b.season) return 1
+            if (b.season > a.season) return -1
+        }
+    })
+
     fs.writeFile(fileName, JSON.stringify(content, null, 2), (err) => {
         if (err) return console.error(err)
     })
@@ -34,17 +43,17 @@ const getRollIndexByName = (weaponIndex, rollName) => {
 
 const newWeapon = (name, season, imgSrc = '#') => {
     currentWeapons.push({ name, season, imgSrc, rolls: [] })
+    writeJson('currentWeapons.json', currentWeapons)
 }
 
 const newRoll = (weaponIndex, roll) => {
-    let weapon = currentWeapons[weaponIndex]
-    weapon.rolls.push(roll)
+    currentWeapons[weaponIndex].rolls.push(roll)
+    writeJson('currentWeapons.json', currentWeapons)
     return currentWeapons[weaponIndex]
 }
 
 const showAll = () => {
     console.table(currentWeapons.map(cw => {
-        // if (cw.rolls)
         return {
             name: cw.name, season: cw.season, rolls: cw.rolls.map(r => { return r.name })
         }
@@ -277,9 +286,9 @@ const optionsCLI = async (accOptions, sectionName) => {
             name: 'name',
             message: `What new option do you want to add to ${sectionName}?`
         })
-        if (sectionName.includes('perk')) {sectionName = 'general'}
-        wordPool.push({ name: newOptionPrompt.name, category:sectionName})
-        writeJson('wordPool.json',wordPool)
+        if (sectionName.includes('perk')) { sectionName = 'general' }
+        wordPool.push({ name: newOptionPrompt.name, category: sectionName })
+        writeJson('wordPool.json', wordPool)
     }
 
     accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
@@ -294,7 +303,6 @@ const orderOptionsCLI = async (options, sectionName) => {
             message: o[keyName]
         }
     })
-    console.log(options)
     const orderedOptionsPrompt = await prompt({
         type: 'scale',
         message: `What's the ${sectionName} order?`,
