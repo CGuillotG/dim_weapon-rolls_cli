@@ -56,12 +56,13 @@ exports.getDIMMultiple = (weaponRolls) => {
             not: wrMap.get('Not')
         }
     })
-    console.log(weaponRollSearch)
-    // TODO Finish multiple method
+    let multiQueries = new Map
+    let combinedQueries = '(' + weaponRollSearch.map(wrs => wrs.all).join(') OR (') + ')'
+    let weaponNames = [...new Set(weaponRollSearch.map(wrs => wrs.name))]
+    let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') NOT (' + combinedQueries + ')'
+    multiQueries.set('All', combinedQueries)
+    multiQueries.set('Not', invertedCombinedQueries)
+
+    return multiQueries
 
 }
-
-
-// console.clear()
-// console.log('--------------------------------------------')
-// console.log(this.getDIMSearch("Erentil FR4", roll))

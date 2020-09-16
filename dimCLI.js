@@ -139,7 +139,7 @@ const getDIMCLI = async () => {
                 roll: roll
             }
         })
-        getDIMMultiple(weaponRolls)
+        console.log(getDIMMultiple(weaponRolls))
     }
 }
 
