@@ -1,26 +1,38 @@
 [
   {
+    "name": "Counterbalance",
+    "category": "mod"
+  },
+  {
+    "name": "Firmly Planted",
+    "category": "general"
+  },
+  {
+    "name": "Freehand Grip",
+    "category": "mod"
+  },
+  {
+    "name": "High-caliber Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Hip-fire Grip",
+    "category": "general"
+  },
+  {
     "name": "Impulse MS3",
     "category": "scopes"
-  },
-  {
-    "name": "Signal MS5",
-    "category": "scopes"
-  },
-  {
-    "name": "Projection Fuse",
-    "category": "batteries"
   },
   {
     "name": "Particle Repeater",
     "category": "batteries"
   },
   {
-    "name": "Under Pressure",
-    "category": "general"
+    "name": "Projection Fuse",
+    "category": "batteries"
   },
   {
-    "name": "Firmly Planted",
+    "name": "Rampage",
     "category": "general"
   },
   {
@@ -28,19 +40,43 @@
     "category": "general"
   },
   {
-    "name": "Tap the Trigger",
+    "name": "Ricochet Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "SPO-28 Front",
+    "category": "scopes"
+  },
+  {
+    "name": "SPO-57 Front",
+    "category": "scopes"
+  },
+  {
+    "name": "Signal MS5",
+    "category": "scopes"
+  },
+  {
+    "name": "Steady Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Swashbuckler",
     "category": "general"
   },
   {
-    "name": "Counterbalance",
-    "category": "mod"
+    "name": "Tap the Trigger",
+    "category": "general"
   },
   {
     "name": "Targeting Adjuster",
     "category": "mod"
   },
   {
-    "name": "Steady Rounds",
-    "category": "magazines"
+    "name": "Under Pressure",
+    "category": "general"
+  },
+  {
+    "name": "Zen Moment",
+    "category": "general"
   }
 ]
