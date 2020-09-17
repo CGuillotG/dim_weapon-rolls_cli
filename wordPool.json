@@ -1,11 +1,39 @@
 [
   {
+    "name": "Accurized Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Arrowhead Brake",
+    "category": "barrels"
+  },
+  {
     "name": "Counterbalance",
     "category": "mod"
   },
   {
+    "name": "Demolitionist",
+    "category": "general"
+  },
+  {
+    "name": "Explosive Payload",
+    "category": "general"
+  },
+  {
+    "name": "Extended Barrel",
+    "category": "barrels"
+  },
+  {
+    "name": "Extended Mag",
+    "category": "magazines"
+  },
+  {
     "name": "Firmly Planted",
     "category": "general"
+  },
+  {
+    "name": "Flared Magwell",
+    "category": "magazines"
   },
   {
     "name": "Freehand Grip",
@@ -40,6 +68,10 @@
     "category": "general"
   },
   {
+    "name": "Rapid Hit",
+    "category": "general"
+  },
+  {
     "name": "Ricochet Rounds",
     "category": "magazines"
   },
@@ -60,8 +92,16 @@
     "category": "magazines"
   },
   {
+    "name": "Subsistence",
+    "category": "general"
+  },
+  {
     "name": "Swashbuckler",
     "category": "general"
+  },
+  {
+    "name": "Tactical Mag",
+    "category": "magazines"
   },
   {
     "name": "Tap the Trigger",
