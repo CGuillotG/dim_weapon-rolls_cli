@@ -14,9 +14,9 @@ exports.getDIMSearch = (weaponName, roll) => {
     }
 
     let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
-    let invertedCombinedQueries = '(' + weaponName + ') NOT (' + combinedQueries + ')'
-    searchQueries.set('All', combinedQueries)
-    searchQueries.set('Not', invertedCombinedQueries)
+    let invertedCombinedQueries = '(' + weaponName + ') -(' + combinedQueries + ')'
+    searchQueries.set('All', combinedQueries.toLowerCase())
+    searchQueries.set('Not', invertedCombinedQueries.toLowerCase())
 
     return searchQueries
 }
@@ -43,7 +43,7 @@ const sectionsToDIM = (roll, coverage) => {
         fRolls.push('(' + masterwork.map(s => { return 'masterwork:' + s.statName.toLowerCase() }).join(') OR (') + ')')
     }
     // console.log(fRolls)
-    fRolls = ' AND (' + fRolls.join(') AND (') + ')'
+    fRolls = ' (' + fRolls.join(') (') + ')'
     return fRolls
 }
 
@@ -59,9 +59,9 @@ exports.getDIMMultiple = (weaponRolls) => {
     let multiQueries = new Map
     let combinedQueries = '(' + weaponRollSearch.map(wrs => wrs.all).join(') OR (') + ')'
     let weaponNames = [...new Set(weaponRollSearch.map(wrs => wrs.name))]
-    let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') NOT (' + combinedQueries + ')'
-    multiQueries.set('All', combinedQueries)
-    multiQueries.set('Not', invertedCombinedQueries)
+    let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') -(' + combinedQueries + ')'
+    multiQueries.set('All', combinedQueries.toLowerCase())
+    multiQueries.set('Not', invertedCombinedQueries.toLowerCase())
 
     return multiQueries
 
