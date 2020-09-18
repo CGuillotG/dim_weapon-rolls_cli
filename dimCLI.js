@@ -312,13 +312,18 @@ const optionsCLI = async (accOptions, sectionName) => {
     if (optionsPrompt.options.some(o => { return o === 'ADD NEW' })) {
         optionsPrompt.options.shift()
         const newOptionPrompt = await prompt({
-            type: 'input',
-            name: 'name',
-            message: `What new option do you want to add to ${sectionName}?`
+            type: 'list',
+            name: 'list',
+            message: `What new options (comma-separated) do you want to add to ${sectionName}?`
         })
         if (sectionName.includes('perk')) { sectionName = 'general' }
-        wordPool.push({ name: newOptionPrompt.name, category: sectionName })
+        newOptionPrompt.list.forEach(l=>{
+            if (!wordPool.some(w=>{return w.name === l})) {
+                wordPool.push({ name: l, category: sectionName })
+            }
+        })
         writeJson('wordPool.json', wordPool)
+        console.log(`Options added to ${sectionName}. Add again the section to the roll.`)
     }
 
     accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
