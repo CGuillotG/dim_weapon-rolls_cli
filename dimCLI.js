@@ -286,10 +286,10 @@ const optionsCLI = async (accOptions, sectionName) => {
             choices = masterworks
             keyName = "statName"
             break;
-        case 'perk1':
-        case 'perk2':
+        case 'trait1':
+        case 'trait2':
             choices = wordPool.sort().filter(wp => { return wp.category === "general" }).map(fwp => { return fwp.name })
-            keyName = "perkName"
+            keyName = "traitName"
             choices.unshift('ADD NEW')
             break;
         case 'mod':
@@ -299,13 +299,13 @@ const optionsCLI = async (accOptions, sectionName) => {
             break;
         default:
             choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
-            keyName = "perkName"
+            keyName = "traitName"
             choices.unshift('ADD NEW')
     }
 
     const optionsPrompt = await prompt({
         type: 'multiselect',
-        message: `Select all the options in the ${sectionName} category`,
+        message: `Select all the options in the ${sectionName.toUpperCase()} category`,
         name: 'options',
         choices: choices
     })
@@ -314,11 +314,11 @@ const optionsCLI = async (accOptions, sectionName) => {
         const newOptionPrompt = await prompt({
             type: 'list',
             name: 'list',
-            message: `What new options (comma-separated) do you want to add to ${sectionName}?`
+            message: `What new options (comma-separated) do you want to add to ${sectionName.toUpperCase()}?`
         })
-        if (sectionName.includes('perk')) { sectionName = 'general' }
-        newOptionPrompt.list.forEach(l=>{
-            if (!wordPool.some(w=>{return w.name === l})) {
+        if (sectionName.includes('trait')) { sectionName = 'general' }
+        newOptionPrompt.list.forEach(l => {
+            if (!wordPool.some(w => { return w.name === l })) {
                 wordPool.push({ name: l, category: sectionName })
             }
         })
@@ -340,7 +340,7 @@ const orderOptionsCLI = async (options, sectionName) => {
     })
     const orderedOptionsPrompt = await prompt({
         type: 'scale',
-        message: `What's the ${sectionName} order?`,
+        message: `What's the ${sectionName.toUpperCase()} order?`,
         name: 'order',
         scale: [
             { name: 1, message: 'Max Priority' },

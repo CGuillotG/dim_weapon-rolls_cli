@@ -2,21 +2,21 @@ exports.getDIMSearch = (weaponName, roll) => {
     delete roll.name
     delete roll.mod
 
-    let maxStar = Math.max(...[...Object.keys(roll)].map(sec => roll[sec].priority))
+    let maxPriority = Math.max(...[...Object.keys(roll)].map(sec => roll[sec].priority))
 
     let searchQueries = new Map
-    for (i = 0; i < maxStar; i++) {
-        let searchQuery = `(${weaponName})`
+    for (i = 0; i < maxPriority; i++) {
+        let searchQuery = `(${weaponName.toUpperCase()})`
         let star = 5 - i
-        let coverage = star - maxStar + 1
-        searchQuery += sectionsToDIM(roll, coverage)
+        let coverage = Math.max(1, star - 5 + maxPriority)
+        searchQuery += sectionsToDIM(roll, coverage).toLowerCase()
         searchQueries.set(star, searchQuery)
     }
 
     let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
-    let invertedCombinedQueries = '(' + weaponName + ') -(' + combinedQueries + ')'
-    searchQueries.set('All', combinedQueries.toLowerCase())
-    searchQueries.set('Not', invertedCombinedQueries.toLowerCase())
+    let invertedCombinedQueries = '(' + weaponName.toUpperCase() + ') -(' + combinedQueries + ')'
+    searchQueries.set('ALL', combinedQueries)
+    searchQueries.set('NOT', invertedCombinedQueries)
 
     return searchQueries
 }
@@ -35,9 +35,9 @@ const sectionsToDIM = (roll, coverage) => {
         }
     })
     fRolls = fRolls.map(fr => { return fr[1].options })
-    fRolls = fRolls.map(s => { return s.map(o => { return o.perkName }) })
+    fRolls = fRolls.map(s => { return s.map(o => { return o.traitName }) })
     fRolls = fRolls.map(s => {
-        return '(' + s.map(p => { return 'perkname:"' + p + '"' }).join(') OR (') + ')'
+        return '(' + s.map(p => { return 'perkname:"' + p.toLowerCase() + '"' }).join(') OR (') + ')'
     })
     if (!!masterwork.length) {
         fRolls.push('(' + masterwork.map(s => { return 'masterwork:' + s.statName.toLowerCase() }).join(') OR (') + ')')
@@ -52,16 +52,16 @@ exports.getDIMMultiple = (weaponRolls) => {
         let wrMap = this.getDIMSearch(wr.name, wr.roll)
         return {
             name: wr.name,
-            all: wrMap.get('All'),
-            not: wrMap.get('Not')
+            all: wrMap.get('ALL'),
+            not: wrMap.get('NOT')
         }
     })
     let multiQueries = new Map
     let combinedQueries = '(' + weaponRollSearch.map(wrs => wrs.all).join(') OR (') + ')'
-    let weaponNames = [...new Set(weaponRollSearch.map(wrs => wrs.name))]
+    let weaponNames = [...new Set(weaponRollSearch.map(wrs => wrs.name.toUpperCase()))]
     let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') -(' + combinedQueries + ')'
-    multiQueries.set('All', combinedQueries.toLowerCase())
-    multiQueries.set('Not', invertedCombinedQueries.toLowerCase())
+    multiQueries.set('ALL', combinedQueries)
+    multiQueries.set('NOT', invertedCombinedQueries)
 
     return multiQueries
 
