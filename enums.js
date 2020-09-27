@@ -16,4 +16,4 @@ exports.seasonMap = new Map()
 
 exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', 'Blast Radius', 'Velocity']
 
-exports.sections = ['scopes','barrels', 'batteries', 'magazines', 'perk1', 'perk2', 'masterwork', 'mod']
+exports.sections = ['scopes', 'barrels', 'bowstrings', 'batteries', 'magazines', 'arrows', 'trait1', 'trait2', 'masterwork', 'mod']
