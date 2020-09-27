@@ -4,7 +4,27 @@
     "category": "magazines"
   },
   {
+    "name": "Appended Mag",
+    "category": "magazines"
+  },
+  {
+    "name": "Archer's Tempo",
+    "category": "general"
+  },
+  {
     "name": "Arrowhead Brake",
+    "category": "barrels"
+  },
+  {
+    "name": "Boss Spec",
+    "category": "mod"
+  },
+  {
+    "name": "Chambered Compensator",
+    "category": "barrels"
+  },
+  {
+    "name": "Corkscrew Rifling",
     "category": "barrels"
   },
   {
@@ -14,6 +34,22 @@
   {
     "name": "Demolitionist",
     "category": "general"
+  },
+  {
+    "name": "Disruption Break",
+    "category": "general"
+  },
+  {
+    "name": "Dragonfly",
+    "category": "general"
+  },
+  {
+    "name": "Dynamic Sway Reduction",
+    "category": "general"
+  },
+  {
+    "name": "Enhanced Battery",
+    "category": "batteries"
   },
   {
     "name": "Explosive Payload",
@@ -28,6 +64,14 @@
     "category": "magazines"
   },
   {
+    "name": "Feeding Frenzy",
+    "category": "general"
+  },
+  {
+    "name": "Fiberglass Arrow Shaft",
+    "category": "arrows"
+  },
+  {
     "name": "Firmly Planted",
     "category": "general"
   },
@@ -36,8 +80,24 @@
     "category": "magazines"
   },
   {
+    "name": "Flexible String",
+    "category": "bowstrings"
+  },
+  {
+    "name": "Fluted Barrel",
+    "category": "barrels"
+  },
+  {
+    "name": "Fourth Time's the Charm",
+    "category": "general"
+  },
+  {
     "name": "Freehand Grip",
     "category": "mod"
+  },
+  {
+    "name": "Helical Fletching",
+    "category": "arrows"
   },
   {
     "name": "High-caliber Rounds",
@@ -52,12 +112,64 @@
     "category": "scopes"
   },
   {
+    "name": "Iron Gaze",
+    "category": "general"
+  },
+  {
+    "name": "Iron Grip",
+    "category": "general"
+  },
+  {
+    "name": "Kill Clip",
+    "category": "general"
+  },
+  {
+    "name": "Killing Wind",
+    "category": "general"
+  },
+  {
+    "name": "Lead from Gold",
+    "category": "general"
+  },
+  {
+    "name": "Moving Target",
+    "category": "general"
+  },
+  {
+    "name": "Multikill Clip",
+    "category": "general"
+  },
+  {
+    "name": "Opening Shot",
+    "category": "general"
+  },
+  {
+    "name": "Outlaw",
+    "category": "general"
+  },
+  {
+    "name": "Overflow",
+    "category": "general"
+  },
+  {
     "name": "Particle Repeater",
     "category": "batteries"
   },
   {
+    "name": "Polygonal Rifling",
+    "category": "barrels"
+  },
+  {
+    "name": "Polymer String",
+    "category": "bowstrings"
+  },
+  {
     "name": "Projection Fuse",
     "category": "batteries"
+  },
+  {
+    "name": "Quickdraw",
+    "category": "general"
   },
   {
     "name": "Rampage",
@@ -72,8 +184,20 @@
     "category": "general"
   },
   {
+    "name": "Red Dot 2 MOA",
+    "category": "scopes"
+  },
+  {
+    "name": "Red Dot Micro",
+    "category": "scopes"
+  },
+  {
     "name": "Ricochet Rounds",
     "category": "magazines"
+  },
+  {
+    "name": "SC Holo",
+    "category": "scopes"
   },
   {
     "name": "SPO-28 Front",
@@ -88,8 +212,20 @@
     "category": "scopes"
   },
   {
+    "name": "Slideways",
+    "category": "general"
+  },
+  {
+    "name": "Smallbore",
+    "category": "barrels"
+  },
+  {
     "name": "Steady Rounds",
     "category": "magazines"
+  },
+  {
+    "name": "Straight Fletching",
+    "category": "arrows"
   },
   {
     "name": "Subsistence",
@@ -97,6 +233,10 @@
   },
   {
     "name": "Swashbuckler",
+    "category": "general"
+  },
+  {
+    "name": "Sympathetic Arsenal",
     "category": "general"
   },
   {
@@ -112,7 +252,19 @@
     "category": "mod"
   },
   {
+    "name": "Triple Tap",
+    "category": "general"
+  },
+  {
     "name": "Under Pressure",
+    "category": "general"
+  },
+  {
+    "name": "Unrelenting",
+    "category": "general"
+  },
+  {
+    "name": "Vorpal Weapon",
     "category": "general"
   },
   {
