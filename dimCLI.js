@@ -52,14 +52,6 @@ const newRoll = (weaponIndex, roll) => {
     return currentWeapons[weaponIndex]
 }
 
-const showAll = () => {
-    console.table(currentWeapons.map(cw => {
-        return {
-            name: cw.name, season: cw.season, rolls: cw.rolls.map(r => { return r.name })
-        }
-    }))
-}
-
 
 //CLI Methods
 
@@ -71,7 +63,7 @@ const startCLI = async () => {
         type: 'select',
         name: 'answer',
         message: 'How can I help you today?',
-        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Show All', 'Exit']
+        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Show All', 'Exit']
     })
     switch (firstPrompt.answer) {
         case 'New Weapon':
@@ -83,8 +75,11 @@ const startCLI = async () => {
         case 'Get DIM Queries':
             getDIMCLI()
             break;
+        case 'Print Weapon':
+            logRollCLI()
+            break;
         case 'Show All':
-            showAll()
+            showAllCLI()
             break;
         case 'Exit':
         default:
@@ -122,7 +117,9 @@ const getDIMCLI = async () => {
         let weapon = currentWeapons[weaponIndex]
         let rollIndex = getRollIndexByName(weaponIndex, weaponRollPrompt.weaponRoll[1])
         let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-        console.log(getDIMSearch(weapon.name, roll))
+        let print = printRoll(weaponIndex, rollIndex)
+        print.DIM = getDIMSearch(weapon.name, roll)
+        console.log(print)
 
     } else if (searchTypePrompt.type === 'multiple') {
         const weaponRollPrompt = await prompt({
@@ -133,7 +130,9 @@ const getDIMCLI = async () => {
         })
         let weaponRolls = weaponRollPrompt.weaponRoll.map(wr => {
             let weaponIndex = getWeaponIndexByName(wr[0])
-            let roll = currentWeapons[weaponIndex].rolls[getRollIndexByName(weaponIndex, wr[1])]
+            let rollIndex = getRollIndexByName(weaponIndex, wr[1])
+            let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+            console.log(printRoll(weaponIndex, rollIndex))
             return {
                 name: wr[0],
                 roll: roll
@@ -320,6 +319,8 @@ const optionsCLI = async (accOptions, sectionName) => {
         newOptionPrompt.list.forEach(l => {
             if (!wordPool.some(w => { return w.name === l })) {
                 wordPool.push({ name: l, category: sectionName })
+                // console.log({[keyName]: l})
+                accOptions.push({[keyName]: l})
             }
         })
         writeJson('wordPool.json', wordPool)
@@ -356,5 +357,57 @@ const orderOptionsCLI = async (options, sectionName) => {
     return options.map(o => { return { order: orderedOptionsPrompt.order[o[keyName]] + 1, ...o } })
 }
 
+const logRollCLI = async () => {
+    const weaponPrompt = await prompt({
+        type: 'select',
+        name: 'name',
+        message: 'Choose a weapon:',
+        choices: currentWeapons.map(w => w.name)
+    })
+    weaponName = weaponPrompt.name
+    let weaponIndex = getWeaponIndexByName(weaponName)
+    currentWeapons[weaponIndex].rolls.forEach((r,i)=>{
+        console.log(printRoll(weaponIndex, i))
+    })
+}
+
+const showAllCLI = () => {
+    console.table(currentWeapons.map(cw => {
+        return {
+            name: cw.name, season: cw.season, rolls: cw.rolls.map(r => { return r.name })
+        }
+    }))
+}
+
+const printRoll = (weaponIndex, rollIndex) => {
+    let weapon = currentWeapons[weaponIndex]
+    let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+    let printName = weapon.name + " -> " + roll.name
+    delete roll.name
+    let fRoll = new Map
+    Object.keys(roll).forEach(r => {
+        let rSectionName = [roll[r].priority, r]
+        if (r === 'mod') {
+            rSectionName = [r]
+        }
+        fRoll.set(rSectionName, roll[r].options.map(ro => {
+            let oName = ""
+            if (ro['traitName']) {
+                oName = ro['traitName']
+            }
+            if (ro['statName']) {
+                oName = ro['statName']
+            }
+            if (ro['modName']) {
+                oName = ro['modName']
+            }
+            return oName
+        }))
+    })
+    return {
+        name: printName,
+        roll: fRoll
+    }
+}
 
 startCLI()
