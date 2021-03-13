@@ -1,7 +1,27 @@
 [
   {
+    "name": "ATA Scout",
+    "category": "scopes"
+  },
+  {
+    "name": "ATC Rex",
+    "category": "scopes"
+  },
+  {
     "name": "Accurized Rounds",
     "category": "magazines"
+  },
+  {
+    "name": "Alloy Casing",
+    "category": "magazines"
+  },
+  {
+    "name": "Alloy Magazine",
+    "category": "magazines"
+  },
+  {
+    "name": "Ambitious Assassin",
+    "category": "general"
   },
   {
     "name": "Appended Mag",
@@ -12,16 +32,68 @@
     "category": "general"
   },
   {
+    "name": "Armor-Piercing Rounds",
+    "category": "magazines"
+  },
+  {
     "name": "Arrowhead Brake",
     "category": "barrels"
+  },
+  {
+    "name": "Assault Mag",
+    "category": "magazines"
+  },
+  {
+    "name": "Auto-Loading Holster",
+    "category": "general"
+  },
+  {
+    "name": "Backup Plan",
+    "category": "general"
+  },
+  {
+    "name": "Black Powder",
+    "category": "magazines"
+  },
+  {
+    "name": "Blinding Grenades",
+    "category": "magazines"
   },
   {
     "name": "Boss Spec",
     "category": "mod"
   },
   {
+    "name": "Chain Reaction",
+    "category": "general"
+  },
+  {
     "name": "Chambered Compensator",
     "category": "barrels"
+  },
+  {
+    "name": "Cleanshot IS",
+    "category": "scopes"
+  },
+  {
+    "name": "Clown Cartridge",
+    "category": "general"
+  },
+  {
+    "name": "Cluster Bomb",
+    "category": "general"
+  },
+  {
+    "name": "Concussion Grenades",
+    "category": "magazines"
+  },
+  {
+    "name": "Confined Launch",
+    "category": "barrels"
+  },
+  {
+    "name": "Control SAS",
+    "category": "sights"
   },
   {
     "name": "Corkscrew Rifling",
@@ -30,6 +102,10 @@
   {
     "name": "Counterbalance",
     "category": "mod"
+  },
+  {
+    "name": "Crossfire HCS",
+    "category": "sights"
   },
   {
     "name": "Demolitionist",
@@ -44,7 +120,19 @@
     "category": "general"
   },
   {
+    "name": "Drop Mag",
+    "category": "magazines"
+  },
+  {
     "name": "Dynamic Sway Reduction",
+    "category": "general"
+  },
+  {
+    "name": "Elastic String",
+    "category": "bowstrings"
+  },
+  {
+    "name": "Elemental Capacitor",
     "category": "general"
   },
   {
@@ -64,6 +152,18 @@
     "category": "magazines"
   },
   {
+    "name": "Eye of the Storm",
+    "category": "general"
+  },
+  {
+    "name": "Farpoint SAS",
+    "category": "sights"
+  },
+  {
+    "name": "Fastdraw HCS",
+    "category": "sights"
+  },
+  {
     "name": "Feeding Frenzy",
     "category": "general"
   },
@@ -72,12 +172,24 @@
     "category": "arrows"
   },
   {
+    "name": "Field Prep",
+    "category": "general"
+  },
+  {
+    "name": "Firing Line",
+    "category": "general"
+  },
+  {
     "name": "Firmly Planted",
     "category": "general"
   },
   {
     "name": "Flared Magwell",
     "category": "magazines"
+  },
+  {
+    "name": "Flash HS5",
+    "category": "scopes"
   },
   {
     "name": "Flexible String",
@@ -96,11 +208,59 @@
     "category": "mod"
   },
   {
+    "name": "Full Auto Trigger System",
+    "category": "general"
+  },
+  {
+    "name": "Full Bore",
+    "category": "barrels"
+  },
+  {
+    "name": "Full Choke",
+    "category": "barrels"
+  },
+  {
+    "name": "Full Court",
+    "category": "general"
+  },
+  {
+    "name": "Genesis",
+    "category": "general"
+  },
+  {
+    "name": "Hammer-Forged Rifling",
+    "category": "barrels"
+  },
+  {
+    "name": "Headseeker",
+    "category": "general"
+  },
+  {
+    "name": "Heavy Grip",
+    "category": "grips"
+  },
+  {
+    "name": "Heavy Guard",
+    "category": "guards"
+  },
+  {
     "name": "Helical Fletching",
     "category": "arrows"
   },
   {
-    "name": "High-caliber Rounds",
+    "name": "High-Caliber Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "High-Explosive Ordnance",
+    "category": "magazines"
+  },
+  {
+    "name": "High-Impact Reserves",
+    "category": "general"
+  },
+  {
+    "name": "High-Velocity Rounds",
     "category": "magazines"
   },
   {
@@ -108,8 +268,32 @@
     "category": "general"
   },
   {
+    "name": "Hitmark HCS",
+    "category": "sights"
+  },
+  {
+    "name": "Honed Edge",
+    "category": "blades"
+  },
+  {
+    "name": "IS 2 Classic",
+    "category": "scopes"
+  },
+  {
+    "name": "Icarus Grip",
+    "category": "mod"
+  },
+  {
+    "name": "Impact Casing",
+    "category": "magazines"
+  },
+  {
     "name": "Impulse MS3",
     "category": "scopes"
+  },
+  {
+    "name": "Ionized Battery",
+    "category": "batteries"
   },
   {
     "name": "Iron Gaze",
@@ -118,6 +302,10 @@
   {
     "name": "Iron Grip",
     "category": "general"
+  },
+  {
+    "name": "Jagged Edge",
+    "category": "blades"
   },
   {
     "name": "Kill Clip",
@@ -132,7 +320,31 @@
     "category": "general"
   },
   {
+    "name": "Light Mag",
+    "category": "magazines"
+  },
+  {
+    "name": "Linear Compensator",
+    "category": "barrels"
+  },
+  {
+    "name": "Liquid Coils",
+    "category": "batteries"
+  },
+  {
+    "name": "Model 6 Loop",
+    "category": "scopes"
+  },
+  {
+    "name": "Model 8 Red",
+    "category": "scopes"
+  },
+  {
     "name": "Moving Target",
+    "category": "general"
+  },
+  {
+    "name": "Mulligan",
     "category": "general"
   },
   {
@@ -140,7 +352,19 @@
     "category": "general"
   },
   {
+    "name": "No Distractions",
+    "category": "general"
+  },
+  {
+    "name": "One For All",
+    "category": "general"
+  },
+  {
     "name": "Opening Shot",
+    "category": "general"
+  },
+  {
+    "name": "Osmosis",
     "category": "general"
   },
   {
@@ -160,6 +384,10 @@
     "category": "barrels"
   },
   {
+    "name": "Polymer Grip",
+    "category": "grips"
+  },
+  {
     "name": "Polymer String",
     "category": "bowstrings"
   },
@@ -168,12 +396,32 @@
     "category": "batteries"
   },
   {
+    "name": "Proximity Grenades",
+    "category": "magazines"
+  },
+  {
+    "name": "Pulse Monitor",
+    "category": "general"
+  },
+  {
+    "name": "Quick Launch",
+    "category": "barrels"
+  },
+  {
+    "name": "Quickdot SAS",
+    "category": "sights"
+  },
+  {
     "name": "Quickdraw",
     "category": "general"
   },
   {
     "name": "Rampage",
     "category": "general"
+  },
+  {
+    "name": "Rampage Spec",
+    "category": "mod"
   },
   {
     "name": "Rangefinder",
@@ -192,8 +440,24 @@
     "category": "scopes"
   },
   {
+    "name": "Relentless Strikes",
+    "category": "general"
+  },
+  {
+    "name": "Remote Detonation",
+    "category": "magazines"
+  },
+  {
     "name": "Ricochet Rounds",
     "category": "magazines"
+  },
+  {
+    "name": "Rifle Scope SSF",
+    "category": "scopes"
+  },
+  {
+    "name": "Rifled Barrel",
+    "category": "barrels"
   },
   {
     "name": "SC Holo",
@@ -208,8 +472,28 @@
     "category": "scopes"
   },
   {
+    "name": "SRO-41 Ocular",
+    "category": "scopes"
+  },
+  {
+    "name": "Seraph Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Shield Disorient",
+    "category": "general"
+  },
+  {
+    "name": "Shortspec SAS",
+    "category": "sights"
+  },
+  {
     "name": "Signal MS5",
     "category": "scopes"
+  },
+  {
+    "name": "Slideshot",
+    "category": "general"
   },
   {
     "name": "Slideways",
@@ -220,7 +504,31 @@
     "category": "barrels"
   },
   {
+    "name": "Smart Drift Control",
+    "category": "barrels"
+  },
+  {
+    "name": "Smooth Grip",
+    "category": "grips"
+  },
+  {
+    "name": "Snapshot Sights",
+    "category": "general"
+  },
+  {
+    "name": "Spike Grenades",
+    "category": "magazines"
+  },
+  {
     "name": "Steady Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Steadyhands HCS",
+    "category": "sights"
+  },
+  {
+    "name": "Sticky Grenades",
     "category": "magazines"
   },
   {
@@ -232,12 +540,28 @@
     "category": "general"
   },
   {
+    "name": "Sureshot HCS",
+    "category": "sights"
+  },
+  {
+    "name": "Surplus",
+    "category": "general"
+  },
+  {
+    "name": "Surrounded",
+    "category": "general"
+  },
+  {
     "name": "Swashbuckler",
     "category": "general"
   },
   {
     "name": "Sympathetic Arsenal",
     "category": "general"
+  },
+  {
+    "name": "Tactic SAS",
+    "category": "sights"
   },
   {
     "name": "Tactical Mag",
@@ -248,12 +572,52 @@
     "category": "general"
   },
   {
+    "name": "Target SAS",
+    "category": "sights"
+  },
+  {
     "name": "Targeting Adjuster",
     "category": "mod"
   },
   {
+    "name": "Tempered Edge",
+    "category": "blades"
+  },
+  {
+    "name": "Threat Detector",
+    "category": "general"
+  },
+  {
+    "name": "Thresh",
+    "category": "general"
+  },
+  {
+    "name": "Timed Payload",
+    "category": "general"
+  },
+  {
+    "name": "Tireless Blade",
+    "category": "general"
+  },
+  {
+    "name": "Torch HS3",
+    "category": "scopes"
+  },
+  {
+    "name": "Transmission MS7",
+    "category": "scopes"
+  },
+  {
+    "name": "Trench Barrel",
+    "category": "general"
+  },
+  {
     "name": "Triple Tap",
     "category": "general"
+  },
+  {
+    "name": "Truesight HCS",
+    "category": "sights"
   },
   {
     "name": "Under Pressure",
@@ -264,7 +628,19 @@
     "category": "general"
   },
   {
+    "name": "Volatile Launch",
+    "category": "barrels"
+  },
+  {
     "name": "Vorpal Weapon",
+    "category": "general"
+  },
+  {
+    "name": "Wellspring",
+    "category": "general"
+  },
+  {
+    "name": "Whirlwind Blade",
     "category": "general"
   },
   {
