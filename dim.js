@@ -6,7 +6,7 @@ exports.getDIMSearch = (weaponName, roll) => {
 
     let searchQueries = new Map
     for (i = 0; i < maxPriority; i++) {
-        let searchQuery = `("${weaponName.toUpperCase()}")`
+        let searchQuery = `(name:"${weaponName.toLowerCase()}")`
         let star = 5 - i
         let coverage = Math.max(1, star - 5 + maxPriority)
         searchQuery += sectionsToDIM(roll, coverage).toLowerCase()
@@ -14,7 +14,7 @@ exports.getDIMSearch = (weaponName, roll) => {
     }
 
     let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
-    let invertedCombinedQueries = '("' + weaponName.toUpperCase() + '") -(' + combinedQueries + ')'
+    let invertedCombinedQueries = '(name:"' + weaponName.toLowerCase() + '") -(' + combinedQueries + ')'
     searchQueries.set('ALL', combinedQueries)
     searchQueries.set('NOT', invertedCombinedQueries)
 
@@ -58,7 +58,7 @@ exports.getDIMMultiple = (weaponRolls) => {
     })
     let multiQueries = new Map
     let combinedQueries = '(' + weaponRollSearch.map(wrs => wrs.all).join(') OR (') + ')'
-    let weaponNames = [...new Set(weaponRollSearch.map(wrs => `"${wrs.name.toUpperCase()}"`))]
+    let weaponNames = [...new Set(weaponRollSearch.map(wrs => `name:"${wrs.name.toLowerCase()}"`))]
     let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') -(' + combinedQueries + ')'
     multiQueries.set('ALL', combinedQueries)
     multiQueries.set('NOT', invertedCombinedQueries)
