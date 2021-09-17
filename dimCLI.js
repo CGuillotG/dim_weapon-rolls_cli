@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { prompt } = require('enquirer')
+const { join } = require('path')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
 let { masterworks, seasonMap, sections } = require('./enums')
@@ -18,7 +19,7 @@ const writeJson = (fileName, content) => {
         }
     })
 
-    fs.writeFile(fileName, JSON.stringify(content, null, 2), (err) => {
+    fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 2), (err) => {
         if (err) return console.error(err)
     })
 }
