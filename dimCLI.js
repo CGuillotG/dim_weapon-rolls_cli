@@ -402,8 +402,8 @@ const printRoll = (weaponIndex, rollIndex) => {
             if (ro['modName']) {
                 oName = ro['modName']
             }
-            return oName
-        }))
+            return [ro.order, oName]
+        }).sort((a, b) => { return (a[0] - b[0]) }))
     })
     return {
         name: printName,
