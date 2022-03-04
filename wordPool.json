@@ -8,8 +8,20 @@
     "category": "scopes"
   },
   {
+    "name": "Accelerated Coils",
+    "category": "batteries"
+  },
+  {
     "name": "Accurized Rounds",
     "category": "magazines"
+  },
+  {
+    "name": "Adagio",
+    "category": "general"
+  },
+  {
+    "name": "Adrenaline Junkie",
+    "category": "general"
   },
   {
     "name": "Alloy Casing",
@@ -40,7 +52,15 @@
     "category": "barrels"
   },
   {
+    "name": "Assassin's Blade",
+    "category": "general"
+  },
+  {
     "name": "Assault Mag",
+    "category": "magazines"
+  },
+  {
+    "name": "Augmented Drum",
     "category": "magazines"
   },
   {
@@ -50,6 +70,10 @@
   {
     "name": "Backup Plan",
     "category": "general"
+  },
+  {
+    "name": "Barrel Shroud",
+    "category": "barrels"
   },
   {
     "name": "Black Powder",
@@ -62,6 +86,10 @@
   {
     "name": "Boss Spec",
     "category": "mod"
+  },
+  {
+    "name": "Carbon Arrow Shaft",
+    "category": "arrows"
   },
   {
     "name": "Chain Reaction",
@@ -84,6 +112,14 @@
     "category": "general"
   },
   {
+    "name": "Compact Arrow Shaft",
+    "category": "arrows"
+  },
+  {
+    "name": "Composite Stock",
+    "category": "stocks"
+  },
+  {
     "name": "Concussion Grenades",
     "category": "magazines"
   },
@@ -100,12 +136,20 @@
     "category": "barrels"
   },
   {
+    "name": "Cornered",
+    "category": "general"
+  },
+  {
     "name": "Counterbalance",
     "category": "mod"
   },
   {
     "name": "Crossfire HCS",
     "category": "sights"
+  },
+  {
+    "name": "Danger Zone",
+    "category": "general"
   },
   {
     "name": "Demolitionist",
@@ -124,6 +168,10 @@
     "category": "magazines"
   },
   {
+    "name": "Dual Loader",
+    "category": "general"
+  },
+  {
     "name": "Dynamic Sway Reduction",
     "category": "general"
   },
@@ -136,8 +184,20 @@
     "category": "general"
   },
   {
+    "name": "Encore",
+    "category": "general"
+  },
+  {
     "name": "Enhanced Battery",
     "category": "batteries"
+  },
+  {
+    "name": "Ensemble",
+    "category": "general"
+  },
+  {
+    "name": "Explosive Head",
+    "category": "general"
   },
   {
     "name": "Explosive Payload",
@@ -184,8 +244,16 @@
     "category": "general"
   },
   {
+    "name": "Fitted Stock",
+    "category": "stocks"
+  },
+  {
     "name": "Flared Magwell",
     "category": "magazines"
+  },
+  {
+    "name": "Flash Counter",
+    "category": "general"
   },
   {
     "name": "Flash HS5",
@@ -208,6 +276,10 @@
     "category": "mod"
   },
   {
+    "name": "Frenzy",
+    "category": "general"
+  },
+  {
     "name": "Full Auto Trigger System",
     "category": "general"
   },
@@ -228,11 +300,35 @@
     "category": "general"
   },
   {
+    "name": "Grave Robber",
+    "category": "general"
+  },
+  {
     "name": "Hammer-Forged Rifling",
     "category": "barrels"
   },
   {
+    "name": "Hand-Laid Stock",
+    "category": "stocks"
+  },
+  {
+    "name": "Hard Launch",
+    "category": "barrels"
+  },
+  {
+    "name": "Harmony",
+    "category": "general"
+  },
+  {
     "name": "Headseeker",
+    "category": "general"
+  },
+  {
+    "name": "Headstone",
+    "category": "general"
+  },
+  {
+    "name": "Heating Up",
     "category": "general"
   },
   {
@@ -288,6 +384,14 @@
     "category": "magazines"
   },
   {
+    "name": "Implosion Rounds",
+    "category": "magazines"
+  },
+  {
+    "name": "Impulse Amplifier",
+    "category": "general"
+  },
+  {
     "name": "Impulse MS3",
     "category": "scopes"
   },
@@ -304,6 +408,10 @@
     "category": "general"
   },
   {
+    "name": "Iron Reach",
+    "category": "general"
+  },
+  {
     "name": "Jagged Edge",
     "category": "blades"
   },
@@ -313,6 +421,10 @@
   },
   {
     "name": "Killing Wind",
+    "category": "general"
+  },
+  {
+    "name": "Lasting Impression",
     "category": "general"
   },
   {
@@ -330,6 +442,10 @@
   {
     "name": "Liquid Coils",
     "category": "batteries"
+  },
+  {
+    "name": "Major Spec",
+    "category": "mod"
   },
   {
     "name": "Model 6 Loop",
@@ -352,11 +468,19 @@
     "category": "general"
   },
   {
+    "name": "Natural Fletching",
+    "category": "arrows"
+  },
+  {
     "name": "No Distractions",
     "category": "general"
   },
   {
     "name": "One For All",
+    "category": "general"
+  },
+  {
+    "name": "One-Two Punch",
     "category": "general"
   },
   {
@@ -378,6 +502,10 @@
   {
     "name": "Particle Repeater",
     "category": "batteries"
+  },
+  {
+    "name": "Phase Magazine",
+    "category": "magazines"
   },
   {
     "name": "Polygonal Rifling",
@@ -456,6 +584,10 @@
     "category": "scopes"
   },
   {
+    "name": "Rifle Scope ST",
+    "category": "scopes"
+  },
+  {
     "name": "Rifled Barrel",
     "category": "barrels"
   },
@@ -482,6 +614,14 @@
   {
     "name": "Shield Disorient",
     "category": "general"
+  },
+  {
+    "name": "Shoot to Loot",
+    "category": "general"
+  },
+  {
+    "name": "Short-Action Stock",
+    "category": "stocks"
   },
   {
     "name": "Shortspec SAS",
@@ -512,6 +652,10 @@
     "category": "grips"
   },
   {
+    "name": "Smoothbore",
+    "category": "barrels"
+  },
+  {
     "name": "Snapshot Sights",
     "category": "general"
   },
@@ -524,7 +668,7 @@
     "category": "magazines"
   },
   {
-    "name": "Steadyhands HCS",
+    "name": "Steadyhand HCS",
     "category": "sights"
   },
   {
@@ -568,6 +712,10 @@
     "category": "magazines"
   },
   {
+    "name": "Tactile String",
+    "category": "bowstrings"
+  },
+  {
     "name": "Tap the Trigger",
     "category": "general"
   },
@@ -604,6 +752,10 @@
     "category": "scopes"
   },
   {
+    "name": "Tracking Module",
+    "category": "general"
+  },
+  {
     "name": "Transmission MS7",
     "category": "scopes"
   },
@@ -618,6 +770,10 @@
   {
     "name": "Truesight HCS",
     "category": "sights"
+  },
+  {
+    "name": "Tunnel Vision",
+    "category": "general"
   },
   {
     "name": "Under Pressure",
