@@ -12,9 +12,10 @@ exports.seasonMap = new Map()
     .set("Arrivals", 11)
     .set("Beyond Light", 12)
     .set("Chosen", 13)
+    .set("Splicer", 14)
+    .set("Lost", 15)
     .set("The Witch Queen", 16)
-    .set("Lightfall", 20)
 
-exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', 'Blast Radius', 'Velocity', "Draw Time"]
+exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge"] //Accuracy seems broken om DIM
 
-exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'grips', 'masterwork', 'mod']
+exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'grips', 'stocks', 'masterwork', 'mod']
