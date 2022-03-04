@@ -120,7 +120,7 @@ const getDIMCLI = async () => {
         let roll = currentWeapons[weaponIndex].rolls[rollIndex]
         let print = printRoll(weaponIndex, rollIndex)
         print.DIM = getDIMSearch(weapon.name, roll)
-        console.log(print)
+        console.dir(print, { depth: 3 , colors: true})
 
     } else if (searchTypePrompt.type === 'multiple') {
         const weaponRollPrompt = await prompt({
@@ -133,7 +133,7 @@ const getDIMCLI = async () => {
             let weaponIndex = getWeaponIndexByName(wr[0])
             let rollIndex = getRollIndexByName(weaponIndex, wr[1])
             let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-            console.log(printRoll(weaponIndex, rollIndex))
+            console.dir(printRoll(weaponIndex, rollIndex), { depth: 3, colors: true })
             return {
                 name: wr[0],
                 roll: roll
@@ -321,7 +321,7 @@ const optionsCLI = async (accOptions, sectionName) => {
             if (!wordPool.some(w => { return w.name === l })) {
                 wordPool.push({ name: l, category: sectionName })
                 // console.log({[keyName]: l})
-                accOptions.push({[keyName]: l})
+                accOptions.push({ [keyName]: l })
             }
         })
         writeJson('wordPool.json', wordPool)
@@ -367,8 +367,8 @@ const logRollCLI = async () => {
     })
     weaponName = weaponPrompt.name
     let weaponIndex = getWeaponIndexByName(weaponName)
-    currentWeapons[weaponIndex].rolls.forEach((r,i)=>{
-        console.log(printRoll(weaponIndex, i))
+    currentWeapons[weaponIndex].rolls.forEach((r, i) => {
+        console.dir(printRoll(weaponIndex, i), { depth: 3, colors: true })
     })
 }
 
