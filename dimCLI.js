@@ -109,7 +109,10 @@ const getDIMCLI = async () => {
     console.log(searchTypePrompt.type)
     if (searchTypePrompt.type === 'single') {
         const weaponRollPrompt = await prompt({
-            type: 'select',
+          type: 'autocomplete',
+          limit: 30,
+          multiple: false,
+          footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
             name: 'weaponRoll',
             message: 'Choose a weapon:',
             choices: choices
@@ -124,7 +127,10 @@ const getDIMCLI = async () => {
 
     } else if (searchTypePrompt.type === 'multiple') {
         const weaponRollPrompt = await prompt({
-            type: 'multiselect',
+            type: 'autocomplete',
+            limit: 30,
+            multiple: true,
+            footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
             name: 'weaponRoll',
             message: 'Choose a weapon:',
             choices: choices
@@ -190,7 +196,10 @@ const weaponCLI = async () => {
 const rollCLI = async (weaponName = "") => {
     if (!weaponName) {
         const weaponPrompt = await prompt({
-            type: 'select',
+          type: 'autocomplete',
+          limit: 30,
+          multiple: false,
+          footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
             name: 'name',
             message: 'Which weapon do you want to add rolls to?',
             choices: currentWeapons.map(w => w.name)
@@ -304,7 +313,10 @@ const optionsCLI = async (accOptions, sectionName) => {
     }
 
     const optionsPrompt = await prompt({
-        type: 'multiselect',
+        type: 'autocomplete',
+        limit: 30,
+        multiple: true,
+        footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
         message: `Select all the options in the ${sectionName.toUpperCase()} category`,
         name: 'options',
         choices: choices
@@ -360,7 +372,10 @@ const orderOptionsCLI = async (options, sectionName) => {
 
 const logRollCLI = async () => {
     const weaponPrompt = await prompt({
-        type: 'select',
+        type: 'autocomplete',
+        limit: 30,
+        multiple: false,
+        footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
         name: 'name',
         message: 'Choose a weapon:',
         choices: currentWeapons.map(w => w.name)
