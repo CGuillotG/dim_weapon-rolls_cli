@@ -72,6 +72,10 @@
     "category": "general"
   },
   {
+    "name": "Ballistic Tuning",
+    "category": "hafts"
+  },
+  {
     "name": "Barrel Shroud",
     "category": "barrels"
   },
@@ -436,6 +440,10 @@
     "category": "magazines"
   },
   {
+    "name": "Lightweight Emitter",
+    "category": "hafts"
+  },
+  {
     "name": "Linear Compensator",
     "category": "barrels"
   },
@@ -781,6 +789,10 @@
   },
   {
     "name": "Unrelenting",
+    "category": "general"
+  },
+  {
+    "name": "Unstoppable Force",
     "category": "general"
   },
   {

@@ -16,6 +16,6 @@ exports.seasonMap = new Map()
     .set("Lost", 15)
     .set("The Witch Queen", 16)
 
-exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge"] //Accuracy seems broken om DIM
+exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge"] //Accuracy seems broken on DIM
 
-exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'grips', 'stocks', 'masterwork', 'mod']
+exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings','hafts', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'grips', 'stocks', 'masterwork', 'mod']
