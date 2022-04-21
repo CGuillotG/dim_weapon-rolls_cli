@@ -126,16 +126,16 @@ const getDIMCLI = async () => {
         console.dir(print, { depth: 3 , colors: true})
 
     } else if (searchTypePrompt.type === 'multiple') {
-        const weaponRollPrompt = await prompt({
+        const weaponRollsPrompt = await prompt({
             type: 'autocomplete',
             limit: 30,
             multiple: true,
             footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
-            name: 'weaponRoll',
+            name: 'weaponRolls',
             message: 'Choose a weapon:',
             choices: choices
         })
-        let weaponRolls = weaponRollPrompt.weaponRoll.map(wr => {
+        let weaponRolls = weaponRollsPrompt.weaponRolls.map(wr => {
             let weaponIndex = getWeaponIndexByName(wr[0])
             let rollIndex = getRollIndexByName(weaponIndex, wr[1])
             let roll = currentWeapons[weaponIndex].rolls[rollIndex]
