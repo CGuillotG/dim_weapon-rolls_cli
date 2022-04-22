@@ -222,7 +222,10 @@ const rollCLI = async (weaponName = "") => {
 
 const sectionCLI = async (accRoll) => {
     const sectionPrompt = await prompt({
-        type: 'select',
+      type: 'autocomplete',
+      limit: 30,
+      multiple: false,
+      footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
         name: 'section',
         message: 'What section are you adding?',
         choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
