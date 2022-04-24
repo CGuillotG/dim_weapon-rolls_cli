@@ -99,12 +99,17 @@ const getDIMCLI = async () => {
             }
         }))
     })
+    let searchTypeChoices = [{ name: 'single', message: 'Single Roll (Stars, All, and Not)' },
+    { name: 'multiple', message: 'Multiple Rolls (All and Not)' }]
+    if (!!process.env.POWERSHELL_DISTRIBUTION_CHANNEL) {
+      searchTypeChoices.push({ name: 'all', message: 'Every Roll (ALL)' })
+      searchTypeChoices.push({ name: 'not', message: 'Every Roll (NOT)' })
+    }
     const searchTypePrompt = await prompt({
         type: 'select',
         name: 'type',
         message: 'Which kind of query do you need?',
-        choices: [{ name: 'single', message: 'Single Roll (Stars, All, and Not)' },
-        { name: 'multiple', message: 'Multiple Rolls (All and Not)' }]
+        choices: searchTypeChoices
     })
     console.log(searchTypePrompt.type)
     if (searchTypePrompt.type === 'single') {
@@ -146,6 +151,21 @@ const getDIMCLI = async () => {
             }
         })
         console.log(getDIMMultiple(weaponRolls))
+      } else if (searchTypePrompt.type === 'all' || searchTypePrompt.type === 'not') {
+        let alLWeaponRolls = choices.map(wr => {
+          let weaponIndex = getWeaponIndexByName(wr.name[0])
+          let rollIndex = getRollIndexByName(weaponIndex, wr.name[1])
+          let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+          return {
+            name: wr.name[0],
+            roll: roll
+          }
+        })
+        let DIMRolls = getDIMMultiple(alLWeaponRolls)
+        const util = require('util');
+        const type = searchTypePrompt.type.toUpperCase()
+        console.log(`Query for ${type} copied to clipboard`)
+        require('child_process').spawn('clip').stdin.end(DIMRolls.get(type));
     }
 }
 
