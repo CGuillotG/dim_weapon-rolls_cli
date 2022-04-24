@@ -251,7 +251,7 @@ const sectionCLI = async (accRoll) => {
         choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
     })
     let section = { priority: 0 }
-    if (sectionPrompt.section === 'mod') {
+    if (sectionPrompt.section === 'mod' || sectionPrompt.section === 'origin') {
         delete section.priority
     }
 
@@ -279,7 +279,7 @@ const sectionCLI = async (accRoll) => {
 }
 
 const prioritizeSectionsCLI = async (roll) => {
-    let choices = Object.keys(roll).filter(s => { return (s !== 'name' && s !== 'mod') }).map(fs => {
+    let choices = Object.keys(roll).filter(s => { return (s !== 'name' && s !== 'mod' && s !== 'origin') }).map(fs => {
         //this could be done with a flatmap instead of a filter and map, but then it's less comprehensible
         return {
             name: fs,
@@ -426,7 +426,7 @@ const printRoll = (weaponIndex, rollIndex) => {
     let fRoll = new Map
     Object.keys(roll).forEach(r => {
         let rSectionName = [roll[r].priority, r]
-        if (r === 'mod') {
+        if (r === 'mod' || r === 'origin') {
             rSectionName = [r]
         }
         fRoll.set(rSectionName, roll[r].options.map(ro => {
