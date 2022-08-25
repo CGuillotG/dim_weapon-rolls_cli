@@ -165,7 +165,7 @@ const getDIMCLI = async () => {
         const util = require('util');
         const type = searchTypePrompt.type.toUpperCase()
         console.log(`Query for ${type} copied to clipboard`)
-        require('child_process').spawn('clip').stdin.end(DIMRolls.get(type));
+        require('child_process').spawn('clip').stdin.end(`/* Every ${type} */ `+DIMRolls.get(type));
     }
 }
 
