@@ -20,7 +20,15 @@
     "category": "general"
   },
   {
+    "name": "Adaptive Munitions",
+    "category": "general"
+  },
+  {
     "name": "Adrenaline Junkie",
+    "category": "general"
+  },
+  {
+    "name": "Air Assault",
     "category": "general"
   },
   {
@@ -68,8 +76,16 @@
     "category": "general"
   },
   {
+    "name": "Backup Mag",
+    "category": "mod"
+  },
+  {
     "name": "Backup Plan",
     "category": "general"
+  },
+  {
+    "name": "Balanced Guard",
+    "category": "guards"
   },
   {
     "name": "Ballistic Tuning",
@@ -104,6 +120,10 @@
     "category": "barrels"
   },
   {
+    "name": "Chill Clip",
+    "category": "general"
+  },
+  {
     "name": "Cleanshot IS",
     "category": "scopes"
   },
@@ -122,6 +142,10 @@
   {
     "name": "Composite Stock",
     "category": "stocks"
+  },
+  {
+    "name": "Compulsive Reloader",
+    "category": "general"
   },
   {
     "name": "Concussion Grenades",
@@ -168,6 +192,10 @@
     "category": "general"
   },
   {
+    "name": "Dream Work",
+    "category": "origin"
+  },
+  {
     "name": "Drop Mag",
     "category": "magazines"
   },
@@ -176,7 +204,15 @@
     "category": "general"
   },
   {
+    "name": "Duelist's Trance",
+    "category": "general"
+  },
+  {
     "name": "Dynamic Sway Reduction",
+    "category": "general"
+  },
+  {
+    "name": "Eager Edge",
     "category": "general"
   },
   {
@@ -201,6 +237,10 @@
   },
   {
     "name": "Explosive Head",
+    "category": "general"
+  },
+  {
+    "name": "Explosive Light",
     "category": "general"
   },
   {
@@ -272,7 +312,15 @@
     "category": "barrels"
   },
   {
+    "name": "Focused Fury",
+    "category": "general"
+  },
+  {
     "name": "Fourth Time's the Charm",
+    "category": "general"
+  },
+  {
+    "name": "Fragile Focus",
     "category": "general"
   },
   {
@@ -282,6 +330,10 @@
   {
     "name": "Frenzy",
     "category": "general"
+  },
+  {
+    "name": "Full Auto Retrofit",
+    "category": "mod"
   },
   {
     "name": "Full Auto Trigger System",
@@ -300,7 +352,19 @@
     "category": "general"
   },
   {
+    "name": "Fusion Rifle Dexterity (Armor)",
+    "category": "mod"
+  },
+  {
+    "name": "Fusion Rifle Holster (Armor)",
+    "category": "mod"
+  },
+  {
     "name": "Genesis",
+    "category": "general"
+  },
+  {
+    "name": "Golden Tricorn",
     "category": "general"
   },
   {
@@ -376,6 +440,10 @@
     "category": "blades"
   },
   {
+    "name": "Hungry Edge",
+    "category": "blades"
+  },
+  {
     "name": "IS 2 Classic",
     "category": "scopes"
   },
@@ -398,6 +466,10 @@
   {
     "name": "Impulse MS3",
     "category": "scopes"
+  },
+  {
+    "name": "Incandescent",
+    "category": "general"
   },
   {
     "name": "Ionized Battery",
@@ -480,8 +552,16 @@
     "category": "arrows"
   },
   {
+    "name": "Natural String",
+    "category": "bowstrings"
+  },
+  {
     "name": "No Distractions",
     "category": "general"
+  },
+  {
+    "name": "Omolon Fluid Dynamics",
+    "category": "origin"
   },
   {
     "name": "One For All",
@@ -512,6 +592,10 @@
     "category": "batteries"
   },
   {
+    "name": "Perpetual Motion",
+    "category": "general"
+  },
+  {
     "name": "Phase Magazine",
     "category": "magazines"
   },
@@ -538,6 +622,10 @@
   {
     "name": "Pulse Monitor",
     "category": "general"
+  },
+  {
+    "name": "Quick Charge (Armor)",
+    "category": "mod"
   },
   {
     "name": "Quick Launch",
@@ -582,6 +670,14 @@
   {
     "name": "Remote Detonation",
     "category": "magazines"
+  },
+  {
+    "name": "Repulsor Brace",
+    "category": "general"
+  },
+  {
+    "name": "Reservoir Burst",
+    "category": "general"
   },
   {
     "name": "Ricochet Rounds",
@@ -672,6 +768,14 @@
     "category": "magazines"
   },
   {
+    "name": "Stats For All",
+    "category": "general"
+  },
+  {
+    "name": "Steady Hands",
+    "category": "general"
+  },
+  {
     "name": "Steady Rounds",
     "category": "magazines"
   },
@@ -692,6 +796,10 @@
     "category": "general"
   },
   {
+    "name": "Successful Warm-Up",
+    "category": "general"
+  },
+  {
     "name": "Sureshot HCS",
     "category": "sights"
   },
@@ -706,6 +814,10 @@
   {
     "name": "Swashbuckler",
     "category": "general"
+  },
+  {
+    "name": "Swordmaster's Guard",
+    "category": "guards"
   },
   {
     "name": "Sympathetic Arsenal",
@@ -784,6 +896,10 @@
     "category": "general"
   },
   {
+    "name": "Turnabout",
+    "category": "general"
+  },
+  {
     "name": "Under Pressure",
     "category": "general"
   },
@@ -796,11 +912,19 @@
     "category": "general"
   },
   {
+    "name": "Veist Stinger",
+    "category": "origin"
+  },
+  {
     "name": "Volatile Launch",
     "category": "barrels"
   },
   {
     "name": "Vorpal Weapon",
+    "category": "general"
+  },
+  {
+    "name": "Well-Rounded",
     "category": "general"
   },
   {
