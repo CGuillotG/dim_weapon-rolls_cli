@@ -38,12 +38,14 @@ const sectionsToDIM = (roll, coverage) => {
     fRolls = fRolls.map(fr => { return fr[1].options })
     fRolls = fRolls.map(s => { return s.map(o => { return o.traitName }) })
     fRolls = fRolls.map(s => {
-        return '(' + s.map(p => { return 'perkname:"' + p.toLowerCase() + '"' }).join(') OR (') + ')'
+      return '(' + s.map(p => {
+        if (p === "Frenzy") return 'keyword:"being in combat"';
+        return 'perkname:"' + p.toLowerCase() + '"'
+      }).join(') OR (') + ')'
     })
     if (!!masterwork.length) {
         fRolls.push('(' + masterwork.map(s => { return 'masterwork:' + s.statName.toLowerCase().replace(/\s/g, '') }).join(') OR (') + ')')
     }
-    // console.log(fRolls)
     fRolls = ' (' + fRolls.join(') (') + ')'
     return fRolls
 }
