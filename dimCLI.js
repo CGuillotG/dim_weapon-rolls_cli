@@ -42,8 +42,8 @@ const getRollIndexByName = (weaponIndex, rollName) => {
     return rollIndex
 }
 
-const newWeapon = (name, season, imgSrc = '#') => {
-    currentWeapons.push({ name, season, imgSrc, rolls: [] })
+const newWeapon = (name, season) => {
+    currentWeapons.push({ name, season, rolls: [] })
     writeJson('currentWeapons.json', currentWeapons)
 }
 
