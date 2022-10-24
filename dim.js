@@ -5,6 +5,8 @@ exports.getDIMSearch = (weaponName, roll) => {
 
     let maxPriority = Math.max(...[...Object.keys(roll)].map(sec => roll[sec].priority))
 
+    let lowestQuery = ''
+
     let searchQueries = new Map
     for (i = 0; i < maxPriority; i++) {
         let searchQuery = `(name:"${weaponName.toLowerCase()}")`
@@ -12,11 +14,14 @@ exports.getDIMSearch = (weaponName, roll) => {
         let coverage = Math.max(1, star - 5 + maxPriority)
         searchQuery += sectionsToDIM(roll, coverage).toLowerCase()
         searchQueries.set(star, searchQuery)
+        lowestQuery = searchQuery
     }
 
-    let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
-    let invertedCombinedQueries = '(name:"' + weaponName.toLowerCase() + '") -(' + combinedQueries + ')'
-    searchQueries.set('ALL', combinedQueries)
+    // let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
+
+    let invertedCombinedQueries = '(name:"' + weaponName.toLowerCase() + '") -(' + lowestQuery + ')'
+
+    searchQueries.set('ALL', lowestQuery)
     searchQueries.set('NOT', invertedCombinedQueries)
 
     return searchQueries
