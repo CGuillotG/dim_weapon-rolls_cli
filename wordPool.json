@@ -184,6 +184,10 @@
     "category": "general"
   },
   {
+    "name": "Desperado",
+    "category": "general"
+  },
+  {
     "name": "Disruption Break",
     "category": "general"
   },
@@ -620,8 +624,16 @@
     "category": "magazines"
   },
   {
+    "name": "Pugilist",
+    "category": "general"
+  },
+  {
     "name": "Pulse Monitor",
     "category": "general"
+  },
+  {
+    "name": "Quick Access Sling",
+    "category": "mod"
   },
   {
     "name": "Quick Charge (Armor)",
@@ -804,12 +816,20 @@
     "category": "sights"
   },
   {
+    "name": "Suros Synergy",
+    "category": "origin"
+  },
+  {
     "name": "Surplus",
     "category": "general"
   },
   {
     "name": "Surrounded",
     "category": "general"
+  },
+  {
+    "name": "Surrounded Spec",
+    "category": "mod"
   },
   {
     "name": "Swashbuckler",
@@ -826,6 +846,10 @@
   {
     "name": "Tactic SAS",
     "category": "sights"
+  },
+  {
+    "name": "Tactical Battery",
+    "category": "batteries"
   },
   {
     "name": "Tactical Mag",
@@ -912,12 +936,20 @@
     "category": "general"
   },
   {
+    "name": "Vanguard's Vindication",
+    "category": "origin"
+  },
+  {
     "name": "Veist Stinger",
     "category": "origin"
   },
   {
     "name": "Volatile Launch",
     "category": "barrels"
+  },
+  {
+    "name": "Voltshot",
+    "category": "general"
   },
   {
     "name": "Vorpal Weapon",
