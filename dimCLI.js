@@ -193,7 +193,7 @@ const weaponCLI = async () => {
             {
                 type: 'select',
                 name: 'season',
-                message: 'From which season do these rolls apply?',
+                message: 'From which season is this gun?',
                 choices: [...seasonMap.keys()].reverse()
             }, {
                 type: 'toggle',
