@@ -420,7 +420,7 @@ const showAllCLI = () => {
 
 const printRoll = (weaponIndex, rollIndex) => {
     let weapon = currentWeapons[weaponIndex]
-    let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+    let roll = {...currentWeapons[weaponIndex].rolls[rollIndex]}
     let printName = weapon.name + " -> " + roll.name
     delete roll.name
     let fRoll = new Map

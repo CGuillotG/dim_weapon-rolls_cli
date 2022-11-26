@@ -1,4 +1,5 @@
 exports.getDIMSearch = (weaponName, roll, comments = true) => {
+    const rollName = roll.name
     delete roll.name
     delete roll.mod
     delete roll.origin
@@ -10,7 +11,7 @@ exports.getDIMSearch = (weaponName, roll, comments = true) => {
     let searchQueries = new Map
     for (i = 0; i < maxPriority; i++) {
         let star = 5 - i
-        let searchComment = `/* ${weaponName} - ⭐${star}⭐ */ `
+        let searchComment = `/* ${weaponName} - ${rollName} - ⭐${star}⭐ */ `
         let searchQuery = `(name:"${weaponName.toLowerCase()}")`
         let coverage = Math.max(1, star - 5 + maxPriority)
         searchQuery += sectionsToDIM(roll, coverage).toLowerCase()
@@ -22,8 +23,8 @@ exports.getDIMSearch = (weaponName, roll, comments = true) => {
 
     let invertedCombinedQueries = '(name:"' + weaponName.toLowerCase() + '") -(' + lowestQuery + ')'
 
-    searchQueries.set('ALL', comments ? `/* ${weaponName} - ALL */ ` + lowestQuery : lowestQuery)
-    searchQueries.set('NOT', comments ? `/* ${weaponName} - NOT */ ` + invertedCombinedQueries : invertedCombinedQueries)
+    searchQueries.set('ALL', comments ? `/* ${weaponName} - ${rollName} - ALL */ ` + lowestQuery : lowestQuery)
+    searchQueries.set('NOT', comments ? `/* ${weaponName} - ${rollName} - NOT */ ` + invertedCombinedQueries : invertedCombinedQueries)
 
     return searchQueries
 }
