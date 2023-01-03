@@ -136,6 +136,10 @@
     "category": "general"
   },
   {
+    "name": "Cold Steel",
+    "category": "general"
+  },
+  {
     "name": "Compact Arrow Shaft",
     "category": "arrows"
   },
@@ -230,6 +234,10 @@
   {
     "name": "Encore",
     "category": "general"
+  },
+  {
+    "name": "Enduring Guard",
+    "category": "guards"
   },
   {
     "name": "Enhanced Battery",
