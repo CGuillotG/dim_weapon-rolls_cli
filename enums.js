@@ -21,7 +21,7 @@ exports.seasonMap = new Map()
     .set("Risen", 16)
     .set("Haunted", 17)
     .set("Plunder", 18)
-    // .set("[Redacted]", 19)
+    .set("Seraph", 19)
     // .set("Lightfall", 20)
 
 exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge", "Accuracy"]
