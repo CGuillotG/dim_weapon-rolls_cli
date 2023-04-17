@@ -189,12 +189,20 @@ const weaponCLI = async () => {
             startCLI()
         }
     } else {
+      let seasonChoices = []
+      seasonMap.forEach((sMValue, sMKey)=>{
+        seasonChoices.push({
+          'message':`${sMKey} - ${sMValue}`,
+          'name':sMKey
+        }
+        )
+      })
         const seasonPrompt = await prompt([
             {
                 type: 'select',
                 name: 'season',
                 message: 'From which season is this gun?',
-                choices: [...seasonMap.keys()].reverse()
+                choices: seasonChoices.reverse()
             }, {
                 type: 'toggle',
                 name: 'addRoll',
