@@ -3,6 +3,7 @@ exports.seasonMap = new Map()
     .set("Curse of Osiris", 2)
     .set("Warmind", 3)
     .set("Forsaken", 4)
+    .set("Outlaw", 4)
     .set("Forge", 5)
     .set("Drifter", 6)
     .set("Opulence", 7)
@@ -22,7 +23,9 @@ exports.seasonMap = new Map()
     .set("Haunted", 17)
     .set("Plunder", 18)
     .set("Seraph", 19)
-    // .set("Lightfall", 20)
+    .set("Lightfall", 20)
+    .set("Defiance", 20)
+    // .set("Deep", 21)
 
 exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge", "Accuracy"]
 
