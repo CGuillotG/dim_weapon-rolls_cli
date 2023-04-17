@@ -43,7 +43,7 @@ const getRollIndexByName = (weaponIndex, rollName) => {
 }
 
 const newWeapon = (name, season) => {
-    currentWeapons.push({ name, season, rolls: [] })
+    currentWeapons.push({ name, season, dateAdded:(new Date()).toUTCString(), rolls: [] })
     writeJson('currentWeapons.json', currentWeapons)
 }
 
@@ -421,7 +421,7 @@ const logRollCLI = async () => {
 const showAllCLI = () => {
     console.table(currentWeapons.map(cw => {
         return {
-            name: cw.name, season: cw.season, rolls: cw.rolls.map(r => { return r.name })
+            name: cw.name, season: cw.season, date:(new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
         }
     }))
 }
