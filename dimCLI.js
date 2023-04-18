@@ -11,12 +11,19 @@ let { getDIMSearch, getDIMMultiple } = require('./dim')
 
 const writeJson = (fileName, content) => {
     content.sort((a, b) => {
+        a.rolls.sort((ra, rb) => {
+          console.log(`Sorting rolls of ${a.name}`)
+          if (ra.name > rb.name) return 1
+          if (rb.name > ra.name) return -1
+        })
+        //This might be redundant, but I believe in some cases with the sorting algorithm not every element gets to be "a"
+        b.rolls.sort((ra, rb) => {
+          console.log(`Sorting rolls of ${b.name}`)
+          if (ra.name > rb.name) return 1
+          if (rb.name > ra.name) return -1
+        })
         if (a.name > b.name) return 1
         if (b.name > a.name) return -1
-        if (a.name === b.name) {
-            if (a.season > b.season) return 1
-            if (b.season > a.season) return -1
-        }
     })
 
     fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 2), (err) => {
