@@ -425,10 +425,44 @@ const logRollCLI = async () => {
     })
 }
 
-const showAllCLI = () => {
-    console.table(currentWeapons.map(cw => {
+const showAllCLI = async () => {
+    const sortPrompt = await prompt({
+        type: 'select',
+        name: 'sort',
+        message: 'How do you want it sorted?',
+        choices: ['Name', 'Season', 'Date']
+    })
+    let sortFunction
+    switch (sortPrompt.sort) {
+      case 'Name':
+        sortFunction = (a, b) => {
+          if (a.name >= b.name) return -1
+          if (b.name > a.name) return 1
+        }
+        break;
+      case 'Season':
+        sortFunction = (a, b) => {
+          if (a.season > b.season) return 1
+          if (b.season > a.season) return -1
+          if (a.season === b.season) {
+            if (a.name >= b.name) return -1
+            if (b.name > a.name) return 1
+          }
+        }
+        break;
+      case 'Date':
+        sortFunction = (a, b) => {
+          if (Date.parse(a.dateAdded) >= Date.parse(b.dateAdded)) return 1
+          if (Date.parse(a.dateAdded) < Date.parse(b.dateAdded)) return -1
+        }
+        break;
+      default:
+        sortFunction = () => {}
+        break;
+    }
+    console.table(currentWeapons.sort(sortFunction).map(cw => {
         return {
-            name: cw.name, season: cw.season, date:(new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
+            Name: cw.name, Season: cw.season, date:(new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
         }
     }))
 }
