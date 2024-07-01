@@ -71,3 +71,7 @@ exports.getDIMMultiple = (weaponRolls) => {
     return multiQueries
 
 }
+
+exports.getWeaponNamesQuery = (weaponNamesArray) => {
+    return '( (' + weaponNamesArray.map(wrs => `name:"${wrs.toLowerCase()}"`).join(') OR (') + ') )'
+}

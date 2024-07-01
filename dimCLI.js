@@ -4,7 +4,7 @@ const { join } = require('path')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
 let { masterworks, seasonMap, sections } = require('./enums')
-let { getDIMSearch, getDIMMultiple } = require('./dim')
+let { getDIMSearch, getDIMMultiple, getWeaponNamesQuery } = require('./dim')
 
 
 //General methods
@@ -131,11 +131,15 @@ const getDIMCLI = async () => {
             })
         })
     })
+    const weaponNamesQuery = getWeaponNamesQuery(currentWeapons.map(w => w.name))
+
     let searchTypeChoices = [{ name: 'Single', message: 'Single Roll (Stars, All, and Not)' },
     { name: 'Multiple', message: 'Multiple Rolls (All and Not)' }]
     if (!!process.env.POWERSHELL_DISTRIBUTION_CHANNEL) {
-        searchTypeChoices.push({ name: 'All', message: 'Every Roll (ALL)' })
-        searchTypeChoices.push({ name: 'Not', message: 'Every Roll (NOT)' })
+        searchTypeChoices.push({ name: 'Vendor', message: 'DIM Vendor Rolls' })
+        searchTypeChoices.push({ name: 'Junk', message: 'DIM Junk Rolls' })
+        searchTypeChoices.push({ name: 'Missing', message: 'DIM Missing Notes' })
+        searchTypeChoices.push({ name: 'AllClipboard', message: 'ALL Clipboard Queries' })
     }
     const searchTypePrompt = await prompt({
         type: 'select',
@@ -144,6 +148,53 @@ const getDIMCLI = async () => {
         choices: searchTypeChoices
     })
     console.log(searchTypePrompt.type)
+
+    const clipboardQuery = (type) => {
+        if (type === 'Missing') {
+            const missingReviewPrefix = '/* Missing Notes */'
+                + ' is:weapon -notes:Pv (-deepsight:harmonizable or (deepsight:harmonizable -tag:infuse)) -tag:archive'
+                + ' ( (not:randomroll not:exotic not:crafted) or ( '
+
+            console.log(`Query for Missing Notes copied to clipboard`)
+            require('child_process').spawn('clip').stdin.end(missingReviewPrefix + weaponNamesQuery)
+        } else {
+            let allEnabledWeaponRolls = enabledRolls.map(wr => {
+                let weaponIndex = getWeaponIndexByName(wr.name[0])
+                let rollIndex = getRollIndexByName(weaponIndex, wr.name[1])
+                let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+                return {
+                    name: wr.name[0],
+                    roll: roll
+                }
+            })
+            let DIMEnabledRolls = getDIMMultiple(allEnabledWeaponRolls)
+            const util = require('util');
+            let weaponQuery = ''
+            if (type === 'Vendor') {
+                // NOT Pattern Unlocked to avoid craftable weapons
+                // ARE Random Rolls to ignore ritual and fixed vendor weapons
+                weaponQuery = 'is:weapon not:sunset not:patternunlocked is:randomroll ( ('
+                    // ARE in any ENABLED weapon rolls
+                    + DIMEnabledRolls.get('ALL')
+                    // OR
+                    + ' ) OR -( '
+                    // NOT any weapon in currentWeapons (ENABLED & DISABLED)
+                    + weaponNamesQuery + ' ) )'
+            } else {
+                // ARE Pattern Unlocked AND NOT Crafted to delete weapons that can already be crafted
+                weaponQuery = 'is:weapon not:sunset -tag:archive ( ( is:patternunlocked not:crafted )'
+                    // OR
+                    + ' OR ( '
+                    // ALL weapons reviewed
+                    + weaponNamesQuery
+                    // that are also NOT in 
+                    + ' -(' + DIMEnabledRolls.get('ALL') + ') ) )'
+            }
+            console.log(`Query for ${type} copied to clipboard`)
+            require('child_process').spawn('clip').stdin.end(`/* DIM ${type} */ (${weaponQuery})`);
+        }
+    }
+
     switch (searchTypePrompt.type) {
         case 'Single':
             const weaponRollPrompt = await prompt({
@@ -185,22 +236,20 @@ const getDIMCLI = async () => {
             })
             console.log(getDIMMultiple(weaponRolls))
             break;
-        case 'All':
-        case 'Not':
-        let alLWeaponRolls = choices.map(wr => {
-          let weaponIndex = getWeaponIndexByName(wr.name[0])
-          let rollIndex = getRollIndexByName(weaponIndex, wr.name[1])
-          let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-          return {
-            name: wr.name[0],
-            roll: roll
-          }
-        })
-        let DIMRolls = getDIMMultiple(alLWeaponRolls)
-        const util = require('util');
-        const type = searchTypePrompt.type.toUpperCase()
-        console.log(`Query for ${type} copied to clipboard`)
-            require('child_process').spawn('clip').stdin.end(`/* Every ${type} */ ` + DIMRolls.get(type));
+        case 'Vendor':
+        case 'Junk':
+            clipboardQuery(searchTypePrompt.type)
+            break;
+        case 'Missing':
+            clipboardQuery('Missing')
+            break;
+        case 'AllClipboard':
+            // add time delays to allow clipboard to be copied
+            clipboardQuery('Missing')
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            clipboardQuery('Junk')
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            clipboardQuery('Vendor')
             break;
         default:
             process.exit(0);
