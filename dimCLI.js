@@ -122,20 +122,20 @@ const sortJSONCLI = async () => {
 }
 
 const getDIMCLI = async () => {
-    let choices = []
+    let rollChoices = []
     currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
-        choices.push(...cwf.rolls.map(cwfr => {
-            return {
+        cwf.rolls.forEach(cwfr => {
+            rollChoices.push({
                 'message': cwf.name + '  ->  ' + cwfr.name,
                 'name': [cwf.name, cwfr.name]
-            }
-        }))
+            })
+        })
     })
-    let searchTypeChoices = [{ name: 'single', message: 'Single Roll (Stars, All, and Not)' },
-    { name: 'multiple', message: 'Multiple Rolls (All and Not)' }]
+    let searchTypeChoices = [{ name: 'Single', message: 'Single Roll (Stars, All, and Not)' },
+    { name: 'Multiple', message: 'Multiple Rolls (All and Not)' }]
     if (!!process.env.POWERSHELL_DISTRIBUTION_CHANNEL) {
-      searchTypeChoices.push({ name: 'all', message: 'Every Roll (ALL)' })
-      searchTypeChoices.push({ name: 'not', message: 'Every Roll (NOT)' })
+        searchTypeChoices.push({ name: 'All', message: 'Every Roll (ALL)' })
+        searchTypeChoices.push({ name: 'Not', message: 'Every Roll (NOT)' })
     }
     const searchTypePrompt = await prompt({
         type: 'select',
@@ -144,46 +144,49 @@ const getDIMCLI = async () => {
         choices: searchTypeChoices
     })
     console.log(searchTypePrompt.type)
-    if (searchTypePrompt.type === 'single') {
-        const weaponRollPrompt = await prompt({
-          type: 'autocomplete',
-          limit: 30,
-          multiple: false,
-          footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
-            name: 'weaponRoll',
-            message: 'Choose a weapon:',
-            choices: choices
-        })
-        let weaponIndex = getWeaponIndexByName(weaponRollPrompt.weaponRoll[0])
-        let weapon = currentWeapons[weaponIndex]
-        let rollIndex = getRollIndexByName(weaponIndex, weaponRollPrompt.weaponRoll[1])
-        let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-        let print = printRoll(weaponIndex, rollIndex)
-        print.DIM = getDIMSearch(weapon.name, roll)
-        console.dir(print, { depth: 3 , colors: true})
-
-    } else if (searchTypePrompt.type === 'multiple') {
-        const weaponRollsPrompt = await prompt({
-            type: 'autocomplete',
-            limit: 30,
-            multiple: true,
-            footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
-            name: 'weaponRolls',
-            message: 'Choose a weapon:',
-            choices: choices
-        })
-        let weaponRolls = weaponRollsPrompt.weaponRolls.map(wr => {
-            let weaponIndex = getWeaponIndexByName(wr[0])
-            let rollIndex = getRollIndexByName(weaponIndex, wr[1])
+    switch (searchTypePrompt.type) {
+        case 'Single':
+            const weaponRollPrompt = await prompt({
+                type: 'autocomplete',
+                limit: 30,
+                multiple: false,
+                footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+                name: 'weaponRoll',
+                message: 'Choose a weapon:',
+                choices: rollChoices
+            })
+            let weaponIndex = getWeaponIndexByName(weaponRollPrompt.weaponRoll[0])
+            let weapon = currentWeapons[weaponIndex]
+            let rollIndex = getRollIndexByName(weaponIndex, weaponRollPrompt.weaponRoll[1])
             let roll = currentWeapons[weaponIndex].rolls[rollIndex]
-            console.dir(printRoll(weaponIndex, rollIndex), { depth: 3, colors: true })
-            return {
-                name: wr[0],
-                roll: roll
-            }
-        })
-        console.log(getDIMMultiple(weaponRolls))
-      } else if (searchTypePrompt.type === 'all' || searchTypePrompt.type === 'not') {
+            let print = printRoll(weaponIndex, rollIndex)
+            print.DIM = getDIMSearch(weapon.name, roll)
+            console.dir(print, { depth: 3, colors: true })
+            break;
+        case 'Multiple':
+            const weaponRollsPrompt = await prompt({
+                type: 'autocomplete',
+                limit: 30,
+                multiple: true,
+                footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+                name: 'weaponRolls',
+                message: 'Choose a weapon:',
+                choices: rollChoices
+            })
+            let weaponRolls = weaponRollsPrompt.weaponRolls.map(wr => {
+                let weaponIndex = getWeaponIndexByName(wr[0])
+                let rollIndex = getRollIndexByName(weaponIndex, wr[1])
+                let roll = currentWeapons[weaponIndex].rolls[rollIndex]
+                console.dir(printRoll(weaponIndex, rollIndex), { depth: 3, colors: true })
+                return {
+                    name: wr[0],
+                    roll: roll
+                }
+            })
+            console.log(getDIMMultiple(weaponRolls))
+            break;
+        case 'All':
+        case 'Not':
         let alLWeaponRolls = choices.map(wr => {
           let weaponIndex = getWeaponIndexByName(wr.name[0])
           let rollIndex = getRollIndexByName(weaponIndex, wr.name[1])
@@ -197,7 +200,10 @@ const getDIMCLI = async () => {
         const util = require('util');
         const type = searchTypePrompt.type.toUpperCase()
         console.log(`Query for ${type} copied to clipboard`)
-        require('child_process').spawn('clip').stdin.end(`/* Every ${type} */ `+DIMRolls.get(type));
+            require('child_process').spawn('clip').stdin.end(`/* Every ${type} */ ` + DIMRolls.get(type));
+            break;
+        default:
+            process.exit(0);
     }
 }
 
