@@ -75,19 +75,19 @@ const startCLI = async () => {
     })
     switch (firstPrompt.answer) {
         case 'New Weapon':
-            weaponCLI()
+            weaponCLI().catch(e => handleError(e))
             break;
         case 'New Roll':
-            rollCLI()
+            rollCLI().catch(e => handleError(e))
             break;
         case 'Get DIM Queries':
-            getDIMCLI()
+            getDIMCLI().catch(e => handleError(e))
             break;
         case 'Print Weapon':
-            logRollCLI()
+            logRollCLI().catch(e => handleError(e))
             break;
         case 'Show All':
-            showAllCLI()
+            showAllCLI().catch(e => handleError(e))
             break;
         case 'Exit':
         default:
@@ -498,4 +498,9 @@ const printRoll = (weaponIndex, rollIndex) => {
     }
 }
 
-startCLI()
+const handleError = (e) => {
+    console.log(e)
+    process.exit(1)
+}
+
+startCLI().catch(e => handleError(e))
