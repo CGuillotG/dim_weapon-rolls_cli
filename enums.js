@@ -25,8 +25,10 @@ exports.seasonMap = new Map()
     .set("Seraph", 19)
     .set("Lightfall", 20)
     .set("Defiance", 20)
-    // .set("Deep", 21)
+    .set("Deep", 21)
+    .set("Witch", 22)
+    .set("Wish", 23)
 
-exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge", "Accuracy"]
+exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge", "Accuracy", "Shield Duration"]
 
-exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings','hafts', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'origin', 'grips', 'stocks', 'masterwork', 'mod']
+exports.sections = ['scopes', 'sights', 'barrels', 'bowstrings', 'hafts', 'blades', 'batteries', 'magazines', 'guards', 'arrows', 'trait1', 'trait2', 'origin', 'grips', 'stocks', 'masterwork', 'mod']
