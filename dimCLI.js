@@ -10,25 +10,43 @@ let { getDIMSearch, getDIMMultiple } = require('./dim')
 //General methods
 
 const writeJson = (fileName, content) => {
-    content.sort((a, b) => {
-        a.rolls.sort((ra, rb) => {
-          console.log(`Sorting rolls of ${a.name}`)
-          if (ra.name > rb.name) return 1
-          if (rb.name > ra.name) return -1
-        })
-        //This might be redundant, but I believe in some cases with the sorting algorithm not every element gets to be "a"
-        b.rolls.sort((ra, rb) => {
-          console.log(`Sorting rolls of ${b.name}`)
-          if (ra.name > rb.name) return 1
-          if (rb.name > ra.name) return -1
-        })
-        if (a.name > b.name) return 1
-        if (b.name > a.name) return -1
-    })
-
-    fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 2), (err) => {
+    fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 4), (err) => {
         if (err) return console.error(err)
     })
+}
+
+const sortJson = fileContent => {
+    let sortOptions = (roll) => {
+        Object.keys(roll).forEach(key => {
+            // console.log(typeof roll[key] === 'object' && 'options' in roll[key])
+            if (typeof roll[key] === 'object' && 'options' in roll[key]) {
+                roll[key].options.sort((oa, ob) => {
+                    if (oa.order > ob.order) return 1
+                    if (oa.order < ob.order) return -1
+                    return 0
+                })
+            }
+        })
+    }
+    let sortRoll = (ra, rb) => {
+        sortOptions(ra)
+        sortOptions(rb)
+        if (ra.status > rb.status) return 1
+        if (rb.status > ra.status) return -1
+        if (ra.name > rb.name) return 1
+        if (rb.name > ra.name) return -1
+        return 0
+    }
+
+    fileContent.sort((a, b) => {
+        a.rolls.sort(sortRoll)
+        //This might be redundant, but I believe in some cases with the sorting algorithm not every element gets to be "a"
+        b.rolls.sort(sortRoll)
+        if (a.name > b.name) return 1
+        if (b.name > a.name) return -1
+        return 0
+    })
+    return fileContent
 }
 
 const getWeaponIndexByName = (name) => {
@@ -50,13 +68,13 @@ const getRollIndexByName = (weaponIndex, rollName) => {
 }
 
 const newWeapon = (name, season) => {
-    currentWeapons.push({ name, season, dateAdded:(new Date()).toUTCString(), rolls: [] })
-    writeJson('currentWeapons.json', currentWeapons)
+    currentWeapons.push({ name, season, dateAdded: (new Date()).toUTCString(), rolls: [] })
+    writeJson('currentWeapons.json', sortJson(currentWeapons))
 }
 
 const newRoll = (weaponIndex, roll) => {
     currentWeapons[weaponIndex].rolls.push(roll)
-    writeJson('currentWeapons.json', currentWeapons)
+    writeJson('currentWeapons.json', sortJson(currentWeapons))
     return currentWeapons[weaponIndex]
 }
 
@@ -71,7 +89,7 @@ const startCLI = async () => {
         type: 'select',
         name: 'answer',
         message: 'How can I help you today?',
-        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Show All', 'Exit']
+        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Show All', 'Sort JSON', 'Exit']
     })
     switch (firstPrompt.answer) {
         case 'New Weapon':
@@ -89,11 +107,18 @@ const startCLI = async () => {
         case 'Show All':
             showAllCLI().catch(e => handleError(e))
             break;
+        case 'Sort JSON':
+            sortJSONCLI().catch(e => handleError(e))
+            break;
         case 'Exit':
         default:
             process.exit(0)
     }
+}
 
+const sortJSONCLI = async () => {
+    writeJson('currentWeapons.json', await sortJson(currentWeapons))
+    console.log('Weapons JSON sorted')
 }
 
 const getDIMCLI = async () => {
@@ -196,14 +221,14 @@ const weaponCLI = async () => {
             startCLI()
         }
     } else {
-      let seasonChoices = []
-      seasonMap.forEach((sMValue, sMKey)=>{
-        seasonChoices.push({
-          'message':`${sMKey} - ${sMValue}`,
-          'name':sMKey
-        }
-        )
-      })
+        let seasonChoices = []
+        seasonMap.forEach((sMValue, sMKey) => {
+            seasonChoices.push({
+                'message': `${sMKey} - ${sMValue}`,
+                'name': sMKey
+            }
+            )
+        })
         const seasonPrompt = await prompt([
             {
                 type: 'select',
@@ -231,10 +256,10 @@ const weaponCLI = async () => {
 const rollCLI = async (weaponName = "") => {
     if (!weaponName) {
         const weaponPrompt = await prompt({
-          type: 'autocomplete',
-          limit: 30,
-          multiple: false,
-          footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
+            type: 'autocomplete',
+            limit: 30,
+            multiple: false,
+            footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
             name: 'name',
             message: 'Which weapon do you want to add rolls to?',
             choices: currentWeapons.map(w => w.name)
@@ -257,10 +282,10 @@ const rollCLI = async (weaponName = "") => {
 
 const sectionCLI = async (accRoll) => {
     const sectionPrompt = await prompt({
-      type: 'autocomplete',
-      limit: 30,
-      multiple: false,
-      footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
+        type: 'autocomplete',
+        limit: 30,
+        multiple: false,
+        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
         name: 'section',
         message: 'What section are you adding?',
         choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
@@ -354,7 +379,7 @@ const optionsCLI = async (accOptions, sectionName) => {
         type: 'autocomplete',
         limit: 30,
         multiple: true,
-        footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
+        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
         message: `Select all the options in the ${sectionName.toUpperCase()} category`,
         name: 'options',
         choices: choices
@@ -413,7 +438,7 @@ const logRollCLI = async () => {
         type: 'autocomplete',
         limit: 30,
         multiple: false,
-        footer() {return '---Start typing, or scroll up and down to reveal more choices---';},
+        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
         name: 'name',
         message: 'Choose a weapon:',
         choices: currentWeapons.map(w => w.name)
@@ -434,42 +459,42 @@ const showAllCLI = async () => {
     })
     let sortFunction
     switch (sortPrompt.sort) {
-      case 'Name':
-        sortFunction = (a, b) => {
-          if (a.name >= b.name) return -1
-          if (b.name > a.name) return 1
-        }
-        break;
-      case 'Season':
-        sortFunction = (a, b) => {
-          if (a.season > b.season) return 1
-          if (b.season > a.season) return -1
-          if (a.season === b.season) {
-            if (a.name >= b.name) return -1
-            if (b.name > a.name) return 1
-          }
-        }
-        break;
-      case 'Date':
-        sortFunction = (a, b) => {
-          if (Date.parse(a.dateAdded) >= Date.parse(b.dateAdded)) return 1
-          if (Date.parse(a.dateAdded) < Date.parse(b.dateAdded)) return -1
-        }
-        break;
-      default:
-        sortFunction = () => {}
-        break;
+        case 'Name':
+            sortFunction = (a, b) => {
+                if (a.name >= b.name) return -1
+                if (b.name > a.name) return 1
+            }
+            break;
+        case 'Season':
+            sortFunction = (a, b) => {
+                if (a.season > b.season) return 1
+                if (b.season > a.season) return -1
+                if (a.season === b.season) {
+                    if (a.name >= b.name) return -1
+                    if (b.name > a.name) return 1
+                }
+            }
+            break;
+        case 'Date':
+            sortFunction = (a, b) => {
+                if (Date.parse(a.dateAdded) >= Date.parse(b.dateAdded)) return 1
+                if (Date.parse(a.dateAdded) < Date.parse(b.dateAdded)) return -1
+            }
+            break;
+        default:
+            sortFunction = () => { }
+            break;
     }
     console.table(currentWeapons.sort(sortFunction).map(cw => {
         return {
-            Name: cw.name, Season: cw.season, date:(new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
+            Name: cw.name, Season: cw.season, date: (new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
         }
     }))
 }
 
 const printRoll = (weaponIndex, rollIndex) => {
     let weapon = currentWeapons[weaponIndex]
-    let roll = {...currentWeapons[weaponIndex].rolls[rollIndex]}
+    let roll = { ...currentWeapons[weaponIndex].rolls[rollIndex] }
     let printName = weapon.name + " -> " + roll.name
     delete roll.name
     let fRoll = new Map
