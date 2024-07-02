@@ -28,6 +28,10 @@ exports.seasonMap = new Map()
     .set("Deep", 21)
     .set("Witch", 22)
     .set("Wish", 23)
+    .set("Final Shape", 24)
+    .set("Echoes", 24)
+// .set("Revenant", 25)
+// .set("Heresy", 26)
 
 exports.masterworks = ['Impact', 'Range', 'Stability', 'Handling', 'Reload', 'Magazine', "Blast Radius", 'Velocity', "Draw Time", "Charge", "Accuracy", "Shield Duration"]
 
