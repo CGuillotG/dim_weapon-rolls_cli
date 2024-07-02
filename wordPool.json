@@ -1,1062 +1,1210 @@
 [
-  {
-    "name": "ATA Scout",
-    "category": "scopes"
-  },
-  {
-    "name": "ATC Rex",
-    "category": "scopes"
-  },
-  {
-    "name": "Accelerated Coils",
-    "category": "batteries"
-  },
-  {
-    "name": "Accurized Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Adagio",
-    "category": "general"
-  },
-  {
-    "name": "Adaptive Munitions",
-    "category": "general"
-  },
-  {
-    "name": "Adrenaline Junkie",
-    "category": "general"
-  },
-  {
-    "name": "Air Assault",
-    "category": "general"
-  },
-  {
-    "name": "Alacrity",
-    "category": "origin"
-  },
-  {
-    "name": "Alloy Casing",
-    "category": "magazines"
-  },
-  {
-    "name": "Alloy Magazine",
-    "category": "magazines"
-  },
-  {
-    "name": "Ambitious Assassin",
-    "category": "general"
-  },
-  {
-    "name": "Ambush",
-    "category": "origin"
-  },
-  {
-    "name": "Appended Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Archer's Tempo",
-    "category": "general"
-  },
-  {
-    "name": "Armor-Piercing Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Arrowhead Brake",
-    "category": "barrels"
-  },
-  {
-    "name": "Assassin's Blade",
-    "category": "general"
-  },
-  {
-    "name": "Assault Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Augmented Drum",
-    "category": "magazines"
-  },
-  {
-    "name": "Auto-Loading Holster",
-    "category": "general"
-  },
-  {
-    "name": "Backup Mag",
-    "category": "mod"
-  },
-  {
-    "name": "Backup Plan",
-    "category": "general"
-  },
-  {
-    "name": "Balanced Guard",
-    "category": "guards"
-  },
-  {
-    "name": "Ballistic Tuning",
-    "category": "hafts"
-  },
-  {
-    "name": "Barrel Shroud",
-    "category": "barrels"
-  },
-  {
-    "name": "Black Powder",
-    "category": "magazines"
-  },
-  {
-    "name": "Boss Spec",
-    "category": "mod"
-  },
-  {
-    "name": "Box Breathing",
-    "category": "general"
-  },
-  {
-    "name": "Carbon Arrow Shaft",
-    "category": "arrows"
-  },
-  {
-    "name": "Chain Reaction",
-    "category": "general"
-  },
-  {
-    "name": "Chambered Compensator",
-    "category": "barrels"
-  },
-  {
-    "name": "Chill Clip",
-    "category": "general"
-  },
-  {
-    "name": "Cleanshot IS",
-    "category": "scopes"
-  },
-  {
-    "name": "Clown Cartridge",
-    "category": "general"
-  },
-  {
-    "name": "Cluster Bomb",
-    "category": "general"
-  },
-  {
-    "name": "Cold Steel",
-    "category": "general"
-  },
-  {
-    "name": "Compact Arrow Shaft",
-    "category": "arrows"
-  },
-  {
-    "name": "Composite Stock",
-    "category": "stocks"
-  },
-  {
-    "name": "Compulsive Reloader",
-    "category": "general"
-  },
-  {
-    "name": "Concussion Grenades",
-    "category": "magazines"
-  },
-  {
-    "name": "Confined Launch",
-    "category": "barrels"
-  },
-  {
-    "name": "Control SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Corkscrew Rifling",
-    "category": "barrels"
-  },
-  {
-    "name": "Cornered",
-    "category": "general"
-  },
-  {
-    "name": "Counterbalance",
-    "category": "mod"
-  },
-  {
-    "name": "Crossfire HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Danger Zone",
-    "category": "general"
-  },
+    {
+        "name": "ATA Scout",
+        "category": "scopes"
+    },
+    {
+        "name": "ATC Rex",
+        "category": "scopes"
+    },
+    {
+        "name": "Accelerated Coils",
+        "category": "batteries"
+    },
+    {
+        "name": "Accurized Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Adagio",
+        "category": "general"
+    },
+    {
+        "name": "Adaptive Munitions",
+        "category": "general"
+    },
+    {
+        "name": "Adrenaline Junkie",
+        "category": "general"
+    },
+    {
+        "name": "Air Assault",
+        "category": "general"
+    },
+    {
+        "name": "Alacrity",
+        "category": "origin"
+    },
+    {
+        "name": "Alloy Casing",
+        "category": "magazines"
+    },
+    {
+        "name": "Alloy Magazine",
+        "category": "magazines"
+    },
+    {
+        "name": "Ambitious Assassin",
+        "category": "general"
+    },
+    {
+        "name": "Ambush",
+        "category": "origin"
+    },
+    {
+        "name": "Appended Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Archer's Tempo",
+        "category": "general"
+    },
+    {
+        "name": "Armor-Piercing Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Arrowhead Brake",
+        "category": "barrels"
+    },
+    {
+        "name": "Assassin's Blade",
+        "category": "general"
+    },
+    {
+        "name": "Assault Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Augmented Drum",
+        "category": "magazines"
+    },
+    {
+        "name": "Auto-Loading Holster",
+        "category": "general"
+    },
+    {
+        "name": "Backup Mag",
+        "category": "mod"
+    },
+    {
+        "name": "Backup Plan",
+        "category": "general"
+    },
+    {
+        "name": "Balanced Guard",
+        "category": "guards"
+    },
+    {
+        "name": "Ballistic Tuning",
+        "category": "hafts"
+    },
+    {
+        "name": "Barrel Shroud",
+        "category": "barrels"
+    },
+    {
+        "name": "Black Powder",
+        "category": "magazines"
+    },
+    {
+        "name": "Boss Spec",
+        "category": "mod"
+    },
+    {
+        "name": "Box Breathing",
+        "category": "general"
+    },
+    {
+        "name": "Carbon Arrow Shaft",
+        "category": "arrows"
+    },
+    {
+        "name": "Chain Reaction",
+        "category": "general"
+    },
+    {
+        "name": "Chambered Compensator",
+        "category": "barrels"
+    },
+    {
+        "name": "Chill Clip",
+        "category": "general"
+    },
+    {
+        "name": "Cleanshot IS",
+        "category": "scopes"
+    },
+    {
+        "name": "Clown Cartridge",
+        "category": "general"
+    },
+    {
+        "name": "Cluster Bomb",
+        "category": "general"
+    },
+    {
+        "name": "Cold Steel",
+        "category": "general"
+    },
+    {
+        "name": "Compact Arrow Shaft",
+        "category": "arrows"
+    },
+    {
+        "name": "Composite Stock",
+        "category": "stocks"
+    },
+    {
+        "name": "Compulsive Reloader",
+        "category": "general"
+    },
+    {
+        "name": "Concussion Grenades",
+        "category": "magazines"
+    },
+    {
+        "name": "Confined Launch",
+        "category": "barrels"
+    },
+    {
+        "name": "Control SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Corkscrew Rifling",
+        "category": "barrels"
+    },
+    {
+        "name": "Cornered",
+        "category": "general"
+    },
+    {
+        "name": "Counterbalance",
+        "category": "mod"
+    },
+    {
+        "name": "Crossfire HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Danger Zone",
+        "category": "general"
+    },
     {
         "name": "Deconstruct",
         "category": "general"
     },
-  {
-    "name": "Demolitionist",
-    "category": "general"
-  },
-  {
-    "name": "Desperado",
-    "category": "general"
-  },
-  {
-    "name": "Destabilizing Rounds",
-    "category": "general"
-  },
-  {
-    "name": "Disorienting Grenades",
-    "category": "magazines"
-  },
-  {
-    "name": "Disruption Break",
-    "category": "general"
-  },
-  {
-    "name": "Dragonfly",
-    "category": "general"
-  },
-  {
-    "name": "Dream Work",
-    "category": "origin"
-  },
-  {
-    "name": "Drop Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Dual Loader",
-    "category": "general"
-  },
-  {
-    "name": "Duelist's Trance",
-    "category": "general"
-  },
-  {
-    "name": "Dynamic Sway Reduction",
-    "category": "general"
-  },
-  {
-    "name": "Eager Edge",
-    "category": "general"
-  },
-  {
-    "name": "Elastic String",
-    "category": "bowstrings"
-  },
-  {
-    "name": "Elemental Capacitor",
-    "category": "general"
-  },
-  {
-    "name": "Encore",
-    "category": "general"
-  },
-  {
-    "name": "Enduring Guard",
-    "category": "guards"
-  },
-  {
-    "name": "Enhanced Battery",
-    "category": "batteries"
-  },
-  {
-    "name": "Ensemble",
-    "category": "general"
-  },
-  {
-    "name": "Envious Assassin",
-    "category": "general"
-  },
-  {
-    "name": "Explosive Head",
-    "category": "general"
-  },
-  {
-    "name": "Explosive Light",
-    "category": "general"
-  },
-  {
-    "name": "Explosive Payload",
-    "category": "general"
-  },
-  {
-    "name": "Extended Barrel",
-    "category": "barrels"
-  },
-  {
-    "name": "Extended Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Eye of the Storm",
-    "category": "general"
-  },
-  {
-    "name": "Farpoint SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Fastdraw HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Feeding Frenzy",
-    "category": "general"
-  },
-  {
-    "name": "Fiberglass Arrow Shaft",
-    "category": "arrows"
-  },
-  {
-    "name": "Field Prep",
-    "category": "general"
-  },
-  {
-    "name": "Field-Tested",
-    "category": "origin"
-  },
-  {
-    "name": "Firefly",
-    "category": "general"
-  },
-  {
-    "name": "Firing Line",
-    "category": "general"
-  },
-  {
-    "name": "Firmly Planted",
-    "category": "general"
-  },
-  {
-    "name": "Fitted Stock",
-    "category": "stocks"
-  },
-  {
-    "name": "Flared Magwell",
-    "category": "magazines"
-  },
-  {
-    "name": "Flash Counter",
-    "category": "general"
-  },
-  {
-    "name": "Flash HS5",
-    "category": "scopes"
-  },
-  {
-    "name": "Flexible String",
-    "category": "bowstrings"
-  },
-  {
-    "name": "Fluted Barrel",
-    "category": "barrels"
-  },
-  {
-    "name": "Focused Fury",
-    "category": "general"
-  },
-  {
-    "name": "Fourth Time's the Charm",
-    "category": "general"
-  },
-  {
-    "name": "Fragile Focus",
-    "category": "general"
-  },
-  {
-    "name": "Freehand Grip",
-    "category": "mod"
-  },
-  {
-    "name": "Frenzy",
-    "category": "general"
-  },
-  {
-    "name": "Full Auto Retrofit",
-    "category": "mod"
-  },
-  {
-    "name": "Full Auto Trigger System",
-    "category": "general"
-  },
-  {
-    "name": "Full Bore",
-    "category": "barrels"
-  },
-  {
-    "name": "Full Choke",
-    "category": "barrels"
-  },
-  {
-    "name": "Full Court",
-    "category": "general"
-  },
-  {
-    "name": "Fusion Rifle Dexterity (Armor)",
-    "category": "mod"
-  },
-  {
+    {
+        "name": "Demolitionist",
+        "category": "general"
+    },
+    {
+        "name": "Desperado",
+        "category": "general"
+    },
+    {
+        "name": "Destabilizing Rounds",
+        "category": "general"
+    },
+    {
+        "name": "Disorienting Grenades",
+        "category": "magazines"
+    },
+    {
+        "name": "Disruption Break",
+        "category": "general"
+    },
+    {
+        "name": "Dragonfly",
+        "category": "general"
+    },
+    {
+        "name": "Dream Work",
+        "category": "origin"
+    },
+    {
+        "name": "Drop Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Dual Loader",
+        "category": "general"
+    },
+    {
+        "name": "Duelist's Trance",
+        "category": "general"
+    },
+    {
+        "name": "Dynamic Sway Reduction",
+        "category": "general"
+    },
+    {
+        "name": "Eager Edge",
+        "category": "general"
+    },
+    {
+        "name": "Elastic String",
+        "category": "bowstrings"
+    },
+    {
+        "name": "Elemental Capacitor",
+        "category": "general"
+    },
+    {
+        "name": "Encore",
+        "category": "general"
+    },
+    {
+        "name": "Enduring Guard",
+        "category": "guards"
+    },
+    {
+        "name": "Enhanced Battery",
+        "category": "batteries"
+    },
+    {
+        "name": "Ensemble",
+        "category": "general"
+    },
+    {
+        "name": "Envious Assassin",
+        "category": "general"
+    },
+    {
+        "name": "Explosive Head",
+        "category": "general"
+    },
+    {
+        "name": "Explosive Light",
+        "category": "general"
+    },
+    {
+        "name": "Explosive Payload",
+        "category": "general"
+    },
+    {
+        "name": "Extended Barrel",
+        "category": "barrels"
+    },
+    {
+        "name": "Extended Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Eye of the Storm",
+        "category": "general"
+    },
+    {
+        "name": "Farpoint SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Fastdraw HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Feeding Frenzy",
+        "category": "general"
+    },
+    {
+        "name": "Fiberglass Arrow Shaft",
+        "category": "arrows"
+    },
+    {
+        "name": "Field Prep",
+        "category": "general"
+    },
+    {
+        "name": "Field-Tested",
+        "category": "origin"
+    },
+    {
+        "name": "Firefly",
+        "category": "general"
+    },
+    {
+        "name": "Firing Line",
+        "category": "general"
+    },
+    {
+        "name": "Firmly Planted",
+        "category": "general"
+    },
+    {
+        "name": "Fitted Stock",
+        "category": "stocks"
+    },
+    {
+        "name": "Flared Magwell",
+        "category": "magazines"
+    },
+    {
+        "name": "Flash Counter",
+        "category": "general"
+    },
+    {
+        "name": "Flash HS5",
+        "category": "scopes"
+    },
+    {
+        "name": "Flexible String",
+        "category": "bowstrings"
+    },
+    {
+        "name": "Fluted Barrel",
+        "category": "barrels"
+    },
+    {
+        "name": "Focused Fury",
+        "category": "general"
+    },
+    {
+        "name": "Fourth Time's the Charm",
+        "category": "general"
+    },
+    {
+        "name": "Fragile Focus",
+        "category": "general"
+    },
+    {
+        "name": "Freehand Grip",
+        "category": "mod"
+    },
+    {
+        "name": "Frenzy",
+        "category": "general"
+    },
+    {
+        "name": "Full Auto Retrofit",
+        "category": "mod"
+    },
+    {
+        "name": "Full Auto Trigger System",
+        "category": "general"
+    },
+    {
+        "name": "Full Bore",
+        "category": "barrels"
+    },
+    {
+        "name": "Full Choke",
+        "category": "barrels"
+    },
+    {
+        "name": "Full Court",
+        "category": "general"
+    },
+    {
+        "name": "Fusion Rifle Dexterity (Armor)",
+        "category": "mod"
+    },
+    {
         "name": "Holster (Armor)",
-    "category": "mod"
-  },
-  {
-    "name": "Genesis",
-    "category": "general"
-  },
-  {
-    "name": "Golden Tricorn",
-    "category": "general"
-  },
-  {
-    "name": "Grave Robber",
-    "category": "general"
-  },
-  {
-    "name": "Hammer-Forged Rifling",
-    "category": "barrels"
-  },
-  {
-    "name": "Hand-Laid Stock",
-    "category": "stocks"
-  },
-  {
-    "name": "Hard Launch",
-    "category": "barrels"
-  },
-  {
-    "name": "Harmony",
-    "category": "general"
-  },
-  {
-    "name": "Hatchling",
-    "category": "general"
-  },
-  {
-    "name": "Headseeker",
-    "category": "general"
-  },
-  {
-    "name": "Headstone",
-    "category": "general"
-  },
-  {
-    "name": "Heating Up",
-    "category": "general"
-  },
-  {
-    "name": "Heavy Grip",
-    "category": "grips"
-  },
-  {
-    "name": "Heavy Guard",
-    "category": "guards"
-  },
-  {
-    "name": "Helical Fletching",
-    "category": "arrows"
-  },
-  {
-    "name": "High-Caliber Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "High-Explosive Ordnance",
-    "category": "magazines"
-  },
-  {
-    "name": "High-Impact Reserves",
-    "category": "general"
-  },
-  {
-    "name": "High-Velocity Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Hip-fire Grip",
-    "category": "general"
-  },
-  {
-    "name": "Hitmark HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Honed Edge",
-    "category": "blades"
-  },
-  {
-    "name": "Hungry Edge",
-    "category": "blades"
-  },
-  {
-    "name": "Häkke Breach Armaments",
-    "category": "origin"
-  },
-  {
-    "name": "Häkke Heavy Burst Fire",
-    "category": "origin"
-  },
-  {
-    "name": "Häkke Light Burst Fire",
-    "category": "origin"
-  },
-  {
-    "name": "IS 2 Classic",
-    "category": "scopes"
-  },
-  {
-    "name": "Icarus Grip",
-    "category": "mod"
-  },
-  {
-    "name": "Impact Casing",
-    "category": "magazines"
-  },
-  {
-    "name": "Implosion Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Impulse Amplifier",
-    "category": "general"
-  },
-  {
-    "name": "Impulse MS3",
-    "category": "scopes"
-  },
-  {
-    "name": "Incandescent",
-    "category": "general"
-  },
-  {
-    "name": "Ionized Battery",
-    "category": "batteries"
-  },
-  {
-    "name": "Iron Gaze",
-    "category": "general"
-  },
-  {
-    "name": "Iron Grip",
-    "category": "general"
-  },
-  {
-    "name": "Iron Reach",
-    "category": "general"
-  },
-  {
-    "name": "Jagged Edge",
-    "category": "blades"
-  },
-  {
-    "name": "Keep Away",
-    "category": "general"
-  },
-  {
-    "name": "Kill Clip",
-    "category": "general"
-  },
-  {
-    "name": "Killing Wind",
-    "category": "general"
-  },
-  {
-    "name": "Kinetic Tremors",
-    "category": "general"
-  },
-  {
-    "name": "Lasting Impression",
-    "category": "general"
-  },
-  {
-    "name": "Lead from Gold",
-    "category": "general"
-  },
-  {
-    "name": "Light Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Lightweight Emitter",
-    "category": "hafts"
-  },
-  {
-    "name": "Linear Compensator",
-    "category": "barrels"
-  },
-  {
-    "name": "Liquid Coils",
-    "category": "batteries"
-  },
-  {
-    "name": "Major Spec",
-    "category": "mod"
-  },
-  {
-    "name": "Model 6 Loop",
-    "category": "scopes"
-  },
-  {
-    "name": "Model 8 Red",
-    "category": "scopes"
-  },
-  {
-    "name": "Moving Target",
-    "category": "general"
-  },
-  {
-    "name": "Mulligan",
-    "category": "general"
-  },
-  {
-    "name": "Multikill Clip",
-    "category": "general"
-  },
-  {
-    "name": "Natural Fletching",
-    "category": "arrows"
-  },
-  {
-    "name": "Natural String",
-    "category": "bowstrings"
-  },
-  {
-    "name": "No Distractions",
-    "category": "general"
-  },
-  {
-    "name": "Offhand Strike",
-    "category": "general"
-  },
-  {
-    "name": "Omolon Fluid Dynamics",
-    "category": "origin"
-  },
-  {
-    "name": "One For All",
-    "category": "general"
-  },
-  {
-    "name": "One Quiet Moment",
-    "category": "origin"
-  },
-  {
-    "name": "One-Two Punch",
-    "category": "general"
-  },
-  {
-    "name": "Opening Shot",
-    "category": "general"
-  },
-  {
-    "name": "Osmosis",
-    "category": "general"
-  },
-  {
-    "name": "Outlaw",
-    "category": "general"
-  },
-  {
-    "name": "Overflow",
-    "category": "general"
-  },
-  {
-    "name": "Particle Repeater",
-    "category": "batteries"
-  },
-  {
-    "name": "Perfect Float",
-    "category": "general"
-  },
-  {
-    "name": "Perpetual Motion",
-    "category": "general"
-  },
-  {
-    "name": "Phase Magazine",
-    "category": "magazines"
-  },
-  {
-    "name": "Polygonal Rifling",
-    "category": "barrels"
-  },
-  {
-    "name": "Polymer Grip",
-    "category": "grips"
-  },
-  {
-    "name": "Polymer String",
-    "category": "bowstrings"
-  },
-  {
-    "name": "Projection Fuse",
-    "category": "batteries"
-  },
-  {
-    "name": "Proximity Grenades",
-    "category": "magazines"
-  },
-  {
-    "name": "Pugilist",
-    "category": "general"
-  },
-  {
-    "name": "Pulse Monitor",
-    "category": "general"
-  },
-  {
-    "name": "Quick Access Sling",
-    "category": "mod"
-  },
-  {
-    "name": "Quick Charge (Armor)",
-    "category": "mod"
-  },
-  {
-    "name": "Quick Launch",
-    "category": "barrels"
-  },
-  {
-    "name": "Quickdot SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Quickdraw",
-    "category": "general"
-  },
-  {
-    "name": "Rampage",
-    "category": "general"
-  },
-  {
-    "name": "Rampage Spec",
-    "category": "mod"
-  },
-  {
-    "name": "Rangefinder",
-    "category": "general"
-  },
-  {
-    "name": "Rapid Hit",
-    "category": "general"
-  },
-  {
-    "name": "Reconstruction",
-    "category": "general"
-  },
-  {
-    "name": "Red Dot 2 MOA",
-    "category": "scopes"
-  },
-  {
-    "name": "Red Dot Micro",
-    "category": "scopes"
-  },
-  {
-    "name": "Relentless Strikes",
-    "category": "general"
-  },
-  {
-    "name": "Remote Detonation",
-    "category": "magazines"
-  },
-  {
-    "name": "Repulsor Brace",
-    "category": "general"
-  },
-  {
-    "name": "Reservoir Burst",
-    "category": "general"
-  },
-  {
-    "name": "Ricochet Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Rifle Scope SSF",
-    "category": "scopes"
-  },
-  {
-    "name": "Rifle Scope ST",
-    "category": "scopes"
-  },
-  {
-    "name": "Rifled Barrel",
-    "category": "barrels"
-  },
-  {
-    "name": "SC Holo",
-    "category": "scopes"
-  },
-  {
-    "name": "SPO-28 Front",
-    "category": "scopes"
-  },
-  {
-    "name": "SPO-57 Front",
-    "category": "scopes"
-  },
-  {
-    "name": "SRO-41 Ocular",
-    "category": "scopes"
-  },
-  {
-    "name": "Seraph Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Shield Disorient",
-    "category": "general"
-  },
-  {
-    "name": "Shoot to Loot",
-    "category": "general"
-  },
-  {
-    "name": "Short-Action Stock",
-    "category": "stocks"
-  },
-  {
-    "name": "Shortspec SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Signal MS5",
-    "category": "scopes"
-  },
-  {
-    "name": "Skulking Wolf",
-    "category": "origin"
-  },
-  {
-    "name": "Slideshot",
-    "category": "general"
-  },
-  {
-    "name": "Slideways",
-    "category": "general"
-  },
-  {
-    "name": "Smallbore",
-    "category": "barrels"
-  },
-  {
-    "name": "Smart Drift Control",
-    "category": "barrels"
-  },
-  {
-    "name": "Smooth Grip",
-    "category": "grips"
-  },
-  {
-    "name": "Smoothbore",
-    "category": "barrels"
-  },
-  {
-    "name": "Snapshot Sights",
-    "category": "general"
-  },
-  {
-    "name": "Spike Grenades",
-    "category": "magazines"
-  },
-  {
-    "name": "Stats For All",
-    "category": "general"
-  },
-  {
-    "name": "Steady Hands",
-    "category": "general"
-  },
-  {
-    "name": "Steady Rounds",
-    "category": "magazines"
-  },
-  {
-    "name": "Steadyhand HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Sticky Grenades",
-    "category": "magazines"
-  },
-  {
-    "name": "Straight Fletching",
-    "category": "arrows"
-  },
-  {
-    "name": "Subsistence",
-    "category": "general"
-  },
-  {
-    "name": "Successful Warm-Up",
-    "category": "general"
-  },
-  {
-    "name": "Sureshot HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Suros Synergy",
-    "category": "origin"
-  },
-  {
-    "name": "Surplus",
-    "category": "general"
-  },
-  {
-    "name": "Surrounded",
-    "category": "general"
-  },
-  {
-    "name": "Surrounded Spec",
-    "category": "mod"
-  },
-  {
-    "name": "Swashbuckler",
-    "category": "general"
-  },
-  {
-    "name": "Swordmaster's Guard",
-    "category": "guards"
-  },
-  {
-    "name": "Sympathetic Arsenal",
-    "category": "general"
-  },
-  {
-    "name": "Tactic SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Tactical Battery",
-    "category": "batteries"
-  },
-  {
-    "name": "Tactical Mag",
-    "category": "magazines"
-  },
-  {
-    "name": "Tactile String",
-    "category": "bowstrings"
-  },
-  {
-    "name": "Tap the Trigger",
-    "category": "general"
-  },
-  {
-    "name": "Target Lock",
-    "category": "general"
-  },
-  {
-    "name": "Target SAS",
-    "category": "sights"
-  },
-  {
-    "name": "Targeting Adjuster",
-    "category": "mod"
-  },
-  {
-    "name": "Tempered Edge",
-    "category": "blades"
-  },
-  {
-    "name": "Threat Detector",
-    "category": "general"
-  },
-  {
-    "name": "Thresh",
-    "category": "general"
-  },
-  {
-    "name": "Timed Payload",
-    "category": "general"
-  },
-  {
-    "name": "Tireless Blade",
-    "category": "general"
-  },
-  {
-    "name": "Torch HS3",
-    "category": "scopes"
-  },
-  {
-    "name": "Tracking Module",
-    "category": "general"
-  },
-  {
-    "name": "Transmission MS7",
-    "category": "scopes"
-  },
-  {
-    "name": "Trench Barrel",
-    "category": "general"
-  },
-  {
-    "name": "Triple Tap",
-    "category": "general"
-  },
-  {
-    "name": "Truesight HCS",
-    "category": "sights"
-  },
-  {
-    "name": "Tunnel Vision",
-    "category": "general"
-  },
-  {
-    "name": "Turnabout",
-    "category": "general"
-  },
-  {
-    "name": "Under Pressure",
-    "category": "general"
-  },
-  {
-    "name": "Unrelenting",
-    "category": "general"
-  },
-  {
-    "name": "Unstoppable Force",
-    "category": "general"
-  },
-  {
-    "name": "Vanguard's Vindication",
-    "category": "origin"
-  },
-  {
-    "name": "Veist Stinger",
-    "category": "origin"
-  },
-  {
-    "name": "Volatile Launch",
-    "category": "barrels"
-  },
-  {
-    "name": "Voltshot",
-    "category": "general"
-  },
-  {
-    "name": "Vorpal Weapon",
-    "category": "general"
-  },
-  {
-    "name": "Well-Rounded",
-    "category": "general"
-  },
-  {
-    "name": "Wellspring",
-    "category": "general"
-  },
-  {
-    "name": "Whirlwind Blade",
-    "category": "general"
-  },
-  {
-    "name": "Zen Moment",
-    "category": "general"
-  }
+        "category": "mod"
+    },
+    {
+        "name": "Genesis",
+        "category": "general"
+    },
+    {
+        "name": "Golden Tricorn",
+        "category": "general"
+    },
+    {
+        "name": "Grave Robber",
+        "category": "general"
+    },
+    {
+        "name": "Hammer-Forged Rifling",
+        "category": "barrels"
+    },
+    {
+        "name": "Hand-Laid Stock",
+        "category": "stocks"
+    },
+    {
+        "name": "Hard Launch",
+        "category": "barrels"
+    },
+    {
+        "name": "Harmony",
+        "category": "general"
+    },
+    {
+        "name": "Hatchling",
+        "category": "general"
+    },
+    {
+        "name": "Headseeker",
+        "category": "general"
+    },
+    {
+        "name": "Headstone",
+        "category": "general"
+    },
+    {
+        "name": "Heating Up",
+        "category": "general"
+    },
+    {
+        "name": "Heavy Grip",
+        "category": "grips"
+    },
+    {
+        "name": "Heavy Guard",
+        "category": "guards"
+    },
+    {
+        "name": "Helical Fletching",
+        "category": "arrows"
+    },
+    {
+        "name": "High-Caliber Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "High-Explosive Ordnance",
+        "category": "magazines"
+    },
+    {
+        "name": "High-Impact Reserves",
+        "category": "general"
+    },
+    {
+        "name": "High-Velocity Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Hip-fire Grip",
+        "category": "general"
+    },
+    {
+        "name": "Hitmark HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Honed Edge",
+        "category": "blades"
+    },
+    {
+        "name": "Hungry Edge",
+        "category": "blades"
+    },
+    {
+        "name": "Häkke Breach Armaments",
+        "category": "origin"
+    },
+    {
+        "name": "Häkke Heavy Burst Fire",
+        "category": "origin"
+    },
+    {
+        "name": "Häkke Light Burst Fire",
+        "category": "origin"
+    },
+    {
+        "name": "IS 2 Classic",
+        "category": "scopes"
+    },
+    {
+        "name": "Icarus Grip",
+        "category": "mod"
+    },
+    {
+        "name": "Impact Casing",
+        "category": "magazines"
+    },
+    {
+        "name": "Implosion Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Impulse Amplifier",
+        "category": "general"
+    },
+    {
+        "name": "Impulse MS3",
+        "category": "scopes"
+    },
+    {
+        "name": "Incandescent",
+        "category": "general"
+    },
+    {
+        "name": "Ionized Battery",
+        "category": "batteries"
+    },
+    {
+        "name": "Iron Gaze",
+        "category": "general"
+    },
+    {
+        "name": "Iron Grip",
+        "category": "general"
+    },
+    {
+        "name": "Iron Reach",
+        "category": "general"
+    },
+    {
+        "name": "Jagged Edge",
+        "category": "blades"
+    },
+    {
+        "name": "Keep Away",
+        "category": "general"
+    },
+    {
+        "name": "Kill Clip",
+        "category": "general"
+    },
+    {
+        "name": "Killing Wind",
+        "category": "general"
+    },
+    {
+        "name": "Kinetic Tremors",
+        "category": "general"
+    },
+    {
+        "name": "Lasting Impression",
+        "category": "general"
+    },
+    {
+        "name": "Lead from Gold",
+        "category": "general"
+    },
+    {
+        "name": "Light Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Lightweight Emitter",
+        "category": "hafts"
+    },
+    {
+        "name": "Linear Compensator",
+        "category": "barrels"
+    },
+    {
+        "name": "Liquid Coils",
+        "category": "batteries"
+    },
+    {
+        "name": "Major Spec",
+        "category": "mod"
+    },
+    {
+        "name": "Model 6 Loop",
+        "category": "scopes"
+    },
+    {
+        "name": "Model 8 Red",
+        "category": "scopes"
+    },
+    {
+        "name": "Moving Target",
+        "category": "general"
+    },
+    {
+        "name": "Mulligan",
+        "category": "general"
+    },
+    {
+        "name": "Multikill Clip",
+        "category": "general"
+    },
+    {
+        "name": "Natural Fletching",
+        "category": "arrows"
+    },
+    {
+        "name": "Natural String",
+        "category": "bowstrings"
+    },
+    {
+        "name": "No Distractions",
+        "category": "general"
+    },
+    {
+        "name": "Offhand Strike",
+        "category": "general"
+    },
+    {
+        "name": "Omolon Fluid Dynamics",
+        "category": "origin"
+    },
+    {
+        "name": "One For All",
+        "category": "general"
+    },
+    {
+        "name": "One Quiet Moment",
+        "category": "origin"
+    },
+    {
+        "name": "One-Two Punch",
+        "category": "general"
+    },
+    {
+        "name": "Opening Shot",
+        "category": "general"
+    },
+    {
+        "name": "Osmosis",
+        "category": "general"
+    },
+    {
+        "name": "Outlaw",
+        "category": "general"
+    },
+    {
+        "name": "Overflow",
+        "category": "general"
+    },
+    {
+        "name": "Particle Repeater",
+        "category": "batteries"
+    },
+    {
+        "name": "Perfect Float",
+        "category": "general"
+    },
+    {
+        "name": "Perpetual Motion",
+        "category": "general"
+    },
+    {
+        "name": "Phase Magazine",
+        "category": "magazines"
+    },
+    {
+        "name": "Polygonal Rifling",
+        "category": "barrels"
+    },
+    {
+        "name": "Polymer Grip",
+        "category": "grips"
+    },
+    {
+        "name": "Polymer String",
+        "category": "bowstrings"
+    },
+    {
+        "name": "Projection Fuse",
+        "category": "batteries"
+    },
+    {
+        "name": "Proximity Grenades",
+        "category": "magazines"
+    },
+    {
+        "name": "Pugilist",
+        "category": "general"
+    },
+    {
+        "name": "Pulse Monitor",
+        "category": "general"
+    },
+    {
+        "name": "Quick Access Sling",
+        "category": "mod"
+    },
+    {
+        "name": "Quick Charge (Armor)",
+        "category": "mod"
+    },
+    {
+        "name": "Quick Launch",
+        "category": "barrels"
+    },
+    {
+        "name": "Quickdot SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Quickdraw",
+        "category": "general"
+    },
+    {
+        "name": "Rampage",
+        "category": "general"
+    },
+    {
+        "name": "Rampage Spec",
+        "category": "mod"
+    },
+    {
+        "name": "Rangefinder",
+        "category": "general"
+    },
+    {
+        "name": "Rapid Hit",
+        "category": "general"
+    },
+    {
+        "name": "Reconstruction",
+        "category": "general"
+    },
+    {
+        "name": "Red Dot 2 MOA",
+        "category": "scopes"
+    },
+    {
+        "name": "Red Dot Micro",
+        "category": "scopes"
+    },
+    {
+        "name": "Relentless Strikes",
+        "category": "general"
+    },
+    {
+        "name": "Remote Detonation",
+        "category": "magazines"
+    },
+    {
+        "name": "Repulsor Brace",
+        "category": "general"
+    },
+    {
+        "name": "Reservoir Burst",
+        "category": "general"
+    },
+    {
+        "name": "Ricochet Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Rifle Scope SSF",
+        "category": "scopes"
+    },
+    {
+        "name": "Rifle Scope ST",
+        "category": "scopes"
+    },
+    {
+        "name": "Rifled Barrel",
+        "category": "barrels"
+    },
+    {
+        "name": "SC Holo",
+        "category": "scopes"
+    },
+    {
+        "name": "SPO-28 Front",
+        "category": "scopes"
+    },
+    {
+        "name": "SPO-57 Front",
+        "category": "scopes"
+    },
+    {
+        "name": "SRO-41 Ocular",
+        "category": "scopes"
+    },
+    {
+        "name": "Seraph Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Shield Disorient",
+        "category": "general"
+    },
+    {
+        "name": "Shoot to Loot",
+        "category": "general"
+    },
+    {
+        "name": "Short-Action Stock",
+        "category": "stocks"
+    },
+    {
+        "name": "Shortspec SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Signal MS5",
+        "category": "scopes"
+    },
+    {
+        "name": "Skulking Wolf",
+        "category": "origin"
+    },
+    {
+        "name": "Slideshot",
+        "category": "general"
+    },
+    {
+        "name": "Slideways",
+        "category": "general"
+    },
+    {
+        "name": "Smallbore",
+        "category": "barrels"
+    },
+    {
+        "name": "Smart Drift Control",
+        "category": "barrels"
+    },
+    {
+        "name": "Smooth Grip",
+        "category": "grips"
+    },
+    {
+        "name": "Smoothbore",
+        "category": "barrels"
+    },
+    {
+        "name": "Snapshot Sights",
+        "category": "general"
+    },
+    {
+        "name": "Spike Grenades",
+        "category": "magazines"
+    },
+    {
+        "name": "Stats For All",
+        "category": "general"
+    },
+    {
+        "name": "Steady Hands",
+        "category": "general"
+    },
+    {
+        "name": "Steady Rounds",
+        "category": "magazines"
+    },
+    {
+        "name": "Steadyhand HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Sticky Grenades",
+        "category": "magazines"
+    },
+    {
+        "name": "Straight Fletching",
+        "category": "arrows"
+    },
+    {
+        "name": "Subsistence",
+        "category": "general"
+    },
+    {
+        "name": "Successful Warm-Up",
+        "category": "general"
+    },
+    {
+        "name": "Sureshot HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Suros Synergy",
+        "category": "origin"
+    },
+    {
+        "name": "Surplus",
+        "category": "general"
+    },
+    {
+        "name": "Surrounded",
+        "category": "general"
+    },
+    {
+        "name": "Surrounded Spec",
+        "category": "mod"
+    },
+    {
+        "name": "Swashbuckler",
+        "category": "general"
+    },
+    {
+        "name": "Swordmaster's Guard",
+        "category": "guards"
+    },
+    {
+        "name": "Sympathetic Arsenal",
+        "category": "general"
+    },
+    {
+        "name": "Tactic SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Tactical Battery",
+        "category": "batteries"
+    },
+    {
+        "name": "Tactical Mag",
+        "category": "magazines"
+    },
+    {
+        "name": "Tactile String",
+        "category": "bowstrings"
+    },
+    {
+        "name": "Tap the Trigger",
+        "category": "general"
+    },
+    {
+        "name": "Target Lock",
+        "category": "general"
+    },
+    {
+        "name": "Target SAS",
+        "category": "sights"
+    },
+    {
+        "name": "Targeting Adjuster",
+        "category": "mod"
+    },
+    {
+        "name": "Tempered Edge",
+        "category": "blades"
+    },
+    {
+        "name": "Threat Detector",
+        "category": "general"
+    },
+    {
+        "name": "Thresh",
+        "category": "general"
+    },
+    {
+        "name": "Timed Payload",
+        "category": "general"
+    },
+    {
+        "name": "Tireless Blade",
+        "category": "general"
+    },
+    {
+        "name": "Torch HS3",
+        "category": "scopes"
+    },
+    {
+        "name": "Tracking Module",
+        "category": "general"
+    },
+    {
+        "name": "Transmission MS7",
+        "category": "scopes"
+    },
+    {
+        "name": "Trench Barrel",
+        "category": "general"
+    },
+    {
+        "name": "Triple Tap",
+        "category": "general"
+    },
+    {
+        "name": "Truesight HCS",
+        "category": "sights"
+    },
+    {
+        "name": "Tunnel Vision",
+        "category": "general"
+    },
+    {
+        "name": "Turnabout",
+        "category": "general"
+    },
+    {
+        "name": "Under Pressure",
+        "category": "general"
+    },
+    {
+        "name": "Unrelenting",
+        "category": "general"
+    },
+    {
+        "name": "Unstoppable Force",
+        "category": "general"
+    },
+    {
+        "name": "Vanguard's Vindication",
+        "category": "origin"
+    },
+    {
+        "name": "Veist Stinger",
+        "category": "origin"
+    },
+    {
+        "name": "Volatile Launch",
+        "category": "barrels"
+    },
+    {
+        "name": "Voltshot",
+        "category": "general"
+    },
+    {
+        "name": "Vorpal Weapon",
+        "category": "general"
+    },
+    {
+        "name": "Well-Rounded",
+        "category": "general"
+    },
+    {
+        "name": "Wellspring",
+        "category": "general"
+    },
+    {
+        "name": "Whirlwind Blade",
+        "category": "general"
+    },
+    {
+        "name": "Zen Moment",
+        "category": "general"
+    },
+    {
+        "name": "Gutshot Straight",
+        "category": "general"
+    },
+    {
+        "name": "Cascade Point",
+        "category": "general"
+    },
+    {
+        "name": "Discord",
+        "category": "general"
+    },
+    {
+        "name": "Eddy Current",
+        "category": "general"
+    },
+    {
+        "name": "Rewind Rounds",
+        "category": "general"
+    },
+    {
+        "name": "Collective Action",
+        "category": "general"
+    },
+    {
+        "name": "Bipod",
+        "category": "general"
+    },
+    {
+        "name": "Bait and Switch",
+        "category": "general"
+    },
+    {
+        "name": "Targeting (Armor)",
+        "category": "mod"
+    },
+    {
+        "name": "Controlled Burst",
+        "category": "general"
+    },
+    {
+        "name": "Enlightened Action",
+        "category": "general"
+    },
+    {
+        "name": "Heal Clip",
+        "category": "general"
+    },
+    {
+        "name": "Slickdraw",
+        "category": "general"
+    },
+    {
+        "name": "Loose Change",
+        "category": "general"
+    },
+    {
+        "name": "Enduring Blade",
+        "category": "blades"
+    },
+    {
+        "name": "Barrel Constrictor",
+        "category": "general"
+    },
+    {
+        "name": "Nadir Focus",
+        "category": "origin"
+    },
+    {
+        "name": "Search Party",
+        "category": "origin"
+    },
+    {
+        "name": "High Ground",
+        "category": "general"
+    },
+    {
+        "name": "Weapon Surge x2 (Armor)",
+        "category": "mod"
+    },
+    {
+        "name": "Slice",
+        "category": "general"
+    },
+    {
+        "name": "Onslaught",
+        "category": "general"
+    },
+    {
+        "name": "Supercooled Accelerator",
+        "category": "hafts"
+    },
+    {
+        "name": "Replenishing Aegis",
+        "category": "general"
+    },
+    {
+        "name": "Close to Melee",
+        "category": "general"
+    },
+    {
+        "name": "Attrition Orbs",
+        "category": "general"
+    },
+    {
+        "name": "Countermass",
+        "category": "barrels"
+    },
+    {
+        "name": "Under-Over",
+        "category": "general"
+    },
+    {
+        "name": "Killing Tally",
+        "category": "general"
+    },
+    {
+        "name": "Redirection",
+        "category": "general"
+    },
+    {
+        "name": "Recombination",
+        "category": "general"
+    },
+    {
+        "name": "Desperate Measures",
+        "category": "general"
+    },
+    {
+        "name": "Satou Focus Lens",
+        "category": "scopes"
+    },
+    {
+        "name": "Satou Precision Lens",
+        "category": "scopes"
+    },
+    {
+        "name": "Precision Instrument",
+        "category": "general"
+    },
+    {
+        "name": "Magnificent Howl",
+        "category": "general"
+    },
+    {
+        "name": "Burst Guard",
+        "category": "guards"
+    }
 ]
