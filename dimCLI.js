@@ -3,7 +3,7 @@ const { prompt } = require('enquirer')
 const { join } = require('path')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
-let { masterworks, seasonMap, sections } = require('./enums')
+let { masterworks, seasonMap, sections, vendorArmorQuery, vaultArmorQuery } = require('./enums')
 let { getDIMSearch, getDIMMultiple, getWeaponNamesQuery } = require('./dim')
 let { getAddedRemovedElementsFromArrays } = require('./utils')
 
@@ -199,9 +199,9 @@ const getDIMCLI = async () => {
             })
             if (cwfr.status === 'ENABLED')
                 enabledRolls.push({
-                'message': cwf.name + '  ->  ' + cwfr.name,
-                'name': [cwf.name, cwfr.name]
-            })
+                    'message': cwf.name + '  ->  ' + cwfr.name,
+                    'name': [cwf.name, cwfr.name]
+                })
         })
     })
     const weaponNamesQuery = getWeaponNamesQuery(currentWeapons.map(w => w.name))
@@ -243,6 +243,7 @@ const getDIMCLI = async () => {
             let DIMEnabledRolls = getDIMMultiple(allEnabledWeaponRolls)
             const util = require('util');
             let weaponQuery = ''
+            let armorQuery = ''
             if (type === 'Vendor') {
                 // NOT Pattern Unlocked to avoid craftable weapons
                 // ARE Random Rolls to ignore ritual and fixed vendor weapons
@@ -253,6 +254,7 @@ const getDIMCLI = async () => {
                     + ' ) OR -( '
                     // NOT any weapon in currentWeapons (ENABLED & DISABLED)
                     + weaponNamesQuery + ' ) )'
+                armorQuery = vendorArmorQuery
             } else {
                 // ARE Pattern Unlocked AND NOT Crafted to delete weapons that can already be crafted
                 weaponQuery = 'is:weapon not:sunset -tag:archive ( ( is:patternunlocked not:crafted )'
@@ -262,9 +264,10 @@ const getDIMCLI = async () => {
                     + weaponNamesQuery
                     // that are also NOT in 
                     + ' -(' + DIMEnabledRolls.get('ALL') + ') ) )'
+                armorQuery = vaultArmorQuery
             }
             console.log(`Query for ${type} copied to clipboard`)
-            require('child_process').spawn('clip').stdin.end(`/* DIM ${type} */ (${weaponQuery})`);
+            require('child_process').spawn('clip').stdin.end(`/* DIM ${type} */ (${weaponQuery}) OR ( ${armorQuery} )`);
         }
     }
 
