@@ -5,6 +5,7 @@ let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
 let { masterworks, seasonMap, sections } = require('./enums')
 let { getDIMSearch, getDIMMultiple, getWeaponNamesQuery } = require('./dim')
+let { getAddedRemovedElementsFromArrays } = require('./utils')
 
 
 //General methods
@@ -89,7 +90,7 @@ const startCLI = async () => {
         type: 'select',
         name: 'answer',
         message: 'How can I help you today?',
-        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Show All', 'Sort JSON', 'Exit']
+        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Toggle Status', 'Show All', 'Sort JSON', 'Exit']
     })
     switch (firstPrompt.answer) {
         case 'New Weapon':
@@ -103,6 +104,9 @@ const startCLI = async () => {
             break;
         case 'Print Weapon':
             logRollCLI().catch(e => handleError(e))
+            break;
+        case 'Toggle Status':
+            statusCLI().catch(e => handleError(e))
             break;
         case 'Show All':
             showAllCLI().catch(e => handleError(e))
@@ -121,11 +125,80 @@ const sortJSONCLI = async () => {
     console.log('Weapons JSON sorted')
 }
 
+const statusCLI = async () => {
+    let rollChoices = []
+    let preSelectedRolls = []
+    let indexedRolls = []
+    let rcIndex = 0
+
+    currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
+        cwf.rolls.forEach(cwfr => {
+            if (cwfr.status === 'ENABLED') {
+                // preSelectedRolls.push(cwf.name + '  ->  ' + cwfr.name)
+                preSelectedRolls.push(rcIndex)
+            }
+            indexedRolls.push([cwf.name, cwfr.name])
+            rollChoices.push({
+                'message': cwf.name + '  ->  ' + cwfr.name,
+                'name': rcIndex
+            })
+            rcIndex++
+        })
+    })
+
+    const weaponRollsStatusPrompt = await prompt({
+        type: 'autocomplete',
+        limit: 30,
+        multiple: true,
+        initial: preSelectedRolls,
+        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+        name: 'weaponRolls',
+        message: 'Choose a weapon:',
+        choices: rollChoices,
+    })
+
+    const { addedElements: addedIndexes, removedElements: removedIndexes } =
+        getAddedRemovedElementsFromArrays(preSelectedRolls, weaponRollsStatusPrompt.weaponRolls, rollChoices[0].message)
+
+    console.clear()
+    if (!!addedIndexes.length) {
+        addedIndexes.forEach(aI => {
+            let weaponIndex = getWeaponIndexByName(indexedRolls[aI][0])
+            let rollIndex = getRollIndexByName(weaponIndex, indexedRolls[aI][1])
+            currentWeapons[weaponIndex].rolls[rollIndex].status = 'ENABLED'
+        })
+        console.log("ENABLED the following Rolls:")
+        console.log(addedIndexes.map(aI => indexedRolls[aI].join('  ->  ')))
+        console.log('')
+    }
+
+    if (!!removedIndexes.length) {
+        removedIndexes.forEach(rI => {
+            let weaponIndex = getWeaponIndexByName(indexedRolls[rI][0])
+            let rollIndex = getRollIndexByName(weaponIndex, indexedRolls[rI][1])
+            currentWeapons[weaponIndex].rolls[rollIndex].status = 'DISABLED'
+        })
+        console.log("DISABLED the following Rolls:");
+        console.log(removedIndexes.map(rI => indexedRolls[rI].join('  ->  ')))
+        console.log('')
+    }
+
+    if (!!addedIndexes.length || !!removedIndexes.length) {
+        writeJson('currentWeapons.json', sortJson(currentWeapons))
+    }
+}
+
 const getDIMCLI = async () => {
     let rollChoices = []
+    let enabledRolls = []
     currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
         cwf.rolls.forEach(cwfr => {
             rollChoices.push({
+                'message': cwf.name + '  ->  ' + cwfr.name,
+                'name': [cwf.name, cwfr.name]
+            })
+            if (cwfr.status === 'ENABLED')
+                enabledRolls.push({
                 'message': cwf.name + '  ->  ' + cwfr.name,
                 'name': [cwf.name, cwfr.name]
             })
@@ -329,6 +402,8 @@ const rollCLI = async (weaponName = "") => {
     })
 
     let roll = await prioritizeSectionsCLI(await sectionCLI({ name: rollNamePrompt.name }))
+
+    roll.status = 'ENABLED'
 
     newRoll(getWeaponIndexByName(weaponName), roll)
 
@@ -551,7 +626,9 @@ const printRoll = (weaponIndex, rollIndex) => {
     let weapon = currentWeapons[weaponIndex]
     let roll = { ...currentWeapons[weaponIndex].rolls[rollIndex] }
     let printName = weapon.name + " -> " + roll.name
+    let printStatus = roll.status
     delete roll.name
+    delete roll.status
     let fRoll = new Map
     Object.keys(roll).forEach(r => {
         let rSectionName = [roll[r].priority, r]
@@ -574,6 +651,7 @@ const printRoll = (weaponIndex, rollIndex) => {
     })
     return {
         name: printName,
+        status: printStatus,
         roll: fRoll
     }
 }

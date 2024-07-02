@@ -191,6 +191,10 @@
     "name": "Danger Zone",
     "category": "general"
   },
+    {
+        "name": "Deconstruct",
+        "category": "general"
+    },
   {
     "name": "Demolitionist",
     "category": "general"
@@ -396,7 +400,7 @@
     "category": "mod"
   },
   {
-    "name": "Fusion Rifle Holster (Armor)",
+        "name": "Holster (Armor)",
     "category": "mod"
   },
   {

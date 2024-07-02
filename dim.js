@@ -3,6 +3,7 @@ exports.getDIMSearch = (weaponName, roll, comments = true) => {
     delete roll.name
     delete roll.mod
     delete roll.origin
+    delete roll.status
 
     let maxPriority = Math.max(...[...Object.keys(roll)].map(sec => roll[sec].priority))
 
