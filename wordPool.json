@@ -1206,5 +1206,13 @@
     {
         "name": "Burst Guard",
         "category": "guards"
+    },
+    {
+        "name": "Strategist",
+        "category": "general"
+    },
+    {
+        "name": "To the Pain",
+        "category": "general"
     }
 ]
