@@ -247,7 +247,7 @@ const getDIMCLI = async () => {
             if (type === 'Vendor') {
                 // NOT Pattern Unlocked to avoid craftable weapons
                 // ARE Random Rolls to ignore ritual and fixed vendor weapons
-                weaponQuery = 'is:weapon not:sunset not:patternunlocked is:randomroll ( ('
+                weaponQuery = 'is:weapon not:patternunlocked is:randomroll ( ('
                     // ARE in any ENABLED weapon rolls
                     + DIMEnabledRolls.get('ALL')
                     // OR
@@ -257,7 +257,7 @@ const getDIMCLI = async () => {
                 armorQuery = vendorArmorQuery
             } else {
                 // ARE Pattern Unlocked AND NOT Crafted to delete weapons that can already be crafted
-                weaponQuery = 'is:weapon not:sunset -tag:archive ( ( is:patternunlocked not:crafted )'
+                weaponQuery = 'is:weapon -tag:archive ( ( is:patternunlocked not:crafted )'
                     // OR
                     + ' OR ( '
                     // ALL weapons reviewed
