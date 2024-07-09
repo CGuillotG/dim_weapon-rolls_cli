@@ -576,11 +576,15 @@ const logRollCLI = async () => {
         message: 'Choose a weapon:',
         choices: currentWeapons.map(w => w.name)
     })
-    weaponName = weaponPrompt.name
-    let weaponIndex = getWeaponIndexByName(weaponName)
-    currentWeapons[weaponIndex].rolls.forEach((r, i) => {
-        console.dir(printRoll(weaponIndex, i), { depth: 3, colors: true })
-    })
+    const weaponIndex = getWeaponIndexByName(weaponPrompt.name)
+    const weaponRolls = currentWeapons[weaponIndex].rolls
+    if (weaponRolls.length > 0) {
+        weaponRolls.forEach((r, i) => {
+            console.dir(printRoll(weaponIndex, i), { depth: 3, colors: true })
+        })
+    } else {
+        console.dir('No rolls found. This weapon is being ignored from vendors and marked as junk in inventory', { colors: true })
+    }
 }
 
 const showAllCLI = async () => {
