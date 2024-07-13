@@ -1214,5 +1214,57 @@
     {
         "name": "To the Pain",
         "category": "general"
+    },
+    {
+        "name": "Vortex Frame",
+        "category": "frames"
+    },
+    {
+        "name": "Caster Frame",
+        "category": "frames"
+    },
+    {
+        "name": "Wave Sword Frame",
+        "category": "frames"
+    },
+    {
+        "name": "Lightweight Frame",
+        "category": "frames"
+    },
+    {
+        "name": "Aggressive Frame",
+        "category": "frames"
+    },
+    {
+        "name": "Wolfpack Rounds",
+        "category": "exotic"
+    },
+    {
+        "name": "Gathering Light",
+        "category": "exotic"
+    },
+    {
+        "name": "Sacred Flame",
+        "category": "exotic"
+    },
+    {
+        "name": "The Perfect Fifth",
+        "category": "exotic"
+    },
+    {
+        "name": "Stormbringer",
+        "category": "exotic"
+    },
+    {
+        "name": "Arc Conductor",
+        "category": "exotic"
+    },
+    {
+        "name": "Unplanned Reprieve",
+        "category": "exotic"
+    },
+    {
+        "name": "Insectoid Robot Grenades",
+        "category": "exotic"
     }
 ]

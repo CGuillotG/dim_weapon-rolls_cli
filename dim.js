@@ -31,24 +31,34 @@ exports.getDIMSearch = (weaponName, roll, comments = true) => {
 }
 
 const sectionsToDIM = (roll, coverage) => {
-    let masterwork = []
-    fRolls = Object.entries(roll).filter(r => {
-        if (r[1].priority <= coverage) {
-            if (r[0] === 'masterwork') {
-                masterwork = r[1].options
-                return false
-            }
-            return true
-        } else {
-            return false
+    //Check if the roll should be included in the stars coverage
+    let fRolls = Object.entries(roll).filter(r => { return r[1].priority <= coverage })
+
+    fRolls = fRolls.map(fr => {
+        let keyName = 'traitName'
+        let queryName = 'exactperk'
+        switch (fr[0]) {
+            case 'masterwork':
+                keyName = 'statName'
+                queryName = 'masterwork'
+                break;
+            case 'frames':
+                keyName = 'frameName'
+                break;
+            default:
+                break;
         }
+        return [queryName, fr[1].options.map(o => { return o[keyName] })]
     })
-    fRolls = fRolls.map(fr => { return fr[1].options })
-    fRolls = fRolls.map(s => { return s.map(o => { return o.traitName }) })
-    fRolls = fRolls.map(s => { return '(' + s.map(p => { return 'exactperk:"' + p.toLowerCase() + '"' }).join(') OR (') + ')' })
-    if (!!masterwork.length) {
-        fRolls.push('(' + masterwork.map(s => { return 'masterwork:' + s.statName.toLowerCase().replace(/\s/g, '') }).join(') OR (') + ')')
-    }
+
+    fRolls = fRolls.map(row => {
+        const queryName = row[0]
+        const namesArray = row[1]
+        return '(' + namesArray.map(n => {
+            const name = ((queryName === 'masterwork') ? n.replace(/\s/g, '') : n).toLowerCase()
+            return queryName + ':"' + name + '"'
+        }).join(') OR (') + ')'
+    })
     fRolls = ' (' + fRolls.join(') (') + ')'
     return fRolls
 }

@@ -3,7 +3,7 @@ const { prompt } = require('enquirer')
 const { join } = require('path')
 let currentWeapons = require('./currentWeapons.json')
 let wordPool = require('./wordPool.json')
-let { masterworks, seasonMap, sections, vendorArmorQuery, vaultArmorQuery } = require('./enums')
+let { masterworks, sections, seasonMap, vendorArmorQuery, vaultArmorQuery } = require('./enums')
 let { getDIMSearch, getDIMMultiple, getWeaponNamesQuery } = require('./dim')
 let { getAddedRemovedElementsFromArrays } = require('./utils')
 
@@ -502,6 +502,11 @@ const optionsCLI = async (accOptions, sectionName) => {
             keyName = "modName"
             choices.unshift('ADD NEW')
             break;
+        case 'frames':
+            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            keyName = "frameName"
+            choices.unshift('ADD NEW')
+            break;
         default:
             choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
             keyName = "traitName"
@@ -638,10 +643,8 @@ const printRoll = (weaponIndex, rollIndex) => {
     delete roll.status
     let fRoll = new Map
     Object.keys(roll).forEach(r => {
-        let rSectionName = [roll[r].priority, r]
-        if (r === 'mod' || r === 'origin') {
-            rSectionName = [r]
-        }
+        let rSectionName = (r === 'mod' || r === 'origin') ? [r] : [roll[r].priority, r]
+
         fRoll.set(rSectionName, roll[r].options.map(ro => {
             let oName = ""
             if (ro['traitName']) {
@@ -652,6 +655,9 @@ const printRoll = (weaponIndex, rollIndex) => {
             }
             if (ro['modName']) {
                 oName = ro['modName']
+            }
+            if (ro['frameName']) {
+                oName = ro['frameName']
             }
             return [ro.order, oName]
         }).sort((a, b) => { return (a[0] - b[0]) }))
