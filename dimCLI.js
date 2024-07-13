@@ -19,7 +19,6 @@ const writeJson = (fileName, content) => {
 const sortJson = fileContent => {
     let sortOptions = (roll) => {
         Object.keys(roll).forEach(key => {
-            // console.log(typeof roll[key] === 'object' && 'options' in roll[key])
             if (typeof roll[key] === 'object' && 'options' in roll[key]) {
                 roll[key].options.sort((oa, ob) => {
                     if (oa.order > ob.order) return 1
@@ -31,22 +30,31 @@ const sortJson = fileContent => {
     }
     let sortRoll = (ra, rb) => {
         sortOptions(ra)
-        sortOptions(rb)
-        if (ra.status > rb.status) return 1
-        if (rb.status > ra.status) return -1
+        if (ra.status > rb.status) return -1
+        if (rb.status > ra.status) return 1
         if (ra.name > rb.name) return 1
         if (rb.name > ra.name) return -1
         return 0
     }
 
+    fileContent.forEach(cw => {
+        //Bubble up Name and Status
+        const sortedRolls = cw.rolls.sort(sortRoll).map(r => {
+            return {
+                name: r.name,
+                status: r.status,
+                ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== "name" && key !== "status"))
+            }
+        })
+        cw.rolls = sortedRolls
+    })
+
     fileContent.sort((a, b) => {
-        a.rolls.sort(sortRoll)
-        //This might be redundant, but I believe in some cases with the sorting algorithm not every element gets to be "a"
-        b.rolls.sort(sortRoll)
         if (a.name > b.name) return 1
         if (b.name > a.name) return -1
         return 0
     })
+
     return fileContent
 }
 
