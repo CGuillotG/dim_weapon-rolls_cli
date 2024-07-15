@@ -1,4 +1,5 @@
-exports.getDIMSearch = (weaponName, roll, comments = true) => {
+exports.getDIMSearch = (weaponName, originalRoll, comments = true) => {
+    const roll = { ...originalRoll }
     const rollName = roll.name
     delete roll.name
     delete roll.mod
