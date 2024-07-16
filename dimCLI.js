@@ -496,27 +496,27 @@ const optionsCLI = async (accOptions, sectionName) => {
 
     switch (sectionName) {
         case 'masterwork':
-            choices = masterworks
+            choices = [...masterworks].sort()
             keyName = "statName"
             break;
         case 'trait1':
         case 'trait2':
-            choices = wordPool.sort().filter(wp => { return wp.category === "general" }).map(fwp => { return fwp.name })
+            choices = [...wordPool["general"]].sort()
             keyName = "traitName"
             choices.unshift('ADD NEW')
             break;
         case 'mod':
-            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            choices = [...wordPool[sectionName]].sort()
             keyName = "modName"
             choices.unshift('ADD NEW')
             break;
         case 'frames':
-            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            choices = [...wordPool[sectionName]].sort()
             keyName = "frameName"
             choices.unshift('ADD NEW')
             break;
         default:
-            choices = wordPool.sort().filter(wp => { return wp.category === sectionName }).map(fwp => { return fwp.name })
+            choices = [...wordPool[sectionName]].sort()
             keyName = "traitName"
             choices.unshift('ADD NEW')
     }
@@ -538,15 +538,15 @@ const optionsCLI = async (accOptions, sectionName) => {
             message: `What new options (comma-separated) do you want to add to ${sectionName.toUpperCase()}?`
         })
         if (sectionName.includes('trait')) { sectionName = 'general' }
-        newOptionPrompt.list.forEach(l => {
-            if (!wordPool.some(w => { return w.name === l })) {
-                wordPool.push({ name: l, category: sectionName })
-                // console.log({[keyName]: l})
-                accOptions.push({ [keyName]: l })
+        newOptionPrompt.list.forEach(li => {
+            if (!wordPool[sectionName].some(w => w === li)) {
+                wordPool[sectionName].push(li)
+                accOptions.push({ [keyName]: li })
             }
         })
+        wordPool[sectionName] = wordPool[sectionName].sort()
         writeJson('wordPool.json', wordPool)
-        console.log(`Options added to ${sectionName}. Add again the section to the roll.`)
+        console.log(`Options added to ${sectionName}.`)
     }
 
     accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
