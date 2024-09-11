@@ -17,38 +17,42 @@ const writeJson = (fileName, content) => {
 }
 
 const sortJson = fileContent => {
-    let sortOptions = (roll) => {
-        Object.keys(roll).forEach(key => {
-            if (typeof roll[key] === 'object' && 'options' in roll[key]) {
-                roll[key].options.sort((oa, ob) => {
-                    if (oa.order > ob.order) return 1
-                    if (oa.order < ob.order) return -1
-                    return 0
-                })
-            }
-        })
-    }
-    let sortRoll = (ra, rb) => {
-        sortOptions(ra)
-        if (ra.status > rb.status) return -1
-        if (rb.status > ra.status) return 1
-        if (ra.name > rb.name) return 1
-        if (rb.name > ra.name) return -1
-        return 0
-    }
-
+    //Sort internal objects of each weapon
     fileContent.forEach(cw => {
+        //Sort Roll Options
+        cw.rolls.forEach(roll => {
+            Object.keys(roll).forEach(key => {
+                if (typeof roll[key] === 'object' && 'options' in roll[key]) {
+                    roll[key].options.sort((oa, ob) => {
+                        if (oa.order > ob.order) return 1
+                        if (oa.order < ob.order) return -1
+                        return 0
+                    })
+                }
+            })
+        })
+
+        //Sort Rolls
+        cw.rolls.sort((ra, rb) => {
+            if (ra.status > rb.status) return -1
+            if (rb.status > ra.status) return 1
+            if (ra.name > rb.name) return 1
+            if (rb.name > ra.name) return -1
+            return 0
+        })
+
         //Bubble up Name and Status
-        const sortedRolls = cw.rolls.sort(sortRoll).map(r => {
+        const bubbledRolls = cw.rolls.map(r => {
             return {
                 name: r.name,
                 status: r.status,
                 ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== "name" && key !== "status"))
             }
         })
-        cw.rolls = sortedRolls
+        cw.rolls = bubbledRolls
     })
 
+    //Sort weapons
     fileContent.sort((a, b) => {
         if (a.name > b.name) return 1
         if (b.name > a.name) return -1
@@ -237,7 +241,7 @@ const getDIMCLI = async () => {
                 + ' ( (not:randomroll not:exotic not:crafted) or ( '
 
             console.log(`Query for Missing Notes copied to clipboard`)
-            require('child_process').spawn('clip').stdin.end(missingReviewPrefix + weaponNamesQuery)
+            require('child_process').spawn('clip').stdin.end(missingReviewPrefix + weaponNamesQuery + " ) )")
         } else {
             let allEnabledWeaponRolls = enabledRolls.map(wr => {
                 let weaponIndex = getWeaponIndexByName(wr.name[0])
