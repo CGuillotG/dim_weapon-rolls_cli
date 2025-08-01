@@ -7,11 +7,10 @@ let { masterworks, sections, seasonMap, vendorArmorQuery, vaultArmorQuery } = re
 let { getDIMSearch, getDIMMultiple, getWeaponNamesQuery } = require('./dim')
 let { getAddedRemovedElementsFromArrays } = require('./utils')
 
-
 //General methods
 
 const writeJson = (fileName, content) => {
-    fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 4), (err) => {
+    fs.writeFile(join(__dirname, fileName), JSON.stringify(content, null, 4), err => {
         if (err) return console.error(err)
     })
 }
@@ -46,7 +45,7 @@ const sortJson = fileContent => {
             return {
                 name: r.name,
                 status: r.status,
-                ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== "name" && key !== "status"))
+                ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== 'name' && key !== 'status'))
             }
         })
         cw.rolls = bubbledRolls
@@ -62,7 +61,7 @@ const sortJson = fileContent => {
     return fileContent
 }
 
-const getWeaponIndexByName = (name) => {
+const getWeaponIndexByName = name => {
     let weaponIndex
     currentWeapons.find((weapon, index) => {
         weaponIndex = index
@@ -81,7 +80,7 @@ const getRollIndexByName = (weaponIndex, rollName) => {
 }
 
 const newWeapon = (name, season) => {
-    currentWeapons.push({ name, season, dateAdded: (new Date()).toUTCString(), rolls: [] })
+    currentWeapons.push({ name, season, dateAdded: new Date().toUTCString(), rolls: [] })
     writeJson('currentWeapons.json', sortJson(currentWeapons))
 }
 
@@ -90,7 +89,6 @@ const newRoll = (weaponIndex, roll) => {
     writeJson('currentWeapons.json', sortJson(currentWeapons))
     return currentWeapons[weaponIndex]
 }
-
 
 //CLI Methods
 
@@ -102,7 +100,16 @@ const startCLI = async () => {
         type: 'select',
         name: 'answer',
         message: 'How can I help you today?',
-        choices: ['New Weapon', 'New Roll', 'Get DIM Queries', 'Print Weapon', 'Toggle Status', 'Show All', 'Sort JSON', 'Exit']
+        choices: [
+            'New Weapon',
+            'New Roll',
+            'Get DIM Queries',
+            'Print Weapon',
+            'Toggle Status',
+            'Show All',
+            'Sort JSON',
+            'Exit'
+        ]
     })
     switch (firstPrompt.answer) {
         case 'New Weapon':
@@ -143,34 +150,43 @@ const statusCLI = async () => {
     let indexedRolls = []
     let rcIndex = 0
 
-    currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
-        cwf.rolls.forEach(cwfr => {
-            if (cwfr.status === 'ENABLED') {
-                // preSelectedRolls.push(cwf.name + '  ->  ' + cwfr.name)
-                preSelectedRolls.push(rcIndex)
-            }
-            indexedRolls.push([cwf.name, cwfr.name])
-            rollChoices.push({
-                'message': cwf.name + '  ->  ' + cwfr.name,
-                'name': rcIndex
-            })
-            rcIndex++
+    currentWeapons
+        .filter(cw => {
+            return !!cw.rolls.length
         })
-    })
+        .forEach(cwf => {
+            cwf.rolls.forEach(cwfr => {
+                if (cwfr.status === 'ENABLED') {
+                    // preSelectedRolls.push(cwf.name + '  ->  ' + cwfr.name)
+                    preSelectedRolls.push(rcIndex)
+                }
+                indexedRolls.push([cwf.name, cwfr.name])
+                rollChoices.push({
+                    message: cwf.name + '  ->  ' + cwfr.name,
+                    name: rcIndex
+                })
+                rcIndex++
+            })
+        })
 
     const weaponRollsStatusPrompt = await prompt({
         type: 'autocomplete',
         limit: 30,
         multiple: true,
         initial: preSelectedRolls,
-        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+        footer() {
+            return '---Start typing, or scroll up and down to reveal more choices---'
+        },
         name: 'weaponRolls',
         message: 'Choose a weapon:',
-        choices: rollChoices,
+        choices: rollChoices
     })
 
-    const { addedElements: addedIndexes, removedElements: removedIndexes } =
-        getAddedRemovedElementsFromArrays(preSelectedRolls, weaponRollsStatusPrompt.weaponRolls, rollChoices[0].message)
+    const { addedElements: addedIndexes, removedElements: removedIndexes } = getAddedRemovedElementsFromArrays(
+        preSelectedRolls,
+        weaponRollsStatusPrompt.weaponRolls,
+        rollChoices[0].message
+    )
 
     console.clear()
     if (!!addedIndexes.length) {
@@ -179,7 +195,7 @@ const statusCLI = async () => {
             let rollIndex = getRollIndexByName(weaponIndex, indexedRolls[aI][1])
             currentWeapons[weaponIndex].rolls[rollIndex].status = 'ENABLED'
         })
-        console.log("ENABLED the following Rolls:")
+        console.log('ENABLED the following Rolls:')
         console.log(addedIndexes.map(aI => indexedRolls[aI].join('  ->  ')))
         console.log('')
     }
@@ -190,7 +206,7 @@ const statusCLI = async () => {
             let rollIndex = getRollIndexByName(weaponIndex, indexedRolls[rI][1])
             currentWeapons[weaponIndex].rolls[rollIndex].status = 'DISABLED'
         })
-        console.log("DISABLED the following Rolls:");
+        console.log('DISABLED the following Rolls:')
         console.log(removedIndexes.map(rI => indexedRolls[rI].join('  ->  ')))
         console.log('')
     }
@@ -203,28 +219,34 @@ const statusCLI = async () => {
 const getDIMCLI = async () => {
     let rollChoices = []
     let enabledRolls = []
-    currentWeapons.filter(cw => { return !!cw.rolls.length }).forEach(cwf => {
-        cwf.rolls.forEach(cwfr => {
-            rollChoices.push({
-                'message': cwf.name + '  ->  ' + cwfr.name,
-                'name': [cwf.name, cwfr.name]
-            })
-            if (cwfr.status === 'ENABLED')
-                enabledRolls.push({
-                    'message': cwf.name + '  ->  ' + cwfr.name,
-                    'name': [cwf.name, cwfr.name]
-                })
+    currentWeapons
+        .filter(cw => {
+            return !!cw.rolls.length
         })
-    })
+        .forEach(cwf => {
+            cwf.rolls.forEach(cwfr => {
+                rollChoices.push({
+                    message: cwf.name + '  ->  ' + cwfr.name,
+                    name: [cwf.name, cwfr.name]
+                })
+                if (cwfr.status === 'ENABLED')
+                    enabledRolls.push({
+                        message: cwf.name + '  ->  ' + cwfr.name,
+                        name: [cwf.name, cwfr.name]
+                    })
+            })
+        })
     const weaponNamesQuery = getWeaponNamesQuery(currentWeapons.map(w => w.name))
 
-    let searchTypeChoices = [{ name: 'Single', message: 'Single Roll (Stars, All, and Not)' },
-    { name: 'Multiple', message: 'Multiple Rolls (All and Not)' }]
+    let searchTypeChoices = [
+        { name: 'Single', message: 'Single Roll (Stars, Any, and None)' },
+        { name: 'Multiple', message: 'Multiple Rolls (Any and None)' }
+    ]
     if (!!process.env.POWERSHELL_DISTRIBUTION_CHANNEL) {
         searchTypeChoices.push({ name: 'Vendor', message: 'DIM Vendor Rolls' })
         searchTypeChoices.push({ name: 'Junk', message: 'DIM Junk Rolls' })
         searchTypeChoices.push({ name: 'Missing', message: 'DIM Missing Notes' })
-        searchTypeChoices.push({ name: 'AllClipboard', message: 'ALL Clipboard Queries' })
+        searchTypeChoices.push({ name: 'AllClipboard', message: 'All Clipboard Queries' })
     }
     const searchTypePrompt = await prompt({
         type: 'select',
@@ -234,14 +256,18 @@ const getDIMCLI = async () => {
     })
     console.log(searchTypePrompt.type)
 
-    const clipboardQuery = (type) => {
+    const clipboardQuery = type => {
         if (type === 'Missing') {
-            const missingReviewPrefix = '/* Missing Notes */'
-                + ' is:weapon -notes:Pv (-deepsight:harmonizable or (deepsight:harmonizable -tag:infuse)) -tag:archive'
-                + ' ( (not:randomroll not:exotic not:crafted) or ( '
+            const missingReviewPrefix =
+                '/* Missing Notes */' +
+                ' is:weapon -notes:Pv -tag:archive -tag:junk' +
+                // + ' ( (not:randomroll not:exotic not:crafted) or ( '
+                ' (  '
 
             console.log(`Query for Missing Notes copied to clipboard`)
-            require('child_process').spawn('clip').stdin.end(missingReviewPrefix + weaponNamesQuery + " ) )")
+            require('child_process')
+                .spawn('clip')
+                .stdin.end(missingReviewPrefix + weaponNamesQuery + ' ) )')
         } else {
             let allEnabledWeaponRolls = enabledRolls.map(wr => {
                 let weaponIndex = getWeaponIndexByName(wr.name[0])
@@ -253,33 +279,38 @@ const getDIMCLI = async () => {
                 }
             })
             let DIMEnabledRolls = getDIMMultiple(allEnabledWeaponRolls)
-            const util = require('util');
+            const util = require('util')
             let weaponQuery = ''
             let armorQuery = ''
             if (type === 'Vendor') {
                 // NOT Pattern Unlocked to avoid craftable weapons
                 // ARE Random Rolls to ignore ritual and fixed vendor weapons
-                weaponQuery = 'is:weapon not:patternunlocked is:randomroll ( ('
+                weaponQuery =
+                    'is:weapon not:patternunlocked is:randomroll ( (' +
                     // ARE in any ENABLED weapon rolls
-                    + DIMEnabledRolls.get('ALL')
+                    DIMEnabledRolls.get('ANY') +
                     // OR
-                    + ' ) OR -( '
+                    ' ) OR -( ' +
                     // NOT any weapon in currentWeapons (ENABLED & DISABLED)
-                    + weaponNamesQuery + ' ) )'
+                    weaponNamesQuery +
+                    ' ) )'
                 armorQuery = vendorArmorQuery
             } else {
                 // ARE Pattern Unlocked AND NOT Crafted to delete weapons that can already be crafted
-                weaponQuery = 'is:weapon -tag:archive ( ( is:patternunlocked not:crafted )'
+                weaponQuery =
+                    'is:weapon -tag:archive ( ( is:patternunlocked not:crafted )' +
                     // OR
-                    + ' OR ( '
-                    // ALL weapons reviewed
-                    + weaponNamesQuery
-                    // that are also NOT in 
-                    + ' -(' + DIMEnabledRolls.get('ALL') + ') ) )'
+                    ' OR ( ' +
+                    // All weapons reviewed
+                    weaponNamesQuery +
+                    // that are also NOT in
+                    ' -(' +
+                    DIMEnabledRolls.get('ANY') +
+                    ') ) )'
                 armorQuery = vaultArmorQuery
             }
             console.log(`Query for ${type} copied to clipboard`)
-            require('child_process').spawn('clip').stdin.end(`/* DIM ${type} */ (${weaponQuery}) OR ( ${armorQuery} )`);
+            require('child_process').spawn('clip').stdin.end(`/* DIM ${type} */ (${weaponQuery}) OR ( ${armorQuery} )`)
         }
     }
 
@@ -289,7 +320,9 @@ const getDIMCLI = async () => {
                 type: 'autocomplete',
                 limit: 30,
                 multiple: false,
-                footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+                footer() {
+                    return '---Start typing, or scroll up and down to reveal more choices---'
+                },
                 name: 'weaponRoll',
                 message: 'Choose a weapon:',
                 choices: rollChoices
@@ -307,7 +340,9 @@ const getDIMCLI = async () => {
                 type: 'autocomplete',
                 limit: 30,
                 multiple: true,
-                footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+                footer() {
+                    return '---Start typing, or scroll up and down to reveal more choices---'
+                },
                 name: 'weaponRolls',
                 message: 'Choose a weapon:',
                 choices: rollChoices
@@ -334,13 +369,13 @@ const getDIMCLI = async () => {
         case 'AllClipboard':
             // add time delays to allow clipboard to be copied
             clipboardQuery('Missing')
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 1000))
             clipboardQuery('Junk')
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 1000))
             clipboardQuery('Vendor')
             break;
         default:
-            process.exit(0);
+            process.exit(0)
     }
 }
 
@@ -367,10 +402,9 @@ const weaponCLI = async () => {
         let seasonChoices = []
         seasonMap.forEach((sMValue, sMKey) => {
             seasonChoices.push({
-                'message': `${sMKey} - ${sMValue}`,
-                'name': sMKey
-            }
-            )
+                message: `${sMKey} - ${sMValue}`,
+                name: sMKey
+            })
         })
         const seasonPrompt = await prompt([
             {
@@ -378,7 +412,8 @@ const weaponCLI = async () => {
                 name: 'season',
                 message: 'From which season is this gun?',
                 choices: seasonChoices.reverse()
-            }, {
+            },
+            {
                 type: 'toggle',
                 name: 'addRoll',
                 enabled: 'Yep',
@@ -396,13 +431,15 @@ const weaponCLI = async () => {
     }
 }
 
-const rollCLI = async (weaponName = "") => {
+const rollCLI = async (weaponName = '') => {
     if (!weaponName) {
         const weaponPrompt = await prompt({
             type: 'autocomplete',
             limit: 30,
             multiple: false,
-            footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+            footer() {
+                return '---Start typing, or scroll up and down to reveal more choices---'
+            },
             name: 'name',
             message: 'Which weapon do you want to add rolls to?',
             choices: currentWeapons.map(w => w.name)
@@ -416,7 +453,7 @@ const rollCLI = async (weaponName = "") => {
         message: `What is the roll's name?`
     })
 
-    let roll = await prioritizeSectionsCLI(await sectionCLI({ name: rollNamePrompt.name }))
+    let roll = await prioritizeSectionsCLI(await sectionCLI({ name: rollNamePrompt.name }, weaponName))
 
     roll.status = 'ENABLED'
 
@@ -425,15 +462,31 @@ const rollCLI = async (weaponName = "") => {
     startCLI()
 }
 
-const sectionCLI = async (accRoll) => {
+const sectionCLI = async (accRoll, weaponName = '') => {
     const sectionPrompt = await prompt({
         type: 'autocomplete',
         limit: 30,
         multiple: false,
-        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+        footer() {
+            return '---Start typing, or scroll up and down to reveal more choices---'
+        },
         name: 'section',
         message: 'What section are you adding?',
-        choices: sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) })
+        choices: sections.filter(s => {
+            // Exclude sections already present in accRoll
+            if ([...Object.keys(accRoll)].includes(s)) {
+                return false
+            }
+            // For Exotic Class Items, only show exoticSp1 and exoticSp2
+            if (['Solipsism', 'Stoicism', 'Relativism'].includes(weaponName)) {
+                return s === 'exoticSp1' || s === 'exoticSp2'
+            }
+            // For other weapons, exclude exoticSp1 and exoticSp2
+            if (s === 'exoticSp1' || s === 'exoticSp2') {
+                return false
+            }
+            return true
+        })
     })
     let section = { priority: 0 }
     if (sectionPrompt.section === 'mod' || sectionPrompt.section === 'origin') {
@@ -447,7 +500,23 @@ const sectionCLI = async (accRoll) => {
         accRoll[sectionPrompt.section] = section
     }
 
-    if (!!sections.filter(s => { return ![...Object.keys(accRoll)].includes(s) }).length) {
+    if (
+        !!sections.filter(s => {
+            // Exclude sections already present in accRoll
+            if ([...Object.keys(accRoll)].includes(s)) {
+                return false
+            }
+            // For specific weapons, only show exoticSp1 and exoticSp2
+            if (['Solipsism', 'Stoicism', 'Relativism'].includes(weaponName)) {
+                return s === 'exoticSp1' || s === 'exoticSp2'
+            }
+            // For other weapons, exclude exoticSp1 and exoticSp2
+            if (s === 'exoticSp1' || s === 'exoticSp2') {
+                return false
+            }
+            return true
+        }).length
+    ) {
         //TODO Replace NewSectionPrompt with custom that clears previous line
         const newSectionPrompt = await prompt({
             type: 'toggle',
@@ -457,20 +526,24 @@ const sectionCLI = async (accRoll) => {
             disabled: 'No'
         })
         if (newSectionPrompt.new) {
-            accRoll = await sectionCLI(accRoll)
+            accRoll = await sectionCLI(accRoll, weaponName)
         }
     }
     return accRoll
 }
 
-const prioritizeSectionsCLI = async (roll) => {
-    let choices = Object.keys(roll).filter(s => { return (s !== 'name' && s !== 'mod' && s !== 'origin') }).map(fs => {
-        //this could be done with a flatmap instead of a filter and map, but then it's less comprehensible
-        return {
-            name: fs,
-            message: fs.toUpperCase()
-        }
-    })
+const prioritizeSectionsCLI = async roll => {
+    let choices = Object.keys(roll)
+        .filter(s => {
+            return s !== 'name' && s !== 'mod' && s !== 'origin'
+        })
+        .map(fs => {
+            //this could be done with a flatmap instead of a filter and map, but then it's less comprehensible
+            return {
+                name: fs,
+                message: fs.toUpperCase()
+            }
+        })
 
     const prioritizedRolls = await prompt({
         type: 'scale',
@@ -481,7 +554,7 @@ const prioritizeSectionsCLI = async (roll) => {
             { name: 2, message: 'High Priority' },
             { name: 3, message: 'Mid Priority' },
             { name: 4, message: 'Low Priority' },
-            { name: 5, message: 'Min Priority' },
+            { name: 5, message: 'Min Priority' }
         ],
         margin: [2, 10, 2, 10],
         choices: choices
@@ -495,33 +568,44 @@ const prioritizeSectionsCLI = async (roll) => {
 }
 
 const optionsCLI = async (accOptions, sectionName) => {
-    let keyName = ""
+    let keyName = ''
     let choices = []
 
     switch (sectionName) {
         case 'masterwork':
             choices = [...masterworks].sort()
-            keyName = "statName"
+            keyName = 'statName'
             break;
         case 'trait1':
         case 'trait2':
-            choices = [...wordPool["general"]].sort()
-            keyName = "traitName"
+            choices = [...wordPool['general']].sort()
+            keyName = 'traitName'
             choices.unshift('ADD NEW')
             break;
         case 'mod':
             choices = [...wordPool[sectionName]].sort()
-            keyName = "modName"
+            keyName = 'modName'
             choices.unshift('ADD NEW')
             break;
         case 'frames':
             choices = [...wordPool[sectionName]].sort()
-            keyName = "frameName"
+            keyName = 'frameName'
+            choices.unshift('ADD NEW')
+            break;
+        case 'origintrait':
+            choices = [...wordPool['origin']].sort()
+            keyName = 'traitName'
+            choices.unshift('ADD NEW')
+            break;
+        case 'exoticSp1':
+        case 'exoticSp2':
+            choices = [...wordPool[sectionName]].sort()
+            keyName = 'traitName'
             choices.unshift('ADD NEW')
             break;
         default:
             choices = [...wordPool[sectionName]].sort()
-            keyName = "traitName"
+            keyName = 'traitName'
             choices.unshift('ADD NEW')
     }
 
@@ -529,19 +613,30 @@ const optionsCLI = async (accOptions, sectionName) => {
         type: 'autocomplete',
         limit: 30,
         multiple: true,
-        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+        footer() {
+            return '---Start typing, or scroll up and down to reveal more choices---'
+        },
         message: `Select all the options in the ${sectionName.toUpperCase()} category`,
         name: 'options',
         choices: choices
     })
-    if (optionsPrompt.options.some(o => { return o === 'ADD NEW' })) {
+    if (
+        optionsPrompt.options.some(o => {
+            return o === 'ADD NEW'
+        })
+    ) {
         optionsPrompt.options.shift()
         const newOptionPrompt = await prompt({
             type: 'list',
             name: 'list',
             message: `What new options (comma-separated) do you want to add to ${sectionName.toUpperCase()}?`
         })
-        if (sectionName.includes('trait')) { sectionName = 'general' }
+        if (sectionName.includes('trait')) {
+            sectionName = 'general'
+        }
+        if (sectionName.includes('origin')) {
+            sectionName = 'origin'
+        }
         newOptionPrompt.list.forEach(li => {
             if (!wordPool[sectionName].some(w => w === li)) {
                 wordPool[sectionName].push(li)
@@ -553,7 +648,11 @@ const optionsCLI = async (accOptions, sectionName) => {
         console.log(`Options added to ${sectionName}.`)
     }
 
-    accOptions.push(...optionsPrompt.options.map(o => { return { [keyName]: o } }))
+    accOptions.push(
+        ...optionsPrompt.options.map(o => {
+            return { [keyName]: o }
+        })
+    )
     return accOptions
 }
 
@@ -574,13 +673,15 @@ const orderOptionsCLI = async (options, sectionName) => {
             { name: 2, message: 'High Priority' },
             { name: 3, message: 'Mid Priority' },
             { name: 4, message: 'Low Priority' },
-            { name: 5, message: 'Min Priority' },
+            { name: 5, message: 'Min Priority' }
         ],
         margin: [2, 5, 2, 5],
         choices: choices
     })
 
-    return options.map(o => { return { order: orderedOptionsPrompt.order[o[keyName]] + 1, ...o } })
+    return options.map(o => {
+        return { order: orderedOptionsPrompt.order[o[keyName]] + 1, ...o }
+    })
 }
 
 const logRollCLI = async () => {
@@ -588,7 +689,9 @@ const logRollCLI = async () => {
         type: 'autocomplete',
         limit: 30,
         multiple: false,
-        footer() { return '---Start typing, or scroll up and down to reveal more choices---'; },
+        footer() {
+            return '---Start typing, or scroll up and down to reveal more choices---'
+        },
         name: 'name',
         message: 'Choose a weapon:',
         choices: currentWeapons.map(w => w.name)
@@ -636,43 +739,57 @@ const showAllCLI = async () => {
             }
             break;
         default:
-            sortFunction = () => { }
+            sortFunction = () => {}
             break;
     }
-    console.table(currentWeapons.sort(sortFunction).map(cw => {
-        return {
-            Name: cw.name, Season: cw.season, date: (new Date(Date.parse(cw.dateAdded))).toLocaleDateString(), rolls: cw.rolls.map(r => { return r.name })
-        }
-    }))
+    console.table(
+        currentWeapons.sort(sortFunction).map(cw => {
+            return {
+                Name: cw.name,
+                Season: cw.season,
+                date: new Date(Date.parse(cw.dateAdded)).toLocaleDateString(),
+                rolls: cw.rolls.map(r => {
+                    return r.name
+                })
+            }
+        })
+    )
 }
 
 const printRoll = (weaponIndex, rollIndex) => {
     let weapon = currentWeapons[weaponIndex]
     let roll = { ...currentWeapons[weaponIndex].rolls[rollIndex] }
-    let printName = weapon.name + " -> " + roll.name
+    let printName = weapon.name + ' -> ' + roll.name
     let printStatus = roll.status
     delete roll.name
     delete roll.status
-    let fRoll = new Map
+    let fRoll = new Map()
     Object.keys(roll).forEach(r => {
-        let rSectionName = (r === 'mod' || r === 'origin') ? [r] : [roll[r].priority, r]
+        let rSectionName = r === 'mod' || r === 'origin' ? [r] : [roll[r].priority, r]
 
-        fRoll.set(rSectionName, roll[r].options.map(ro => {
-            let oName = ""
-            if (ro['traitName']) {
-                oName = ro['traitName']
-            }
-            if (ro['statName']) {
-                oName = ro['statName']
-            }
-            if (ro['modName']) {
-                oName = ro['modName']
-            }
-            if (ro['frameName']) {
-                oName = ro['frameName']
-            }
-            return [ro.order, oName]
-        }).sort((a, b) => { return (a[0] - b[0]) }))
+        fRoll.set(
+            rSectionName,
+            roll[r].options
+                .map(ro => {
+                    let oName = ''
+                    if (ro['traitName']) {
+                        oName = ro['traitName']
+                    }
+                    if (ro['statName']) {
+                        oName = ro['statName']
+                    }
+                    if (ro['modName']) {
+                        oName = ro['modName']
+                    }
+                    if (ro['frameName']) {
+                        oName = ro['frameName']
+                    }
+                    return [ro.order, oName]
+                })
+                .sort((a, b) => {
+                    return a[0] - b[0]
+                })
+        )
     })
     return {
         name: printName,
@@ -681,7 +798,7 @@ const printRoll = (weaponIndex, rollIndex) => {
     }
 }
 
-const handleError = (e) => {
+const handleError = e => {
     console.log(e)
     process.exit(1)
 }
