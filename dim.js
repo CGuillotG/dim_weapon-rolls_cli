@@ -46,6 +46,10 @@ const sectionsToDIM = (roll, coverage) => {
             case 'frames':
                 keyName = 'frameName'
                 break;
+            case 'tier':
+                keyName = 'tierValue'
+                queryName = 'tier'
+                break;
             default:
                 break;
         }
@@ -55,6 +59,16 @@ const sectionsToDIM = (roll, coverage) => {
     fRolls = fRolls.map(row => {
         const queryName = row[0]
         const namesArray = row[1]
+        
+        // Special handling for tier queries
+        if (queryName === 'tier') {
+            return namesArray
+                .map(n => {
+                    return queryName + ':>=' + n
+                })
+                .join(' OR ')
+        }
+        
         return (
             '(' +
             namesArray

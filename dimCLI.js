@@ -603,6 +603,10 @@ const optionsCLI = async (accOptions, sectionName) => {
             keyName = 'traitName'
             choices.unshift('ADD NEW')
             break;
+        case 'tier':
+            choices = ['1', '2', '3', '4', '5']
+            keyName = 'tierValue'
+            break;
         default:
             choices = [...wordPool[sectionName]].sort()
             keyName = 'traitName'
@@ -783,6 +787,9 @@ const printRoll = (weaponIndex, rollIndex) => {
                     }
                     if (ro['frameName']) {
                         oName = ro['frameName']
+                    }
+                    if (ro['tierValue']) {
+                        oName = ro['tierValue']
                     }
                     return [ro.order, oName]
                 })

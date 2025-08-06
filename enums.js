@@ -51,6 +51,7 @@ exports.masterworks = [
 ]
 
 exports.sections = [
+    'tier',
     'scopes',
     'sights',
     'barrels',
