@@ -554,7 +554,8 @@ const prioritizeSectionsCLI = async roll => {
             { name: 2, message: 'High Priority' },
             { name: 3, message: 'Mid Priority' },
             { name: 4, message: 'Low Priority' },
-            { name: 5, message: 'Min Priority' }
+            { name: 5, message: 'Min Priority' },
+            { name: 6, message: 'Zero Priority' }
         ],
         margin: [2, 10, 2, 10],
         choices: choices
@@ -677,7 +678,8 @@ const orderOptionsCLI = async (options, sectionName) => {
             { name: 2, message: 'High Priority' },
             { name: 3, message: 'Mid Priority' },
             { name: 4, message: 'Low Priority' },
-            { name: 5, message: 'Min Priority' }
+            { name: 5, message: 'Min Priority' },
+            { name: 6, message: 'Zero Priority' }
         ],
         margin: [2, 5, 2, 5],
         choices: choices
