@@ -11,7 +11,8 @@ exports.getDIMSearch = (weaponName, originalRoll, comments = true) => {
     let lowestQuery = ''
 
     let searchQueries = new Map()
-    for (let star = 5; star >= 0; star--) {
+    for (let i = 0; i < maxPriority; i++) {
+        let star = 5 - i
         let searchComment = `/* ${weaponName} - ${rollName} - ${'⭐'.repeat(star)} */ `
         let searchQuery = `(exactname:"${weaponName.toLowerCase()}")`
         let coverage = Math.max(0, star - 5 + maxPriority)
