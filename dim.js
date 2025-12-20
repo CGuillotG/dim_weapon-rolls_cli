@@ -14,7 +14,7 @@ exports.getDIMSearch = (weaponName, originalRoll, comments = true) => {
     for (let i = 0; i < maxPriority; i++) {
         let star = 5 - i
         let searchComment = `/* ${weaponName} - ${rollName} - ${'⭐'.repeat(star)} */ `
-        let searchQuery = `(exactname:"${weaponName.toLowerCase()}")`
+        let searchQuery = `(name:"${weaponName.toLowerCase()}")`
         let coverage = Math.max(0, star - 5 + maxPriority)
         searchQuery += sectionsToDIM(roll, coverage).toLowerCase()
         searchQueries.set(star, comments ? searchComment + searchQuery : searchQuery)
@@ -23,7 +23,7 @@ exports.getDIMSearch = (weaponName, originalRoll, comments = true) => {
 
     // let combinedQueries = '(' + [...searchQueries.values()].join(') OR (') + ')'
 
-    let invertedCombinedQueries = '(exactname:"' + weaponName.toLowerCase() + '") -(' + lowestQuery + ')'
+    let invertedCombinedQueries = '(name:"' + weaponName.toLowerCase() + '") -(' + lowestQuery + ')'
 
     searchQueries.set('ANY', comments ? `/* ${weaponName} - ${rollName} - ANY */ ` + lowestQuery : lowestQuery)
     searchQueries.set('NONE', comments ? `/* ${weaponName} - ${rollName} - NONE */ ` + invertedCombinedQueries : invertedCombinedQueries)
@@ -96,7 +96,7 @@ exports.getDIMMultiple = (weaponRolls) => {
     })
     let multiQueries = new Map()
     let combinedQueries = '(' + weaponRollSearch.map(wrs => wrs.all).join(') OR (') + ')'
-    let weaponNames = [...new Set(weaponRollSearch.map(wrs => `exactname:"${wrs.name.toLowerCase()}"`))]
+    let weaponNames = [...new Set(weaponRollSearch.map(wrs => `name:"${wrs.name.toLowerCase()}"`))]
     let invertedCombinedQueries = '(' + weaponNames.join(') OR (') + ') -(' + combinedQueries + ')'
     multiQueries.set('ANY', combinedQueries)
     multiQueries.set('NONE', invertedCombinedQueries)
@@ -106,5 +106,5 @@ exports.getDIMMultiple = (weaponRolls) => {
 }
 
 exports.getWeaponNamesQuery = (weaponNamesArray) => {
-    return '( (' + weaponNamesArray.map(wrs => `exactname:"${wrs.toLowerCase()}"`).join(') OR (') + ') )'
+    return '( (' + weaponNamesArray.map(wrs => `name:"${wrs.toLowerCase()}"`).join(') OR (') + ') )'
 }
