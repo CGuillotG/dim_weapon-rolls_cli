@@ -298,7 +298,7 @@ const getDIMCLI = async () => {
             } else {
                 // ARE Pattern Unlocked AND NOT Crafted to delete weapons that can already be crafted
                 weaponQuery =
-                    'is:weapon -tag:archive ( ( is:patternunlocked not:crafted )' +
+                    '(is:weapon or (is:exotic is:classitem)) -tag:archive ( ( is:patternunlocked not:crafted )' +
                     // OR
                     ' OR ( ' +
                     // All weapons reviewed
