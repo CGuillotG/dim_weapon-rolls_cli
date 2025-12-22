@@ -156,7 +156,6 @@
         "Spring-Auger Bolts"
     ],
     "general": [
-        "Accelerated Assault",
         "Adagio",
         "Adaptive Munitions",
         "Adrenaline Junkie",
@@ -339,7 +338,6 @@
         "Well-Rounded",
         "Wellspring",
         "Whirlwind Blade",
-        "Willing Vessel",
         "Withering Gaze",
         "Zen Moment"
     ],
@@ -355,6 +353,7 @@
         "Smooth Grip"
     ],
     "origin": [
+        "Accelerated Assault",
         "Alacrity",
         "Ambush",
         "Dream Work",

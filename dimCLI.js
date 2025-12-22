@@ -636,11 +636,10 @@ const optionsCLI = async (accOptions, sectionName) => {
             name: 'list',
             message: `What new options (comma-separated) do you want to add to ${sectionName.toUpperCase()}?`
         })
-        if (sectionName.includes('trait')) {
-            sectionName = 'general'
-        }
         if (sectionName.includes('origin')) {
             sectionName = 'origin'
+        } else if (sectionName.includes('trait')) {
+            sectionName = 'general'
         }
         newOptionPrompt.list.forEach(li => {
             if (!wordPool[sectionName].some(w => w === li)) {
