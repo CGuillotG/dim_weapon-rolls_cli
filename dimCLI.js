@@ -21,6 +21,8 @@ const sortJson = fileContent => {
         //Sort Roll Options
         cw.rolls.forEach(roll => {
             Object.keys(roll).forEach(key => {
+                // Skip tier - it has tierValue directly, not options array
+                if (key === 'tier') return
                 if (typeof roll[key] === 'object' && 'options' in roll[key]) {
                     roll[key].options.sort((oa, ob) => {
                         if (oa.order > ob.order) return 1
@@ -493,11 +495,29 @@ const sectionCLI = async (accRoll, weaponName = '') => {
         delete section.priority
     }
 
-    let options = await optionsCLI([], sectionPrompt.section)
-    if (!!options.length) {
-        options = await orderOptionsCLI(options, sectionPrompt.section)
-        section.options = options
+    // Special handling for tier - just ask for a single number
+    if (sectionPrompt.section === 'tier') {
+        const tierPrompt = await prompt({
+            type: 'input',
+            name: 'tierValue',
+            message: 'Enter tier value (1-5):',
+            validate: value => {
+                const num = parseInt(value)
+                if (isNaN(num) || num < 1 || num > 5) {
+                    return 'Please enter a number between 1 and 5'
+                }
+                return true
+            }
+        })
+        section.tierValue = parseInt(tierPrompt.tierValue)
         accRoll[sectionPrompt.section] = section
+    } else {
+        let options = await optionsCLI([], sectionPrompt.section)
+        if (!!options.length) {
+            options = await orderOptionsCLI(options, sectionPrompt.section)
+            section.options = options
+            accRoll[sectionPrompt.section] = section
+        }
     }
 
     if (
@@ -771,6 +791,12 @@ const printRoll = (weaponIndex, rollIndex) => {
     let fRoll = new Map()
     Object.keys(roll).forEach(r => {
         let rSectionName = r === 'mod' || r === 'origin' ? [r] : [roll[r].priority, r]
+
+        // Handle tier's simplified format (tierValue directly instead of options array)
+        if (r === 'tier') {
+            fRoll.set(rSectionName, roll[r].tierValue)
+            return
+        }
 
         fRoll.set(
             rSectionName,

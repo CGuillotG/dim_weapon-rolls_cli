@@ -47,9 +47,8 @@ const sectionsToDIM = (roll, coverage) => {
                 keyName = 'frameName'
                 break;
             case 'tier':
-                keyName = 'tierValue'
-                queryName = 'tier'
-                break;
+                // Tier uses simplified format with tierValue directly
+                return ['tier', [fr[1].tierValue]]
             default:
                 break;
         }
