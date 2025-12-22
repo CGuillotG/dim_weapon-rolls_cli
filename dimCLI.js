@@ -15,6 +15,9 @@ const writeJson = (fileName, content) => {
     })
 }
 
+// Virtual sections that only have priority (no options)
+const VIRTUAL_SECTIONS = ['secondaryTraits']
+
 const sortJson = fileContent => {
     //Sort internal objects of each weapon
     fileContent.forEach(cw => {
@@ -23,6 +26,8 @@ const sortJson = fileContent => {
             Object.keys(roll).forEach(key => {
                 // Skip tier - it has tierValue directly, not options array
                 if (key === 'tier') return
+                // Skip virtual sections - they only have priority
+                if (VIRTUAL_SECTIONS.includes(key)) return
                 if (typeof roll[key] === 'object' && 'options' in roll[key]) {
                     roll[key].options.sort((oa, ob) => {
                         if (oa.order > ob.order) return 1
@@ -42,12 +47,18 @@ const sortJson = fileContent => {
             return 0
         })
 
-        //Bubble up Name and Status
+        //Bubble up Name, Status, and strictTraits
         const bubbledRolls = cw.rolls.map(r => {
-            return {
+            const bubbled = {
                 name: r.name,
-                status: r.status,
-                ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== 'name' && key !== 'status'))
+                status: r.status
+            }
+            if (r.strictTraits) {
+                bubbled.strictTraits = r.strictTraits
+            }
+            return {
+                ...bubbled,
+                ...Object.fromEntries(Object.entries(r).filter(([key]) => key !== 'name' && key !== 'status' && key !== 'strictTraits'))
             }
         })
         cw.rolls = bubbledRolls
@@ -455,7 +466,25 @@ const rollCLI = async (weaponName = '') => {
         message: `What is the roll's name?`
     })
 
-    let roll = await prioritizeSectionsCLI(await sectionCLI({ name: rollNamePrompt.name }, weaponName))
+    // Ask if this roll should use strict trait filtering (for high-volume T5 weapons)
+    const strictTraitsPrompt = await prompt({
+        type: 'toggle',
+        name: 'strictTraits',
+        message: 'Use strict trait filtering? (for high-volume T5 weapons)',
+        enabled: 'Yes',
+        disabled: 'No',
+        initial: false
+    })
+
+    let roll = { name: rollNamePrompt.name }
+    
+    // If strictTraits, add the flag and virtual sections
+    if (strictTraitsPrompt.strictTraits) {
+        roll.strictTraits = true
+        roll.secondaryTraits = { priority: 0 }  // Will be set in prioritizeSectionsCLI
+    }
+
+    roll = await prioritizeSectionsCLI(await sectionCLI(roll, weaponName))
 
     roll.status = 'ENABLED'
 
@@ -553,9 +582,12 @@ const sectionCLI = async (accRoll, weaponName = '') => {
 }
 
 const prioritizeSectionsCLI = async roll => {
+    // Sections to exclude from priority selection
+    const excludeFromPriority = ['name', 'mod', 'origin', 'strictTraits', 'bonusTraits']
+    
     let choices = Object.keys(roll)
         .filter(s => {
-            return s !== 'name' && s !== 'mod' && s !== 'origin'
+            return !excludeFromPriority.includes(s)
         })
         .map(fs => {
             //this could be done with a flatmap instead of a filter and map, but then it's less comprehensible
@@ -786,8 +818,18 @@ const printRoll = (weaponIndex, rollIndex) => {
     let roll = { ...currentWeapons[weaponIndex].rolls[rollIndex] }
     let printName = weapon.name + ' -> ' + roll.name
     let printStatus = roll.status
+    
+    // Capture strictTraits info before deleting
+    const isStrictTraits = roll.strictTraits || false
+    const secondaryTraitsPriority = roll.secondaryTraits?.priority || null
+    
     delete roll.name
     delete roll.status
+    delete roll.strictTraits
+    // Remove virtual sections from roll (we'll add secondaryTraits manually if strict)
+    delete roll.secondaryTraits
+    delete roll.bonusTraits
+    
     let fRoll = new Map()
     Object.keys(roll).forEach(r => {
         let rSectionName = r === 'mod' || r === 'origin' ? [r] : [roll[r].priority, r]
@@ -825,11 +867,22 @@ const printRoll = (weaponIndex, rollIndex) => {
                 })
         )
     })
-    return {
-        name: printName,
-        status: printStatus,
-        roll: fRoll
+    
+    // Add secondaryTraits to the map if strict mode (for priority visualization)
+    if (isStrictTraits && secondaryTraitsPriority !== null) {
+        fRoll.set([secondaryTraitsPriority, 'secondaryTraits'], '')
     }
+    
+    const result = {
+        name: printName,
+        status: printStatus
+    }
+    // Show strictTraits as simple boolean if enabled
+    if (isStrictTraits) {
+        result.strictTraits = true
+    }
+    result.roll = fRoll
+    return result
 }
 
 const handleError = e => {
